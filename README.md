@@ -1,4 +1,4 @@
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/hughesjs/PGFPlots.NET/.NET%20Continuous%20Deployment?style=for-the-badge)](https://github.com/hughesjs/PGFPlots.NET/actions)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/hughesjs/PGFPlots.NET/dotnet-cd.yml?style=for-the-badge&branch=master)](https://github.com/hughesjs/PGFPlots.NET/actions)
 ![GitHub top language](https://img.shields.io/github/languages/top/hughesjs/PGFPlots.NET?style=for-the-badge)
 [![GitHub](https://img.shields.io/github/license/hughesjs/PGFPlots.NET?style=for-the-badge)](LICENSE)
 [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/PGFPlots.NET?style=for-the-badge)](https://nuget.org/packages/PGFPlots.NET/)
