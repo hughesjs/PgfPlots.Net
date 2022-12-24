@@ -1,3 +1,5 @@
+using PgfPlots.Net.ElementDefinitions;
+using PgfPlots.Net.Services;
 using Shouldly;
 
 namespace PgfPlots.Net.Tests;

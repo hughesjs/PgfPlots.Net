@@ -16,7 +16,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <InternalsVisibleTo Include="PgfPlots.Net.Tests"/>
+        <InternalsVisibleTo Include="PgfPlots.Net.Tests" />
     </ItemGroup>
     
 </Project>

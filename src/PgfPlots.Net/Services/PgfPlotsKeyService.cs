@@ -1,6 +1,7 @@
 using System.Reflection;
+using PgfPlots.Net.Attributes;
 
-namespace PgfPlots.Net;
+namespace PgfPlots.Net.Services;
 
 internal class PgfPlotsKeyService
 {

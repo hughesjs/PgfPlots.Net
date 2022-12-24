@@ -1,4 +1,6 @@
-namespace PgfPlots.Net;
+using PgfPlots.Net.Attributes;
+
+namespace PgfPlots.Net.ElementDefinitions.Enums;
 
 public enum GridSetting
 {

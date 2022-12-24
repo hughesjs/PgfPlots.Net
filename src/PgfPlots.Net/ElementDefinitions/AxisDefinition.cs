@@ -1,4 +1,7 @@
-﻿namespace PgfPlots.Net;
+﻿using PgfPlots.Net.Attributes;
+using PgfPlots.Net.ElementDefinitions.Enums;
+
+namespace PgfPlots.Net.ElementDefinitions;
 
 public record AxisDefinition
 {
