@@ -1,6 +1,6 @@
-using PgfPlots.Net.ElementDefinitions;
+using PgfPlots.Net.Public.ElementDefinitions;
 
-namespace PgfPlots.Net.Interfaces.Services;
+namespace PgfPlots.Net.Public.Interfaces.Services;
 
 public interface IPgfPlotSourceGenerator
 {

@@ -1,7 +1,7 @@
-﻿using PgfPlots.Net.Attributes;
-using PgfPlots.Net.ElementDefinitions.Enums;
+﻿using PgfPlots.Net.Internal.Attributes;
+using PgfPlots.Net.Public.ElementDefinitions.Enums;
 
-namespace PgfPlots.Net.ElementDefinitions;
+namespace PgfPlots.Net.Public.ElementDefinitions;
 
 public record AxisDefinition
 {
@@ -30,13 +30,13 @@ public record AxisDefinition
 	public int? MinorXTickNumber { get; init; }
 	
 	[PgfPlotsKey("xticks")]
-	public List<float> XTicks { get; init; } = new();
+	public List<float>? XTicks { get; init; }
 	
 	[PgfPlotsKey("yticks")]
-	public List<float> YTicks { get; init; } = new();
+	public List<float>? YTicks { get; init; }
 
 	[PgfPlotsKey("grid")]
-	public GridSetting Grid { get; init; } = new();
+	public GridSetting? Grid { get; init; }
 	
 	//TODO - Grid style
 }

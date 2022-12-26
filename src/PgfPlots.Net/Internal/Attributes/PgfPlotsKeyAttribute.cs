@@ -1,4 +1,4 @@
-namespace PgfPlots.Net.Attributes;
+namespace PgfPlots.Net.Internal.Attributes;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
 internal class PgfPlotsKeyAttribute: Attribute

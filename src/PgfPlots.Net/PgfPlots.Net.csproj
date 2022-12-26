@@ -18,5 +18,14 @@
     <ItemGroup>
         <InternalsVisibleTo Include="PgfPlots.Net.Tests" />
     </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoFixture" Version="4.17.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Internal\Services" />
+      <Folder Include="Public" />
+    </ItemGroup>
     
 </Project>

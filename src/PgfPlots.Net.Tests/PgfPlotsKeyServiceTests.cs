@@ -1,23 +1,15 @@
-using PgfPlots.Net.ElementDefinitions;
-using PgfPlots.Net.Services;
+using PgfPlots.Net.Internal.Reflection;
+using PgfPlots.Net.Public.ElementDefinitions;
 using Shouldly;
 
 namespace PgfPlots.Net.Tests;
 
-public class PgfPlotsKeyServiceTests
+public class PgfPlotsKeyHelperTests
 {
-	private readonly PgfPlotsKeyService _service;
-
-	public PgfPlotsKeyServiceTests()
-	{
-		_service = new();
-	}
-
-
 	[Fact]
 	public void CanGetPgfPlotsKeyFromProperty()
 	{
-		string? xLabel = _service.GetPgfPlotsKey<AxisDefinition>(nameof(AxisDefinition.XLabel));
+		string? xLabel = PgfPlotsKeyHelper.GetPgfPlotsKey<AxisDefinition>(nameof(AxisDefinition.XLabel));
 
 		xLabel.ShouldNotBeNullOrEmpty();
 		xLabel.ShouldBe("xlabel");

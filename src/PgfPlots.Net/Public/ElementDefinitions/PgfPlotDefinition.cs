@@ -1,4 +1,4 @@
-namespace PgfPlots.Net.ElementDefinitions;
+namespace PgfPlots.Net.Public.ElementDefinitions;
 
 public record PgfPlotDefinition
 {
