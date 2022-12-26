@@ -1,9 +1,9 @@
 ﻿using PgfPlots.Net.Internal.Attributes;
 using PgfPlots.Net.Public.ElementDefinitions.Enums;
 
-namespace PgfPlots.Net.Public.ElementDefinitions;
+namespace PgfPlots.Net.Public.ElementDefinitions.Options;
 
-public record AxisDefinition
+public record AxisDefinition: OptionsDefinition
 {
 	[PgfPlotsKey("xlabel")]
 	public string? XLabel { get; init; }

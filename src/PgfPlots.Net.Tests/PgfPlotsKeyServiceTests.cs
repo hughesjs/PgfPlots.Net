@@ -1,5 +1,5 @@
 using PgfPlots.Net.Internal.Reflection;
-using PgfPlots.Net.Public.ElementDefinitions;
+using PgfPlots.Net.Public.ElementDefinitions.Options;
 using Shouldly;
 
 namespace PgfPlots.Net.Tests;

@@ -4,9 +4,17 @@ namespace PgfPlots.Net.Internal.SyntaxTree.Nodes;
 
 internal abstract class SyntaxNode
 {
-    public SyntaxNode? Parent { get; }
+    public SyntaxNode? Parent { get; private set; }
     public List<SyntaxNode> Children { get; }
-    
+
+    public void AddChild(SyntaxNode child)
+    {
+        child.Parent = this;
+        Children.Add(child);
+    }
+
+    public void AddChildren(IEnumerable<SyntaxNode> children) => Children.AddRange(children);
+
     protected abstract string BeforeChildren { get; }
     
     protected abstract string AfterChildren { get; }
