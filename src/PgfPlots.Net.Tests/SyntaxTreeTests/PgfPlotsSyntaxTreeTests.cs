@@ -18,7 +18,6 @@ public class PgfPlotsSyntaxTreeTests
             YMin = 0,
             YMax = 10,
             YTicks = new() {0, 3.3f, 6.2f, 8, 9, 10},
-            Grid = GridSetting.Both,
             MinorXTickNumber = 3,
             MinorYTickNumber = 4,
             XLabel = "I Am The X Label",
@@ -30,5 +29,7 @@ public class PgfPlotsSyntaxTreeTests
 
         string res = tree.GenerateSource();
         ;
+
+        throw new NotImplementedException();
     }
 }

@@ -23,20 +23,26 @@ public record AxisDefinition: OptionsDefinition
 	[PgfPlotsKey("ymax")]
 	public float?  YMax   { get; init; }
 	
-	[PgfPlotsKey("minor y tick no")]
+	[PgfPlotsKey("minor y tick num")]
 	public int? MinorYTickNumber { get; init; }
 	
-	[PgfPlotsKey("minor x tick no")]
+	[PgfPlotsKey("minor x tick num")]
 	public int? MinorXTickNumber { get; init; }
 	
-	[PgfPlotsKey("xticks")]
+	[PgfPlotsKey("major y tick num")]
+	public int? MajorYTickNumber { get; init; }
+	
+	[PgfPlotsKey("major x tick num")]
+	public int? MajorXTickNumber { get; init; }
+	
+	[PgfPlotsKey("xtick")]
 	public List<float>? XTicks { get; init; }
 	
-	[PgfPlotsKey("yticks")]
+	[PgfPlotsKey("ytick")]
 	public List<float>? YTicks { get; init; }
 
-	[PgfPlotsKey("grid")]
-	public GridSetting? Grid { get; init; }
+	// [PgfPlotsKey("grid")]
+	// public GridSetting? Grid { get; init; }
 	
 	//TODO - Grid style
 }

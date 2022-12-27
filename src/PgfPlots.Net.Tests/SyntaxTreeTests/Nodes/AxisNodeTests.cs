@@ -49,7 +49,7 @@ public class AxisNodeTests
         PgfPlotsSyntaxTree tree = new(axisNode);
         
         string expected = $$"""
-                            \begin{axis}[xlabel={{axis.XLabel}}, ylabel={{axis.YLabel}}, xmin={{axis.XMin}}, ymin={{axis.YMin}}, xmax={{axis.XMax}}, ymax={{axis.YMax}}, minor y tick no={{axis.MinorYTickNumber}}, minor x tick no={{axis.MinorXTickNumber}}, xticks={{{string.Join(',', axis.XTicks!)}}}, yticks={{{string.Join(',', axis.YTicks!)}}}, grid={{axis.Grid}}]
+                            \begin{axis}[xlabel={{axis.XLabel}}, ylabel={{axis.YLabel}}, xmin={{axis.XMin}}, ymin={{axis.YMin}}, xmax={{axis.XMax}}, ymax={{axis.YMax}}, minor y tick num={{axis.MinorYTickNumber}}, minor x tick num={{axis.MinorXTickNumber}}, major y tick num={{axis.MajorYTickNumber}}, major x tick num={{axis.MajorXTickNumber}}, xtick={{{string.Join(',', axis.XTicks!)}}}, ytick={{{string.Join(',', axis.YTicks!)}}}]
                             \end{axis}
                             """;
 

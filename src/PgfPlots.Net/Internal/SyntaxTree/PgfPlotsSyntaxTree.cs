@@ -12,12 +12,14 @@ internal class PgfPlotsSyntaxTree
     
     public PgfPlotsSyntaxTree(PgfPlotDefinition definition)
     {
-        PgfPlotNode rootNode = new();
-        RootNode = rootNode;
-
         AxisNode axisNode = new();
-        OptionsCollectionNode optionsCollectionNode = new();
+        OptionsCollectionNode axisOptionsCollectionNode = new(definition.AxisDefinition.GetOptionsDictionary());
+        axisNode.AddChild(axisOptionsCollectionNode);
         
+        PgfPlotNode rootNode = new();
+        rootNode.AddChild(axisNode);
+        
+        RootNode = rootNode;
     }
 
     private SyntaxNode RootNode { get; }
