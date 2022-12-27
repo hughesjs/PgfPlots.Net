@@ -2,6 +2,7 @@ using PgfPlots.Net.Internal.SyntaxTree;
 using PgfPlots.Net.Public.ElementDefinitions;
 using PgfPlots.Net.Public.ElementDefinitions.Enums;
 using PgfPlots.Net.Public.ElementDefinitions.Options;
+using Shouldly;
 
 namespace PgfPlots.Net.Tests.SyntaxTreeTests;
 
@@ -27,9 +28,15 @@ public class PgfPlotsSyntaxTreeTests
         PgfPlotDefinition plotDefinition = new(axisDefinition);
         PgfPlotsSyntaxTree tree = new(plotDefinition);
 
+        string expected = $$"""
+                            \begin{tikzpicture}
+                            \begin{axis}[xlabel={{axisDefinition.XLabel}}, ylabel={{axisDefinition.YLabel}}, xmin={{axisDefinition.XMin}}, ymin={{axisDefinition.YMin}}, xmax={{axisDefinition.XMax}}, ymax={{axisDefinition.YMax}}, minor y tick num={{axisDefinition.MinorYTickNumber}}, minor x tick num={{axisDefinition.MinorXTickNumber}}, xtick={{{string.Join(',',axisDefinition.XTicks)}}}, ytick={{{string.Join(',',axisDefinition.YTicks)}}}]
+                            \end{axis}
+                            \end{tikzpicture}
+                            """;
+        
         string res = tree.GenerateSource();
-        ;
 
-        throw new NotImplementedException();
+        res.ShouldBe(expected);
     }
 }
