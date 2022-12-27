@@ -1,7 +1,7 @@
 using System.Text;
 using PgfPlots.Net.Internal.Exceptions;
 
-namespace PgfPlots.Net.Internal.SyntaxTree.Nodes;
+namespace PgfPlots.Net.Internal.SyntaxTree.Nodes.Options;
 
 internal class OptionNode: SyntaxNode<KeyValuePair<string, string?>>
 {
@@ -22,9 +22,9 @@ internal class OptionNode: SyntaxNode<KeyValuePair<string, string?>>
         return builder;
     }
 
-    public override void AddChild(SyntaxNode child) => throw new OptionNodeIsTerminalException();
+    public override void AddChild(SyntaxNode child) => throw new NodeIsTerminalException(this);
 
-    public override void AddChildren(IEnumerable<SyntaxNode> children) => throw new OptionNodeIsTerminalException();
+    public override void AddChildren(IEnumerable<SyntaxNode> children) => throw new NodeIsTerminalException(this);
 
     public OptionNode(KeyValuePair<string, string?> data) : base(data) { }
 }

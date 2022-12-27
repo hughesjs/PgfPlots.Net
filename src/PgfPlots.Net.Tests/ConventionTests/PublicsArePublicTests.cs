@@ -15,7 +15,7 @@ public class PublicsArePublicTests
     }
 
 
-    public static IEnumerable<object[]> PublicClassDataGenerator() => typeof(AxisDefinition).Assembly.GetTypes()
+    public static IEnumerable<object[]> PublicClassDataGenerator() => typeof(AxisOptions).Assembly.GetTypes()
         .Where(t => t.Namespace != null && t.Namespace.Contains(PublicNamespaceFragment))
         .Select(t => new object[] {t});
 }

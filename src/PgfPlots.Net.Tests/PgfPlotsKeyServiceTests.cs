@@ -9,7 +9,7 @@ public class PgfPlotsKeyHelperTests
 	[Fact]
 	public void CanGetPgfPlotsKeyFromProperty()
 	{
-		string? xLabel = PgfPlotsKeyHelper.GetPgfPlotsKey<AxisDefinition>(nameof(AxisDefinition.XLabel));
+		string? xLabel = PgfPlotsKeyHelper.GetPgfPlotsKey<AxisOptions>(nameof(AxisOptions.XLabel));
 
 		xLabel.ShouldNotBeNullOrEmpty();
 		xLabel.ShouldBe("xlabel");

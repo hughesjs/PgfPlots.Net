@@ -1,12 +1,13 @@
 using AutoFixture;
 using PgfPlots.Net.Internal.Reflection;
 using PgfPlots.Net.Internal.SyntaxTree;
-using PgfPlots.Net.Internal.SyntaxTree.Nodes;
+using PgfPlots.Net.Internal.SyntaxTree.Nodes.Axes;
+using PgfPlots.Net.Internal.SyntaxTree.Nodes.Options;
 using PgfPlots.Net.Public.ElementDefinitions.Enums;
 using PgfPlots.Net.Public.ElementDefinitions.Options;
 using Shouldly;
 
-namespace PgfPlots.Net.Tests.SyntaxTreeTests.Nodes;
+namespace PgfPlots.Net.Tests.SyntaxTreeTests.Nodes.Axes;
 
 public class AxisNodeTests
 {
@@ -37,7 +38,7 @@ public class AxisNodeTests
     [Fact]
     public void CanGenerateCorrectSourceWithOptionsButNoPlots()
     {
-        AxisDefinition axis = _fixture.Create<AxisDefinition>();
+        AxisOptions axis = _fixture.Create<AxisOptions>();
         Dictionary<string, string?> optionsDict = axis.GetOptionsDictionary();
 
         

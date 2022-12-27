@@ -1,6 +1,6 @@
 using PgfPlots.Net.Internal.Exceptions;
 
-namespace PgfPlots.Net.Internal.SyntaxTree.Nodes;
+namespace PgfPlots.Net.Internal.SyntaxTree.Nodes.Options;
 
 internal class OptionsCollectionNode: SyntaxNode
 {

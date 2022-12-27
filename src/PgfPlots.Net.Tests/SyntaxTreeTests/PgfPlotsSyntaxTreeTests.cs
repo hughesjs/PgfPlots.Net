@@ -11,7 +11,7 @@ public class PgfPlotsSyntaxTreeTests
     [Fact]
     public void CanGeneratePgfPlotAxisWithNoData()
     {
-        AxisDefinition axisDefinition = new()
+        AxisOptions axisOptions = new()
         {
             XMin = -5,
             XMax = 5,
@@ -25,12 +25,12 @@ public class PgfPlotsSyntaxTreeTests
             YLabel = "I Am The Y Label"
         };
         
-        PgfPlotDefinition plotDefinition = new(axisDefinition);
+        PgfPlotDefinition plotDefinition = new(axisOptions);
         PgfPlotsSyntaxTree tree = new(plotDefinition);
 
         string expected = $$"""
                             \begin{tikzpicture}
-                            \begin{axis}[xlabel={{axisDefinition.XLabel}}, ylabel={{axisDefinition.YLabel}}, xmin={{axisDefinition.XMin}}, ymin={{axisDefinition.YMin}}, xmax={{axisDefinition.XMax}}, ymax={{axisDefinition.YMax}}, minor y tick num={{axisDefinition.MinorYTickNumber}}, minor x tick num={{axisDefinition.MinorXTickNumber}}, xtick={{{string.Join(',',axisDefinition.XTicks)}}}, ytick={{{string.Join(',',axisDefinition.YTicks)}}}]
+                            \begin{axis}[xlabel={{axisOptions.XLabel}}, ylabel={{axisOptions.YLabel}}, xmin={{axisOptions.XMin}}, ymin={{axisOptions.YMin}}, xmax={{axisOptions.XMax}}, ymax={{axisOptions.YMax}}, minor y tick num={{axisOptions.MinorYTickNumber}}, minor x tick num={{axisOptions.MinorXTickNumber}}, xtick={{{string.Join(',',axisOptions.XTicks)}}}, ytick={{{string.Join(',',axisOptions.YTicks)}}}]
                             \end{axis}
                             \end{tikzpicture}
                             """;

@@ -1,4 +1,7 @@
 using PgfPlots.Net.Internal.SyntaxTree.Nodes;
+using PgfPlots.Net.Internal.SyntaxTree.Nodes.Axes;
+using PgfPlots.Net.Internal.SyntaxTree.Nodes.Options;
+using PgfPlots.Net.Internal.SyntaxTree.Nodes.Plots;
 using PgfPlots.Net.Public.ElementDefinitions;
 
 namespace PgfPlots.Net.Internal.SyntaxTree;
@@ -13,7 +16,7 @@ internal class PgfPlotsSyntaxTree
     public PgfPlotsSyntaxTree(PgfPlotDefinition definition)
     {
         AxisNode axisNode = new();
-        OptionsCollectionNode axisOptionsCollectionNode = new(definition.AxisDefinition.GetOptionsDictionary());
+        OptionsCollectionNode axisOptionsCollectionNode = new(definition.AxisOptions.GetOptionsDictionary());
         axisNode.AddChild(axisOptionsCollectionNode);
         
         PgfPlotNode rootNode = new();

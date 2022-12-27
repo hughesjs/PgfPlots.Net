@@ -1,4 +1,5 @@
 using System.Text;
+using PgfPlots.Net.Internal.SyntaxTree.Nodes.Options;
 
 namespace PgfPlots.Net.Internal.SyntaxTree.Nodes;
 

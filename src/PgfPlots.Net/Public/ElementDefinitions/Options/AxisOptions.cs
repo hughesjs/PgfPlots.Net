@@ -3,7 +3,7 @@ using PgfPlots.Net.Public.ElementDefinitions.Enums;
 
 namespace PgfPlots.Net.Public.ElementDefinitions.Options;
 
-public record AxisDefinition: OptionsDefinition
+public record AxisOptions: OptionsDefinition
 {
 	[PgfPlotsKey("xlabel")]
 	public string? XLabel { get; init; }

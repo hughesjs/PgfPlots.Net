@@ -11,7 +11,7 @@ public abstract record OptionsDefinition
         Dictionary<string, string?> propsDict = new();
         foreach (PropertyInfo prop in GetType().GetProperties())
         {
-            string optionName = PgfPlotsKeyHelper.GetPgfPlotsKey<AxisDefinition>(prop.Name)
+            string optionName = PgfPlotsKeyHelper.GetPgfPlotsKey<AxisOptions>(prop.Name)
                                 ?? prop.Name;
 
             MethodInfo? getter = prop.GetGetMethod();
