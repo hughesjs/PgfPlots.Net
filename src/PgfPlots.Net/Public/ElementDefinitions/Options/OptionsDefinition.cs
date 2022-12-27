@@ -20,6 +20,12 @@ public abstract record OptionsDefinition
 
             Type dataType = value.GetType();
 
+            if (dataType.IsEnum)
+            {
+                string? valuePgfPlotKey = PgfPlotsKeyHelper.GetPgfPlotsKey(dataType, value.ToString()!);
+                propsDict.Add(optionName, valuePgfPlotKey);
+                continue;
+            }
 
             if (dataType.IsGenericType && dataType.GetGenericTypeDefinition() == typeof(List<>))
             {

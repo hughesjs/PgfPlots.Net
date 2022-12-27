@@ -1,6 +1,8 @@
 using AutoFixture;
+using PgfPlots.Net.Internal.Reflection;
 using PgfPlots.Net.Internal.SyntaxTree;
 using PgfPlots.Net.Internal.SyntaxTree.Nodes;
+using PgfPlots.Net.Public.ElementDefinitions.Enums;
 using PgfPlots.Net.Public.ElementDefinitions.Options;
 using Shouldly;
 
@@ -49,7 +51,7 @@ public class AxisNodeTests
         PgfPlotsSyntaxTree tree = new(axisNode);
         
         string expected = $$"""
-                            \begin{axis}[xlabel={{axis.XLabel}}, ylabel={{axis.YLabel}}, xmin={{axis.XMin}}, ymin={{axis.YMin}}, xmax={{axis.XMax}}, ymax={{axis.YMax}}, minor y tick num={{axis.MinorYTickNumber}}, minor x tick num={{axis.MinorXTickNumber}}, major y tick num={{axis.MajorYTickNumber}}, major x tick num={{axis.MajorXTickNumber}}, xtick={{{string.Join(',', axis.XTicks!)}}}, ytick={{{string.Join(',', axis.YTicks!)}}}]
+                            \begin{axis}[xlabel={{axis.XLabel}}, ylabel={{axis.YLabel}}, xmin={{axis.XMin}}, ymin={{axis.YMin}}, xmax={{axis.XMax}}, ymax={{axis.YMax}}, minor y tick num={{axis.MinorYTickNumber}}, minor x tick num={{axis.MinorXTickNumber}}, major y tick num={{axis.MajorYTickNumber}}, major x tick num={{axis.MajorXTickNumber}}, xtick={{{string.Join(',', axis.XTicks!)}}}, ytick={{{string.Join(',', axis.YTicks!)}}}, grid={{PgfPlotsKeyHelper.GetPgfPlotsKey<GridSetting>(axis.Grid.ToString()!)}}]
                             \end{axis}
                             """;
 

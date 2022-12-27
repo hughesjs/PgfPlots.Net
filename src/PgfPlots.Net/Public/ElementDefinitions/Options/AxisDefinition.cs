@@ -41,8 +41,8 @@ public record AxisDefinition: OptionsDefinition
 	[PgfPlotsKey("ytick")]
 	public List<float>? YTicks { get; init; }
 
-	// [PgfPlotsKey("grid")]
-	// public GridSetting? Grid { get; init; }
+	[PgfPlotsKey("grid")]
+	public GridSetting? Grid { get; init; }
 	
 	//TODO - Grid style
 }
