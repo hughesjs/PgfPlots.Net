@@ -11,7 +11,7 @@ Help would be greatly appreciated with this one.
 
 ---
 
-# PGFPlots.NET
+# PgfPlots.Net
 
 This is a C# library to enable developers to draw LaTex PGFPlots.
 
