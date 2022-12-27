@@ -31,7 +31,7 @@ public class OptionCollectionNodeTests
     [Fact]
     public void CanGenerateCorrectSourceWithChildOptions()
     {
-        Dictionary<string, string> propsDict = _fixture.Create<Dictionary<string, string>>();
+        Dictionary<string, string?> propsDict = _fixture.Create<Dictionary<string, string?>>();
         string expected = $"[{string.Join(", ", propsDict.Select(kvp => $"{kvp.Key}={kvp.Value}"))}]\n";
         
         OptionsCollectionNode optionsCollectionNode = new(propsDict);

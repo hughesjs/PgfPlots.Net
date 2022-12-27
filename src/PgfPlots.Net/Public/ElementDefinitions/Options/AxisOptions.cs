@@ -44,5 +44,7 @@ public record AxisOptions: OptionsDefinition
 	[PgfPlotsKey("grid")]
 	public GridSetting? Grid { get; init; }
 	
-	//TODO - Grid style
+	//TODO - Add custom keys dict
+	
+	//TODO - Grid options
 }

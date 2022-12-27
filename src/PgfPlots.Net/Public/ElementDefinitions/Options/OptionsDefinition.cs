@@ -20,6 +20,15 @@ public abstract record OptionsDefinition
 
             Type dataType = value.GetType();
 
+            if (value is bool)
+            {
+                if (value is true)
+                {
+                    propsDict.Add(optionName, null);
+                }
+                continue;
+            }
+            
             if (dataType.IsEnum)
             {
                 string? valuePgfPlotKey = PgfPlotsKeyHelper.GetPgfPlotsKey(dataType, value.ToString()!);
