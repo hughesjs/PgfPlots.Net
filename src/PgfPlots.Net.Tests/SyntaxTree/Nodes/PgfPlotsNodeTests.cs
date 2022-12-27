@@ -2,7 +2,7 @@ using PgfPlots.Net.Internal.SyntaxTree;
 using PgfPlots.Net.Internal.SyntaxTree.Nodes;
 using Shouldly;
 
-namespace PgfPlots.Net.Tests.SyntaxTreeTests.Nodes;
+namespace PgfPlots.Net.Tests.SyntaxTree.Nodes;
 
 public class PgfPlotsNodeTests
 {
@@ -10,7 +10,7 @@ public class PgfPlotsNodeTests
     public void GeneratesCorrectSourceWithNoChildren()
     {
         PgfPlotNode node = new();
-        PgfPlotsSyntaxTree tree = new(node);
+        PgfPlotSyntaxTree tree = new(node);
         const string expected = """
                                 \begin{tikzpicture}
                                 

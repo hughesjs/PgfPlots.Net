@@ -15,7 +15,7 @@ public class InternalsAreNotPublicTests
     }
 
 
-    public static IEnumerable<object[]> PublicClassDataGenerator() => typeof(PgfPlotsSyntaxTree).Assembly.GetTypes()
+    public static IEnumerable<object[]> PublicClassDataGenerator() => typeof(PgfPlotSyntaxTree).Assembly.GetTypes()
         .Where(t => t.Namespace != null && t.Namespace.Contains(PublicNamespaceFragment))
         .Select(t => new object[] {t});
 }

@@ -9,14 +9,14 @@ using PgfPlots.Net.Public.ElementDefinitions.Plots;
 
 namespace PgfPlots.Net.Internal.SyntaxTree;
 
-internal class PgfPlotsSyntaxTree
+internal class PgfPlotSyntaxTree
 {
-    public PgfPlotsSyntaxTree(SyntaxNode rootNode)
+    public PgfPlotSyntaxTree(SyntaxNode rootNode)
     {
         RootNode = rootNode;
     }
     
-    public PgfPlotsSyntaxTree(PgfPlotDefinition definition)
+    public PgfPlotSyntaxTree(PgfPlotDefinition definition)
     {
         RootNode = GenerateTree(definition);
     }

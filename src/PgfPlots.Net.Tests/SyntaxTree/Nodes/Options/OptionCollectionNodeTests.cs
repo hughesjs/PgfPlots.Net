@@ -5,7 +5,7 @@ using PgfPlots.Net.Internal.SyntaxTree.Nodes;
 using PgfPlots.Net.Internal.SyntaxTree.Nodes.Options;
 using Shouldly;
 
-namespace PgfPlots.Net.Tests.SyntaxTreeTests.Nodes.Options;
+namespace PgfPlots.Net.Tests.SyntaxTree.Nodes.Options;
 
 public class OptionCollectionNodeTests
 {
@@ -20,7 +20,7 @@ public class OptionCollectionNodeTests
     public void CanGenerateCorrectSourceWithNoChildOptions()
     {
         OptionsCollectionNode node = new();
-        PgfPlotsSyntaxTree tree = new(node);
+        PgfPlotSyntaxTree tree = new(node);
         
         const string expected = "[]\n";
         string result = tree.GenerateSource();
@@ -36,7 +36,7 @@ public class OptionCollectionNodeTests
         
         OptionsCollectionNode optionsCollectionNode = new(propsDict);
 
-        PgfPlotsSyntaxTree tree = new(optionsCollectionNode);
+        PgfPlotSyntaxTree tree = new(optionsCollectionNode);
         string result = tree.GenerateSource();
         
         result.ShouldBe(expected);

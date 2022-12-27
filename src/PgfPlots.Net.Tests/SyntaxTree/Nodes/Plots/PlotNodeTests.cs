@@ -7,7 +7,7 @@ using PgfPlots.Net.Public.ElementDefinitions.Options;
 using PgfPlots.Net.Public.ElementDefinitions.Plots.Data;
 using Shouldly;
 
-namespace PgfPlots.Net.Tests.SyntaxTreeTests.Nodes.Plots;
+namespace PgfPlots.Net.Tests.SyntaxTree.Nodes.Plots;
 
 public class PlotNodeTests
 {
@@ -44,7 +44,7 @@ public class PlotNodeTests
 		plotNode.AddChild(optionsCollectionNode);
 		plotNode.AddChild(rawDataCollectionNode);
 
-		PgfPlotsSyntaxTree tree = new(plotNode);
+		PgfPlotSyntaxTree tree = new(plotNode);
 		string res = tree.GenerateSource();
 		
 		res.ShouldBe(expected);
@@ -73,7 +73,7 @@ public class PlotNodeTests
 		plotNode.AddChild(optionsCollectionNode);
 		plotNode.AddChild(rawDataCollectionNode);
 
-		PgfPlotsSyntaxTree tree = new(plotNode);
+		PgfPlotSyntaxTree tree = new(plotNode);
 		string res = tree.GenerateSource();
 		
 		res.ShouldBe(expected);
@@ -103,7 +103,7 @@ public class PlotNodeTests
 		plotNode.AddChild(optionsCollectionNode);
 		plotNode.AddChild(rawDataCollectionNode);
 
-		PgfPlotsSyntaxTree tree = new(plotNode);
+		PgfPlotSyntaxTree tree = new(plotNode);
 		string res = tree.GenerateSource();
 		
 		res.ShouldBe(expected);
@@ -133,7 +133,7 @@ public class PlotNodeTests
 		plotNode.AddChild(optionsCollectionNode);
 		plotNode.AddChild(rawDataCollectionNode);
 
-		PgfPlotsSyntaxTree tree = new(plotNode);
+		PgfPlotSyntaxTree tree = new(plotNode);
 		string res = tree.GenerateSource();
 		
 		res.ShouldBe(expected);

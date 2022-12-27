@@ -7,7 +7,7 @@ using PgfPlots.Net.Public.ElementDefinitions.Enums;
 using PgfPlots.Net.Public.ElementDefinitions.Options;
 using Shouldly;
 
-namespace PgfPlots.Net.Tests.SyntaxTreeTests.Nodes.Axes;
+namespace PgfPlots.Net.Tests.SyntaxTree.Nodes.Axes;
 
 public class AxisNodeTests
 {
@@ -24,7 +24,7 @@ public class AxisNodeTests
         AxisNode axisNode = new();
         OptionsCollectionNode optionsNode = new();
         axisNode.AddChild(optionsNode);
-        PgfPlotsSyntaxTree tree = new(axisNode);
+        PgfPlotSyntaxTree tree = new(axisNode);
         const string expected = """
                               \begin{axis}[]
                               \end{axis}
@@ -49,7 +49,7 @@ public class AxisNodeTests
         AxisNode axisNode = new();
         axisNode.AddChild(optionsCollectionNode);
 
-        PgfPlotsSyntaxTree tree = new(axisNode);
+        PgfPlotSyntaxTree tree = new(axisNode);
         
         string expected = $$"""
                             \begin{axis}[xlabel={{axis.XLabel}}, ylabel={{axis.YLabel}}, xmin={{axis.XMin}}, ymin={{axis.YMin}}, xmax={{axis.XMax}}, ymax={{axis.YMax}}, minor y tick num={{axis.MinorYTickNumber}}, minor x tick num={{axis.MinorXTickNumber}}, major y tick num={{axis.MajorYTickNumber}}, major x tick num={{axis.MajorXTickNumber}}, xtick={{{string.Join(',', axis.XTicks!)}}}, ytick={{{string.Join(',', axis.YTicks!)}}}, grid={{PgfPlotsAttributeHelper.GetPgfPlotsKey<GridSetting>(axis.Grid.ToString()!)}}]

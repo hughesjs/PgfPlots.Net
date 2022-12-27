@@ -6,7 +6,7 @@ using PgfPlots.Net.Public.ElementDefinitions.Plots;
 using PgfPlots.Net.Public.ElementDefinitions.Plots.Data;
 using Shouldly;
 
-namespace PgfPlots.Net.Tests.SyntaxTreeTests;
+namespace PgfPlots.Net.Tests.SyntaxTree;
 
 public class PgfPlotsSyntaxTreeTests
 {
@@ -42,7 +42,7 @@ public class PgfPlotsSyntaxTreeTests
     public void CanGeneratePgfPlotAxisWithNoData()
     {
         PgfPlotDefinition pgfPlotDefinition = new(AxisOptions);
-        PgfPlotsSyntaxTree tree = new(pgfPlotDefinition);
+        PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
         string expected = $$"""
                             \begin{tikzpicture}
@@ -72,7 +72,7 @@ public class PgfPlotsSyntaxTreeTests
         PlotDefinition plotDefinition = new(plotOptions, Data1);
         
         PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, new(){plotDefinition});
-        PgfPlotsSyntaxTree tree = new(pgfPlotDefinition);
+        PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
         string expected = $$"""
                             \begin{tikzpicture}
@@ -114,7 +114,7 @@ public class PgfPlotsSyntaxTreeTests
         PlotDefinition plotDefinition2 = new(plotOptions2, Data2);
         
         PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, new(){plotDefinition1, plotDefinition2});
-        PgfPlotsSyntaxTree tree = new(pgfPlotDefinition);
+        PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
         string expected = $$"""
                             \begin{tikzpicture}
