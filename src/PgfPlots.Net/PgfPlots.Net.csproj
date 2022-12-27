@@ -5,13 +5,13 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Version>0.0.0</Version>
-        <Title>PgfPlots.NET</Title>
+        <Title>PgfPlots.Net</Title>
         <Authors>James Hughes</Authors>
         <Description>Lets you make LaTex PGFPlots in C#</Description>
         <Copyright>James Hughes</Copyright>
-        <PackageProjectUrl>https://github.com/hughesjs/PgfPlots.NET</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/hughesjs/PgfPlots.NET/blob/master/LICENSE</PackageLicenseUrl>
-        <RepositoryUrl>https://github.com/hughesjs/PgfPlots.NET</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/hughesjs/PgfPlots.Net</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/hughesjs/PgfPlots.Net/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/hughesjs/PgfPlots.Net</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
