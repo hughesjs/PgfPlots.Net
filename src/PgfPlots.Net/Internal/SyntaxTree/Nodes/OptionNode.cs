@@ -20,5 +20,5 @@ internal class OptionNode: SyntaxNode<KeyValuePair<string, string?>>
         return builder;
     }
 
-    public OptionNode(KeyValuePair<string, string> data) : base(data) { }
+    public OptionNode(KeyValuePair<string, string?> data) : base(data) { }
 }

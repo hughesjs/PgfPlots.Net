@@ -61,12 +61,6 @@ public class AxisNodeTests
     }
     
     [Fact]
-    public void CanGenerateCorrectSourceWithPlotsButNoOptions()
-    {
-        
-    }
-    
-    [Fact]
     public void CanGenerateCorrectSourceWithBothOptionsAndPlots()
     {
         

@@ -9,6 +9,13 @@ internal abstract class SyntaxNode
 
     public void AddChild(SyntaxNode child)
     {
+        // If theres already an options node, we want to merge the options
+        OptionsCollectionNode? optionsNode = (OptionsCollectionNode?)Children.SingleOrDefault(c => c is OptionsCollectionNode);
+        if (optionsNode is not null && child is OptionsCollectionNode optionsCollectionChild)
+        {
+            optionsNode.AddChildren(optionsCollectionChild.Children);
+        }
+        
         child.Parent = this;
         Children.Add(child);
     }
@@ -22,7 +29,11 @@ internal abstract class SyntaxNode
     public virtual StringBuilder GenerateSource(StringBuilder builder)
     {
         builder.Append(BeforeChildren);
-        foreach (SyntaxNode child in Children)
+        
+        OptionsCollectionNode? options = (OptionsCollectionNode?)Children.SingleOrDefault(c => c is OptionsCollectionNode);
+        options?.GenerateSource(builder);
+
+        foreach (SyntaxNode child in Children.Where(c => c is not OptionsCollectionNode))
         {
             child.GenerateSource(builder);
         }
