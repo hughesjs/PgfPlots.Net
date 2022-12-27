@@ -7,7 +7,8 @@ internal class AxisNode : SyntaxNode
                                                 """;
 
     protected override string AfterChildren => """
-                                               
                                                \end{axis}
                                                """;
+
+    protected override string BetweenChildren => "\n";
 }

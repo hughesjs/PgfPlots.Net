@@ -6,6 +6,8 @@ internal class PgfPlotsNode : SyntaxNode
                                                  \begin{tikzpicture}
                                                  
                                                  """;
+
+    protected override string BetweenChildren => string.Empty;
     protected override string AfterChildren => """
                                                
                                                \end{tikzpicture}

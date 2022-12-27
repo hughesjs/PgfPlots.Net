@@ -7,7 +7,7 @@ internal abstract class SyntaxNode
     public SyntaxNode? Parent { get; private set; }
     public List<SyntaxNode> Children { get; }
 
-    public void AddChild(SyntaxNode child)
+    public virtual void AddChild(SyntaxNode child)
     {
         // If theres already an options node, we want to merge the options
         OptionsCollectionNode? optionsNode = (OptionsCollectionNode?)Children.SingleOrDefault(c => c is OptionsCollectionNode);
@@ -20,9 +20,11 @@ internal abstract class SyntaxNode
         Children.Add(child);
     }
 
-    public void AddChildren(IEnumerable<SyntaxNode> children) => Children.AddRange(children);
+    public virtual void AddChildren(IEnumerable<SyntaxNode> children) => Children.AddRange(children);
 
     protected abstract string BeforeChildren { get; }
+    
+    protected abstract string BetweenChildren { get; }
     
     protected abstract string AfterChildren { get; }
 
@@ -33,9 +35,15 @@ internal abstract class SyntaxNode
         OptionsCollectionNode? options = (OptionsCollectionNode?)Children.SingleOrDefault(c => c is OptionsCollectionNode);
         options?.GenerateSource(builder);
 
-        foreach (SyntaxNode child in Children.Where(c => c is not OptionsCollectionNode))
+        SyntaxNode[] nonOptionsChildNodes = Children.Where(c => c is not OptionsCollectionNode).ToArray();
+
+        for (int i = 0; i < nonOptionsChildNodes.Length; i++)
         {
-            child.GenerateSource(builder);
+            nonOptionsChildNodes[i].GenerateSource(builder);
+            if (i < nonOptionsChildNodes.Length - 1)
+            {
+                builder.Append(BetweenChildren);
+            }
         }
         builder.Append(AfterChildren);
         return builder;
