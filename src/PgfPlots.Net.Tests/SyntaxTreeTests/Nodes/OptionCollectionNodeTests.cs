@@ -1,4 +1,5 @@
 using AutoFixture;
+using PgfPlots.Net.Internal.Exceptions;
 using PgfPlots.Net.Internal.SyntaxTree;
 using PgfPlots.Net.Internal.SyntaxTree.Nodes;
 using Shouldly;
@@ -18,7 +19,7 @@ public class OptionCollectionNodeTests
     public void CanGenerateCorrectSourceWithNoChildOptions()
     {
         OptionsCollectionNode node = new();
-        LatexSyntaxTree tree = new(node);
+        PgfPlotsSyntaxTree tree = new(node);
         
         const string expected = "[]\n";
         string result = tree.GenerateSource();
@@ -32,11 +33,9 @@ public class OptionCollectionNodeTests
         Dictionary<string, string> propsDict = _fixture.Create<Dictionary<string, string>>();
         string expected = $"[{string.Join(", ", propsDict.Select(kvp => $"{kvp.Key}={kvp.Value}"))}]\n";
         
-        IEnumerable<OptionNode> optionsNodes = propsDict.Select(option => new OptionNode(option));
-        OptionsCollectionNode optionsCollectionNode = new();
-        optionsCollectionNode.AddChildren(optionsNodes);
+        OptionsCollectionNode optionsCollectionNode = new(propsDict);
 
-        LatexSyntaxTree tree = new(optionsCollectionNode);
+        PgfPlotsSyntaxTree tree = new(optionsCollectionNode);
         string result = tree.GenerateSource();
         
         result.ShouldBe(expected);
@@ -45,12 +44,24 @@ public class OptionCollectionNodeTests
     [Fact]
     public void ThrowsIfYouTryToAddNonOptionsNodeAsChild()
     {
-        
+        OptionsCollectionNode optionCollectionNode = new();
+        PgfPlotNode susNode = new();
+
+        Should.Throw<OptionsCollectionNodesCanOnlyHaveOptionNodesAsChildrenException>(() => optionCollectionNode.AddChild(susNode));
     }
 
     [Fact]
     public void ThrowsIfYouTryToAddNonOptionsNodesAsChildren()
     {
+        OptionsCollectionNode optionsCollectionNode = new();
+        IEnumerable<OptionNode> validOptionNodes = _fixture.CreateMany<OptionNode>();
+        PgfPlotNode susNode = new();
         
+        List<SyntaxNode> children = new();
+        children.AddRange(validOptionNodes);
+        children.Add(susNode);
+
+        Should.Throw<OptionsCollectionNodesCanOnlyHaveOptionNodesAsChildrenException>(() =>
+            optionsCollectionNode.AddChildren(children));
     }
 }

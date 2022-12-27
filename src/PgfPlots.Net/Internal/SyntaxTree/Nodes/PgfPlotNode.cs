@@ -1,6 +1,6 @@
 namespace PgfPlots.Net.Internal.SyntaxTree.Nodes;
 
-internal class PgfPlotsNode : SyntaxNode
+internal class PgfPlotNode : SyntaxNode
 {
     protected override string BeforeChildren  => """
                                                  \begin{tikzpicture}

@@ -1,3 +1,5 @@
+using PgfPlots.Net.Internal.Exceptions;
+
 namespace PgfPlots.Net.Internal.SyntaxTree.Nodes;
 
 internal class OptionsCollectionNode: SyntaxNode
@@ -10,8 +12,16 @@ internal class OptionsCollectionNode: SyntaxNode
     {
         if (child is not OptionNode)
         {
-            
+            throw new OptionsCollectionNodesCanOnlyHaveOptionNodesAsChildrenException();
         }
         base.AddChild(child);   
+    }
+
+    public OptionsCollectionNode(){}
+    
+    public OptionsCollectionNode(Dictionary<string, string?> optionsDict)
+    {
+        IEnumerable<OptionNode> optionNodes = optionsDict.Select(option => new OptionNode(option));
+        base.AddChildren(optionNodes);
     }
 }

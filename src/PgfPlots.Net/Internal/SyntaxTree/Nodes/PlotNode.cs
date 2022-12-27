@@ -6,7 +6,7 @@ internal class PlotNode: SyntaxNode
                                                 \addplot
                                                 """;
 
-    protected override string BetweenChildren => String.Empty;
+    protected override string BetweenChildren => string.Empty;
 
     protected override string AfterChildren => string.Empty;
 }

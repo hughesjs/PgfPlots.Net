@@ -21,7 +21,7 @@ public class AxisNodeTests
         AxisNode axisNode = new();
         OptionsCollectionNode optionsNode = new();
         axisNode.AddChild(optionsNode);
-        LatexSyntaxTree tree = new(axisNode);
+        PgfPlotsSyntaxTree tree = new(axisNode);
         const string expected = """
                               \begin{axis}[]
                               \end{axis}
@@ -46,7 +46,7 @@ public class AxisNodeTests
         AxisNode axisNode = new();
         axisNode.AddChild(optionsCollectionNode);
 
-        LatexSyntaxTree tree = new(axisNode);
+        PgfPlotsSyntaxTree tree = new(axisNode);
         
         string expected = $$"""
                             \begin{axis}[xlabel={{axis.XLabel}}, ylabel={{axis.YLabel}}, xmin={{axis.XMin}}, ymin={{axis.YMin}}, xmax={{axis.XMax}}, ymax={{axis.YMax}}, minor y tick no={{axis.MinorYTickNumber}}, minor x tick no={{axis.MinorXTickNumber}}, xticks={{{string.Join(',', axis.XTicks!)}}}, yticks={{{string.Join(',', axis.YTicks!)}}}, grid={{axis.Grid}}]

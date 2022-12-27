@@ -9,8 +9,8 @@ public class PgfPlotsNodeTests
     [Fact]
     public void GeneratesCorrectSourceWithNoChildren()
     {
-        PgfPlotsNode node = new();
-        LatexSyntaxTree tree = new(node);
+        PgfPlotNode node = new();
+        PgfPlotsSyntaxTree tree = new(node);
         const string expected = """
                                 \begin{tikzpicture}
                                 

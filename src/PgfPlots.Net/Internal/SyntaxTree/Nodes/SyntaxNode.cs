@@ -20,7 +20,13 @@ internal abstract class SyntaxNode
         Children.Add(child);
     }
 
-    public virtual void AddChildren(IEnumerable<SyntaxNode> children) => Children.AddRange(children);
+    public virtual void AddChildren(IEnumerable<SyntaxNode> children)
+    {
+        foreach (SyntaxNode child in children)
+        {
+            AddChild(child);
+        }
+    }
 
     protected abstract string BeforeChildren { get; }
     
