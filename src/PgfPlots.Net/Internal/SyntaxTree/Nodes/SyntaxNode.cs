@@ -7,27 +7,6 @@ internal abstract class SyntaxNode
     public SyntaxNode? Parent { get; private set; }
     public List<SyntaxNode> Children { get; }
 
-    public virtual void AddChild(SyntaxNode child)
-    {
-        // If theres already an options node, we want to merge the options
-        OptionsCollectionNode? optionsNode = (OptionsCollectionNode?)Children.SingleOrDefault(c => c is OptionsCollectionNode);
-        if (optionsNode is not null && child is OptionsCollectionNode optionsCollectionChild)
-        {
-            optionsNode.AddChildren(optionsCollectionChild.Children);
-        }
-        
-        child.Parent = this;
-        Children.Add(child);
-    }
-
-    public virtual void AddChildren(IEnumerable<SyntaxNode> children)
-    {
-        foreach (SyntaxNode child in children)
-        {
-            AddChild(child);
-        }
-    }
-
     protected abstract string BeforeChildren { get; }
     
     protected abstract string BetweenChildren { get; }
@@ -54,6 +33,27 @@ internal abstract class SyntaxNode
         builder.Append(AfterChildren);
         return builder;
     }
+    
+    public virtual void AddChild(SyntaxNode child)
+    {
+        // If theres already an options node, we want to merge the options
+        OptionsCollectionNode? optionsNode = (OptionsCollectionNode?)Children.SingleOrDefault(c => c is OptionsCollectionNode);
+        if (optionsNode is not null && child is OptionsCollectionNode optionsCollectionChild)
+        {
+            optionsNode.AddChildren(optionsCollectionChild.Children);
+        }
+        
+        child.Parent = this;
+        Children.Add(child);
+    }
+
+    public virtual void AddChildren(IEnumerable<SyntaxNode> children)
+    {
+        foreach (SyntaxNode child in children)
+        {
+            AddChild(child);
+        }
+    }
 
     protected SyntaxNode()
     {
@@ -77,18 +77,8 @@ internal abstract class SyntaxNode<T>: SyntaxNode
 {
     protected T Data { get; }
     
-    protected SyntaxNode(T data): base()
+    protected SyntaxNode(T data)
     {
         Data = data;
     }
-
-   protected SyntaxNode(SyntaxNode parent, T data): base(parent)
-   {
-       Data = data;
-   }
-
-   protected SyntaxNode(SyntaxNode parent, List<SyntaxNode> children, T data): base(parent, children)
-   {
-       Data = data;
-   }
 }
