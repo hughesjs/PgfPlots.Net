@@ -60,18 +60,6 @@ internal abstract class SyntaxNode
     {
         Children = new();
     }
-
-    protected SyntaxNode(SyntaxNode parent)
-    {
-        Parent = parent;
-        Children = new();
-    }
-
-    protected SyntaxNode(SyntaxNode parent, List<SyntaxNode> children)
-    {
-        Parent = parent;
-        Children = children;
-    }
 }
 
 internal abstract class SyntaxNode<T>: SyntaxNode

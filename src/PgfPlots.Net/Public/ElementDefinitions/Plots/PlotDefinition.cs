@@ -19,11 +19,6 @@ public class PlotDefinition
     public PlotOptions PlotOptions { get; }
     
     private readonly IEnumerable? _data;
-    
-    public PlotDefinition(PlotOptions plotOptions)
-    {
-        PlotOptions = plotOptions;
-    }
 
     public PlotDefinition(PlotOptions plotOptions, IEnumerable data)
     {
