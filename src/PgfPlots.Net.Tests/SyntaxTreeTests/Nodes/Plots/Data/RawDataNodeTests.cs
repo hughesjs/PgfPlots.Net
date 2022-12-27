@@ -9,7 +9,7 @@ public class RawDataNodeTests
     [Fact]
     public void ReturnsJustTheDataString()
     {
-        RawDataNode<int> node = new(1);
+        RawDataNode node = new(1);
         PgfPlotsSyntaxTree tree = new(node);
 
         string expected = "1";

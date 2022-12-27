@@ -8,17 +8,26 @@ public abstract record OptionsDefinition
 {
     public virtual Dictionary<string, string?> GetOptionsDictionary()
     {
+        //TODO - Refactor into strategy or something
         Dictionary<string, string?> propsDict = new();
         foreach (PropertyInfo prop in GetType().GetProperties())
         {
-            string optionName = PgfPlotsKeyHelper.GetPgfPlotsKey<AxisOptions>(prop.Name)
-                                ?? prop.Name;
-
-            MethodInfo? getter = prop.GetGetMethod();
-            object? value = getter?.Invoke(this, null);
-            if (value is null) continue;
-
+           MethodInfo? getter = prop.GetGetMethod();
+           object? value = getter?.Invoke(this, null);
+           if (value is null) continue;
+            
+            Type currentType = GetType();
             Type dataType = value.GetType();
+
+            string optionName = PgfPlotsAttributeHelper.GetPgfPlotsKey(currentType, prop.Name)
+                                ?? prop.Name;
+            
+            if (PgfPlotsAttributeHelper.IsValueOnlyField(currentType, prop.Name))
+            {
+                string valuePgfPlotKey = PgfPlotsAttributeHelper.GetPgfPlotsKey(dataType, value.ToString()!) ?? value.ToString()!;
+                propsDict.Add(valuePgfPlotKey, null);
+                continue;
+            }
 
             if (value is bool)
             {
@@ -31,7 +40,8 @@ public abstract record OptionsDefinition
             
             if (dataType.IsEnum)
             {
-                string? valuePgfPlotKey = PgfPlotsKeyHelper.GetPgfPlotsKey(dataType, value.ToString()!);
+                
+                string? valuePgfPlotKey = PgfPlotsAttributeHelper.GetPgfPlotsKey(dataType, value.ToString()!);
                 propsDict.Add(optionName, valuePgfPlotKey);
                 continue;
             }

@@ -26,11 +26,5 @@ public enum LatexColour
     Black,
     
     [PgfPlotsKey("white")]
-    White,
-    
-    [PgfPlotsKey("hsb")]
-    Hsb,
-    
-    [PgfPlotsKey("rgb")]
-    Rgb
+    White
 }

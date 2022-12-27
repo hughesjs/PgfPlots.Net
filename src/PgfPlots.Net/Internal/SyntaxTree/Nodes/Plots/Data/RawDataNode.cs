@@ -3,9 +3,9 @@ using PgfPlots.Net.Internal.Exceptions;
 
 namespace PgfPlots.Net.Internal.SyntaxTree.Nodes.Plots.Data;
 
-internal class RawDataNode<TData>: SyntaxNode<TData>
+internal class RawDataNode: SyntaxNode<object>
 {
-    public RawDataNode(TData data) : base(data) { }
+    public RawDataNode(object data) : base(data) { }
 
     protected override string BeforeChildren => string.Empty;
     protected override string BetweenChildren => string.Empty;

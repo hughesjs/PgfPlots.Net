@@ -26,8 +26,5 @@ public enum PlotMark
     Diamond,
 
     [PgfPlotsKey("pentagon")]
-    Pentagon,
-    
-    [PgfPlotsKey("symbol")]
-    Symbol
+    Pentagon
 }

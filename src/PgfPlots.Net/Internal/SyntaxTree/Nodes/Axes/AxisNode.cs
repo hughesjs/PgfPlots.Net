@@ -10,5 +10,5 @@ internal class AxisNode : SyntaxNode
                                                \end{axis}
                                                """;
 
-    protected override string BetweenChildren => "\n";
+    protected override string BetweenChildren => string.Empty;
 }
