@@ -13,9 +13,23 @@ public class PgfPlotSourceGeneratorTests
 	private readonly IPgfPlotSourceGenerator _sourceGenerator = new PgfPlotSourceGenerator();
 	
 	[Fact]
-	public void GeneratesSourceWithValidDefinition()
+	public void GeneratesSourceWithValidPgfPlotDefinition()
 	{
 		PgfPlotDefinition definition = new(new(), new());
+		string res = _sourceGenerator.GenerateSourceCode(definition);
+		res.ShouldNotBeNullOrEmpty();
+	}
+	
+	[Fact]
+	public void GeneratesSourceWithValidFigureDefinition()
+	{
+		FigureDefinition definition = new()
+		{
+			Caption = "Cap",
+			Label = "Lab",
+			Plots = new()
+		};
+		
 		string res = _sourceGenerator.GenerateSourceCode(definition);
 		res.ShouldNotBeNullOrEmpty();
 	}

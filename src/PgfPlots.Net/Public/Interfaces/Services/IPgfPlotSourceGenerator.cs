@@ -6,4 +6,5 @@ namespace PgfPlots.Net.Public.Interfaces.Services;
 public interface IPgfPlotSourceGenerator
 {
     public string GenerateSourceCode(PgfPlotDefinition plotDefinition);
+    public string GenerateSourceCode(FigureDefinition plotDefinition);
 }
