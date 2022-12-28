@@ -1,4 +1,5 @@
 using PgfPlots.Net.Public.ElementDefinitions;
+using PgfPlots.Net.Public.ElementDefinitions.Wrappers;
 
 namespace PgfPlots.Net.Public.Interfaces.Services;
 

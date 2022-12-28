@@ -3,6 +3,7 @@ using PgfPlots.Net.Internal.Exceptions;
 using PgfPlots.Net.Internal.SyntaxTree;
 using PgfPlots.Net.Internal.SyntaxTree.Nodes;
 using PgfPlots.Net.Internal.SyntaxTree.Nodes.Options;
+using PgfPlots.Net.Internal.SyntaxTree.Nodes.Wrappers;
 using Shouldly;
 
 namespace PgfPlots.Net.Tests.SyntaxTree.Nodes.Options;

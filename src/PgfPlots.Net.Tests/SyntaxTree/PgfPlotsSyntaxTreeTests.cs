@@ -4,6 +4,7 @@ using PgfPlots.Net.Public.ElementDefinitions.Enums;
 using PgfPlots.Net.Public.ElementDefinitions.Options;
 using PgfPlots.Net.Public.ElementDefinitions.Plots;
 using PgfPlots.Net.Public.ElementDefinitions.Plots.Data;
+using PgfPlots.Net.Public.ElementDefinitions.Wrappers;
 using Shouldly;
 
 namespace PgfPlots.Net.Tests.SyntaxTree;
