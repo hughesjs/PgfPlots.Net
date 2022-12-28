@@ -1,6 +1,7 @@
 using PgfPlots.Net.Internal.Services;
 using PgfPlots.Net.Public.ElementDefinitions;
 using PgfPlots.Net.Public.ElementDefinitions.Options;
+using PgfPlots.Net.Public.ElementDefinitions.Wrappers;
 using PgfPlots.Net.Public.Exceptions;
 using PgfPlots.Net.Public.Interfaces.Services;
 using Shouldly;

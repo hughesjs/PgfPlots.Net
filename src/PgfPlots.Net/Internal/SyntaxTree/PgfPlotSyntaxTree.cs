@@ -3,9 +3,10 @@ using PgfPlots.Net.Internal.SyntaxTree.Nodes.Axes;
 using PgfPlots.Net.Internal.SyntaxTree.Nodes.Options;
 using PgfPlots.Net.Internal.SyntaxTree.Nodes.Plots;
 using PgfPlots.Net.Internal.SyntaxTree.Nodes.Plots.Data;
-using PgfPlots.Net.Public.ElementDefinitions;
+using PgfPlots.Net.Internal.SyntaxTree.Nodes.Wrappers;
 using PgfPlots.Net.Public.ElementDefinitions.Options;
 using PgfPlots.Net.Public.ElementDefinitions.Plots;
+using PgfPlots.Net.Public.ElementDefinitions.Wrappers;
 
 namespace PgfPlots.Net.Internal.SyntaxTree;
 
@@ -21,7 +22,22 @@ internal class PgfPlotSyntaxTree
         RootNode = GenerateTree(definition);
     }
 
-    private SyntaxNode GenerateTree(PgfPlotDefinition definition)
+    public PgfPlotSyntaxTree(FigureDefinition definition)
+    {
+        RootNode = GenerateTree(definition);
+    }
+
+    private SyntaxNode GenerateTree(FigureDefinition definition)
+    {
+        PgfPlotNode[] pgfPlotNodes = definition.Plots?.Select(GenerateTree).ToArray() ?? Array.Empty<PgfPlotNode>();
+
+        FigureNode rootNode = new(definition);
+        rootNode.AddChildren(pgfPlotNodes);
+
+        return rootNode;
+    }
+
+    private PgfPlotNode GenerateTree(PgfPlotDefinition definition)
     {
         AxisNode axisNode = GenerateNodeWithOptions<AxisNode>(definition.AxisOptions);
         

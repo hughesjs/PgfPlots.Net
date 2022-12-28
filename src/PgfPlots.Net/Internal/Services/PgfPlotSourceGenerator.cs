@@ -1,5 +1,6 @@
 using PgfPlots.Net.Internal.SyntaxTree;
 using PgfPlots.Net.Public.ElementDefinitions;
+using PgfPlots.Net.Public.ElementDefinitions.Wrappers;
 using PgfPlots.Net.Public.Exceptions;
 using PgfPlots.Net.Public.Interfaces.Services;
 

@@ -1,4 +1,4 @@
-namespace PgfPlots.Net.Internal.SyntaxTree.Nodes;
+namespace PgfPlots.Net.Internal.SyntaxTree.Nodes.Wrappers;
 
 internal class PgfPlotNode : SyntaxNode
 {

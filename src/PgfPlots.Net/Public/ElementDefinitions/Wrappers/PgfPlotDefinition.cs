@@ -1,7 +1,7 @@
 using PgfPlots.Net.Public.ElementDefinitions.Options;
 using PgfPlots.Net.Public.ElementDefinitions.Plots;
 
-namespace PgfPlots.Net.Public.ElementDefinitions;
+namespace PgfPlots.Net.Public.ElementDefinitions.Wrappers;
 
 public class PgfPlotDefinition
 {

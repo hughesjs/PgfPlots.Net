@@ -1,8 +1,8 @@
 using PgfPlots.Net.Internal.SyntaxTree;
-using PgfPlots.Net.Internal.SyntaxTree.Nodes;
+using PgfPlots.Net.Internal.SyntaxTree.Nodes.Wrappers;
 using Shouldly;
 
-namespace PgfPlots.Net.Tests.SyntaxTree.Nodes;
+namespace PgfPlots.Net.Tests.SyntaxTree.Nodes.Wrappers;
 
 public class PgfPlotsNodeTests
 {
