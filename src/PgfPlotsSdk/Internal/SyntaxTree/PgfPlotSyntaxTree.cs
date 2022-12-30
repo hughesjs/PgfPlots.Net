@@ -53,7 +53,7 @@ internal class PgfPlotSyntaxTree
     private PlotNode GeneratePlotNode(PlotDefinition plotDefinition)
     {
         PlotNode plotNode = GenerateNodeWithOptions<PlotNode>(plotDefinition.PlotOptions);
-        RawDataCollectionNode dataCollectionNode = new(plotDefinition.GetData());
+        RawDataCollectionNode dataCollectionNode = new(plotDefinition.PlotData);
         plotNode.AddChild(dataCollectionNode);
         return plotNode;
     }

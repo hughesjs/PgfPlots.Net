@@ -1,11 +1,12 @@
 using System.Text;
 using PgfPlotsSdk.Internal.Exceptions;
+using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 
 namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes.Plots.Data;
 
-internal class RawDataNode: SyntaxNode<object>
+internal class RawDataNode: SyntaxNode<PlotData>
 {
-    public RawDataNode(object data) : base(data) { }
+    public RawDataNode(PlotData data) : base(data) { }
 
     protected override string BeforeChildren => string.Empty;
     protected override string BetweenChildren => string.Empty;
@@ -17,6 +18,6 @@ internal class RawDataNode: SyntaxNode<object>
 
     public override StringBuilder GenerateSource(StringBuilder builder)
     {
-        return builder.Append(Data);
+        return builder.Append(Data.GetDataLatexString());
     }
 }

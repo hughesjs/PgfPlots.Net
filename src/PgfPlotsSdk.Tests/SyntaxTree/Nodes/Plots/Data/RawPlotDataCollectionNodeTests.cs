@@ -14,7 +14,7 @@ public class RawPlotDataCollectionNodeTests
         RawDataCollectionNode collectionNode = new(coordinates);
 
         PgfPlotSyntaxTree tree = new(collectionNode);
-        string expected = $"plot coordinates {{{string.Join(' ', coordinates)}}}";
+        string expected = $"plot coordinates {{{string.Join(' ', coordinates.Select(c => c.GetDataLatexString()))}}}";
 
         string result = tree.GenerateSource();
         
