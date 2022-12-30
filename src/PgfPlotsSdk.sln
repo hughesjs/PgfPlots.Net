@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PgfPlotsSdk", "PgfPlotsSdk\PgfPlotsSdk.csproj", "{CC6E9256-7ECC-4C28-B531-308F59CE7F11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PgfPlotsSdk.Tests", "PgfPlotsSdk.Tests\PgfPlotsSdk.Tests.csproj", "{A7B22109-F227-4BDF-8796-2ED00995F6B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC6E9256-7ECC-4C28-B531-308F59CE7F11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC6E9256-7ECC-4C28-B531-308F59CE7F11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC6E9256-7ECC-4C28-B531-308F59CE7F11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC6E9256-7ECC-4C28-B531-308F59CE7F11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B22109-F227-4BDF-8796-2ED00995F6B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B22109-F227-4BDF-8796-2ED00995F6B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B22109-F227-4BDF-8796-2ED00995F6B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B22109-F227-4BDF-8796-2ED00995F6B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
