@@ -71,7 +71,6 @@ public class PgfPlotsSyntaxTreeTests
             OnlyMarks = false
         };
         PlotDefinition plotDefinition = new(plotOptions, Data1);
-        
         PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, new(){plotDefinition});
         PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
