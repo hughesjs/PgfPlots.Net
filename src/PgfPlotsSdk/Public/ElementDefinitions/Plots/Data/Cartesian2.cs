@@ -1,6 +1,6 @@
 namespace PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 
-public struct Cartesian2<T>
+public class Cartesian2<T>: PlotData
 {
     public Cartesian2(T x, T y)
     {
@@ -11,5 +11,5 @@ public struct Cartesian2<T>
     public T X { get; }
     public T Y { get; }
 
-    public override string ToString() => $"({X},{Y})";
+    public override string GetDataLatexString() => $"({X},{Y})";
 }

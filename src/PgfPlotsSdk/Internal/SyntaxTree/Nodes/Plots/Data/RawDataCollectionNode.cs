@@ -1,12 +1,13 @@
 using System.Collections;
+using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 
 namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes.Plots.Data;
 
 internal class RawDataCollectionNode: SyntaxNode
 {
-    public RawDataCollectionNode(IEnumerable data)
+    public RawDataCollectionNode(IEnumerable<PlotData> data)
     {
-        Children.AddRange(data.Cast<object>().Select(d => new RawDataNode(d)));
+        Children.AddRange(data.Select(d => new RawDataNode(d)));
     }
 
     protected override string BeforeChildren => "plot coordinates {";
