@@ -36,15 +36,32 @@ public class AxisNodeTests
     }
     
     [Fact]
-    public void CanGenerateCorrectSourceForSemiLogWithNoOptionsOrPlots()
+    public void CanGenerateCorrectSourceForSemiLogXWithNoOptionsOrPlots()
     {
-        AxisNode axisNode = new(AxisType.SemiLog);
+        AxisNode axisNode = new(AxisType.SemiLogX);
         OptionsCollectionNode optionsNode = new();
         axisNode.AddChild(optionsNode);
         PgfPlotSyntaxTree tree = new(axisNode);
         const string expected = """
-                              \begin{semilogaxis}[]
-                              \end{semilogaxis}
+                              \begin{semilogxaxis}[]
+                              \end{semilogxaxis}
+                              """;
+
+        string source = tree.GenerateSource();
+
+        source.ShouldBe(expected);
+    }
+    
+    [Fact]
+    public void CanGenerateCorrectSourceForSemiLogYWithNoOptionsOrPlots()
+    {
+        AxisNode axisNode = new(AxisType.SemiLogY);
+        OptionsCollectionNode optionsNode = new();
+        axisNode.AddChild(optionsNode);
+        PgfPlotSyntaxTree tree = new(axisNode);
+        const string expected = """
+                              \begin{semilogyaxis}[]
+                              \end{semilogyaxis}
                               """;
 
         string source = tree.GenerateSource();

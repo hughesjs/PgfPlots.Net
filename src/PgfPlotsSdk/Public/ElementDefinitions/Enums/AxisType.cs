@@ -7,8 +7,11 @@ public enum AxisType
     [PgfPlotsKey("axis")]
     Standard,
     
-    [PgfPlotsKey("semilogaxis")]
-    SemiLog,
+    [PgfPlotsKey("semilogxaxis")]
+    SemiLogX,
+    
+    [PgfPlotsKey("semilogyaxis")]
+    SemiLogY,
     
     [PgfPlotsKey("loglogaxis")]
     LogLog
