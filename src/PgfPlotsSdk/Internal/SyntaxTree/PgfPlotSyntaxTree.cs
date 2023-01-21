@@ -39,7 +39,10 @@ internal class PgfPlotSyntaxTree
 
     private PgfPlotNode GenerateTree(PgfPlotDefinition definition)
     {
-        AxisNode axisNode = GenerateNodeWithOptions<AxisNode>(definition.AxisOptions);
+        AxisNode axisNode = new(definition.AxisType);
+        
+        OptionsCollectionNode optionsCollectionNode = new(definition.AxisOptions.GetOptionsDictionary());
+        axisNode.AddChild(optionsCollectionNode);
         
         List<PlotNode> plotNodes = definition.PlotDefinitions.Select(GeneratePlotNode).ToList();
         axisNode.AddChildren(plotNodes);
