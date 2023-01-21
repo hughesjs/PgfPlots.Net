@@ -1,3 +1,4 @@
+using PgfPlotsSdk.Public.ElementDefinitions.Enums;
 using PgfPlotsSdk.Public.ElementDefinitions.Options;
 using PgfPlotsSdk.Public.ElementDefinitions.Plots;
 
@@ -18,5 +19,7 @@ public class PgfPlotDefinition
     }
 
     public AxisOptions AxisOptions { get; }
+
+    public AxisType AxisType { get; } = AxisType.Standard;
     public List<PlotDefinition> PlotDefinitions { get; }
 }
