@@ -6,20 +6,22 @@ namespace PgfPlotsSdk.Public.ElementDefinitions.Wrappers;
 
 public class PgfPlotDefinition
 {
-    public PgfPlotDefinition(AxisOptions axisOptions)
+    public PgfPlotDefinition(AxisOptions axisOptions, AxisType axisType)
     {
+        AxisType = axisType;
         AxisOptions = axisOptions;
         PlotDefinitions = new();
     }
 
-    public PgfPlotDefinition(AxisOptions axisOptions, List<PlotDefinition> plotDefinitions)
+    public PgfPlotDefinition(AxisOptions axisOptions, AxisType axisType, List<PlotDefinition> plotDefinitions)
     {
         AxisOptions = axisOptions;
+        AxisType = axisType;
         PlotDefinitions = plotDefinitions;
     }
 
     public AxisOptions AxisOptions { get; }
 
-    public AxisType AxisType { get; } = AxisType.Standard;
+    public AxisType AxisType { get; }
     public List<PlotDefinition> PlotDefinitions { get; }
 }

@@ -42,7 +42,7 @@ public class PgfPlotsSyntaxTreeTests
     [Fact]
     public void CanGeneratePgfPlotAxisWithNoData()
     {
-        PgfPlotDefinition pgfPlotDefinition = new(AxisOptions);
+        PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard);
         PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
         string expected = $$"""
@@ -71,7 +71,7 @@ public class PgfPlotsSyntaxTreeTests
             OnlyMarks = false
         };
         PlotDefinition plotDefinition = new(plotOptions, Data1);
-        PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, new(){plotDefinition});
+        PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, new(){plotDefinition});
         PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
         string expected = $$"""
@@ -113,7 +113,7 @@ public class PgfPlotsSyntaxTreeTests
         PlotDefinition plotDefinition1 = new(plotOptions1, Data1);
         PlotDefinition plotDefinition2 = new(plotOptions2, Data2);
         
-        PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, new(){plotDefinition1, plotDefinition2});
+        PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, new(){plotDefinition1, plotDefinition2});
         PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
         string expected = $$"""
