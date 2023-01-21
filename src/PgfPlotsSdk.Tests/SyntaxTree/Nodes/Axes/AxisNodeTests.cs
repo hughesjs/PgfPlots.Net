@@ -36,6 +36,40 @@ public class AxisNodeTests
     }
     
     [Fact]
+    public void CanGenerateCorrectSourceForSemiLogWithNoOptionsOrPlots()
+    {
+        AxisNode axisNode = new(AxisType.SemiLog);
+        OptionsCollectionNode optionsNode = new();
+        axisNode.AddChild(optionsNode);
+        PgfPlotSyntaxTree tree = new(axisNode);
+        const string expected = """
+                              \begin{semilogaxis}[]
+                              \end{semilogaxis}
+                              """;
+
+        string source = tree.GenerateSource();
+
+        source.ShouldBe(expected);
+    }
+    
+    [Fact]
+    public void CanGenerateCorrectSourceForLogLogWithNoOptionsOrPlots()
+    {
+        AxisNode axisNode = new(AxisType.LogLog);
+        OptionsCollectionNode optionsNode = new();
+        axisNode.AddChild(optionsNode);
+        PgfPlotSyntaxTree tree = new(axisNode);
+        const string expected = """
+                              \begin{loglogaxis}[]
+                              \end{loglogaxis}
+                              """;
+
+        string source = tree.GenerateSource();
+
+        source.ShouldBe(expected);
+    }
+    
+    [Fact]
     public void CanGenerateCorrectSourceWithOptionsButNoPlots()
     {
         AxisOptions axis = _fixture.Create<AxisOptions>();
