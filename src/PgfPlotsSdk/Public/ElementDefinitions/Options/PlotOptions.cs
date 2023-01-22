@@ -26,6 +26,9 @@ public record PlotOptions: OptionsDefinition
     [PgfPlotsValueOnly]
     public BarType? BarType { get; init; }
     
+    [PgfPlotsKey("bar width")]
+    public float? BarWidth { get; init; }
+    
     [PgfPlotsKey("fill")]
     public LatexColour? Fill { get; init; }
     

@@ -7,6 +7,12 @@ public enum BarType
     [PgfPlotsKey("xbar")]
     XBar,
     
+    [PgfPlotsKey("xbar interval")]
+    XBarInterval,
+    
     [PgfPlotsKey("ybar")]
-    YBar
+    YBar,
+    
+    [PgfPlotsKey("ybar interval")]
+    YBarInterval,
 }
