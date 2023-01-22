@@ -4,6 +4,9 @@ namespace PgfPlotsSdk.Public.ElementDefinitions.Enums;
 
 public enum PlotMark
 {
+    [PgfPlotsKey("no")]
+    None,
+    
     [PgfPlotsKey("*")]
     Star,
 
