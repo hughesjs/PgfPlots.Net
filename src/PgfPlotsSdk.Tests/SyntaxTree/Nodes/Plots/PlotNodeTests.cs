@@ -200,6 +200,52 @@ public class PlotNodeTests
 		
 		res.ShouldBe(expected);
 	}
+
+	[Fact]
+	public void CanGenerateSimpleHistogram()
+	{
+		PlotOptions options = new()
+		{
+			Colour = LatexColour.Green,
+			Fill = LatexColour.Red,
+			FillOpacity = 0.4f,
+			BarType = BarType.YBarInterval
+		};
+
+		HistogramBin<float> binOne = new(0, 1);
+		HistogramBin<float> binTwo = new(1, 2);
+
+		binOne.TryAddToBin(0.2f);
+		binOne.TryAddToBin(0.3f);
+		binOne.TryAddToBin(0.1f);
+		
+		binTwo.TryAddToBin(1.2f);
+		binTwo.TryAddToBin(1.3f);
+		binTwo.TryAddToBin(1.1f);
+		binTwo.TryAddToBin(1.9f);
+		binTwo.TryAddToBin(1.7f);
+
+		List<HistogramBin<float>> data = new() { binOne, binTwo };
+
+		const string expected = """
+						\addplot[color=green, fill opacity=0.4, ybar interval, fill=red]
+						plot coordinates {(0.5,3) (1.5,5)};
+
+						""";
+		
+		OptionsCollectionNode optionsCollectionNode = new(options.GetOptionsDictionary());
+		RawDataCollectionNode rawDataCollectionNode = new(data);
+		
+		PlotNode plotNode = new();
+		plotNode.AddChild(optionsCollectionNode);
+		plotNode.AddChild(rawDataCollectionNode);
+
+		PgfPlotSyntaxTree tree = new(plotNode);
+		string res = tree.GenerateSource();
+		
+		res.ShouldBe(expected);
+	}
+	
 }
 
 
