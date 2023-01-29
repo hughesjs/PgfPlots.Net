@@ -12,8 +12,6 @@ public class HistogramBin<T> : PlotData where T: INumber<T>
 	public T Floor { get; }
 	public T Ceiling { get; }
 
-	private int _frequency;
-
 	public bool TryAddToBin(T num)
 	{
 		if (!IsInBin(num))
@@ -21,12 +19,12 @@ public class HistogramBin<T> : PlotData where T: INumber<T>
 			return false;
 		}
 
-		_frequency++;
+		Frequency++;
 		return true;
 	}
 
-	public int Frequency => _frequency;
-	
+	public int Frequency { get; private set; }
+
 	public bool IsInBin(T num)  => Floor <= num && num < Ceiling;
 
 	public float Centre => ((float)(object)(Ceiling - Floor) / 2f) + (float)(object)Floor;
