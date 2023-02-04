@@ -1,3 +1,5 @@
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using PgfPlotsSdk.Public.ElementDefinitions.Options;
 using Shouldly;
 
@@ -11,11 +13,11 @@ public class PublicsArePublicTests
     [MemberData(nameof(PublicClassDataGenerator))]
     public void ClassesInPublicNamespaceArePublic(Type type)
     {
-        type.IsPublic.ShouldBeTrue();
+		type.IsPublic.ShouldBeTrue();
     }
 
 
     public static IEnumerable<object[]> PublicClassDataGenerator() => typeof(AxisOptions).Assembly.GetTypes()
-        .Where(t => t.Namespace != null && t.Namespace.Contains(PublicNamespaceFragment))
+        .Where(t => t.Namespace != null && t.Namespace.Contains(PublicNamespaceFragment) && t.GetCustomAttribute<CompilerGeneratedAttribute>() is null)
         .Select(t => new object[] {t});
 }
