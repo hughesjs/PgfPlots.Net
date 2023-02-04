@@ -226,8 +226,8 @@ public class PlotNodeTests
 		binTwo.TryAddToBin(1.7f);
 
 		HistogramBinCollection<float> data = new();
-		data.Add(binOne);
-		data.Add(binTwo);
+		data.AddBin(binOne);
+		data.AddBin(binTwo);
 
 		const string expected = """
 						\addplot[color=green, fill opacity=0.4, ybar interval, fill=red]

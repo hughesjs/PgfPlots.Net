@@ -20,7 +20,7 @@ public class HistogramBinCollection<T>: PlotData where T : INumber<T>
 		return $"{baseIntervals} ({_bins.Max(b => b.Ceiling)},0)";
 	}
 	
-	public void Add(HistogramBin<T> newBin)
+	public void AddBin(HistogramBin<T> newBin)
 	{
 		if (_bins.Any(bin => BinsCollide(bin, newBin)))
 		{
@@ -28,6 +28,12 @@ public class HistogramBinCollection<T>: PlotData where T : INumber<T>
 		}
 		_bins.Add(newBin);
 	}
+
+	public void AddValueToBin(T value)
+	{
+		_ = _bins.Any(bin => bin.TryAddToBin(value));
+	}
+	
 	public int Count => _bins.Count;
 	
 	public bool IsReadOnly => false;
