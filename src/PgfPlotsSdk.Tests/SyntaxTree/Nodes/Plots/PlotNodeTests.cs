@@ -225,11 +225,13 @@ public class PlotNodeTests
 		binTwo.TryAddToBin(1.9f);
 		binTwo.TryAddToBin(1.7f);
 
-		List<HistogramBin<float>> data = new() { binOne, binTwo };
+		HistogramBinCollection<float> data = new();
+		data.Add(binOne);
+		data.Add(binTwo);
 
 		const string expected = """
 						\addplot[color=green, fill opacity=0.4, ybar interval, fill=red]
-						plot coordinates {(0.5,3) (1.5,5)};
+						plot coordinates {(0,3) (1,5) (2,0)};
 
 						""";
 		

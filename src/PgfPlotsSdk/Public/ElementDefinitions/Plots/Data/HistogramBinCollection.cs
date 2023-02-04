@@ -5,7 +5,7 @@ using PgfPlotsSdk.Internal.Exceptions;
 
 namespace PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 
-public class HistogramBinCollection<T>: PlotData, ICollection<HistogramBin<T>> where T : INumber<T>
+public class HistogramBinCollection<T>: PlotData where T : INumber<T>
 {
 	private readonly List<HistogramBin<T>> _bins;
 	
@@ -28,17 +28,10 @@ public class HistogramBinCollection<T>: PlotData, ICollection<HistogramBin<T>> w
 		}
 		_bins.Add(newBin);
 	}
-
-	public IEnumerator<HistogramBin<T>> GetEnumerator() => _bins.GetEnumerator();
-	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-	public void Clear() => _bins.Clear();
-	public bool Contains(HistogramBin<T> bin) => _bins.Contains(bin);
-	public void CopyTo(HistogramBin<T>[] array, int arrayIndex) => _bins.CopyTo(array, arrayIndex);
-	public bool Remove(HistogramBin<T> bin) => _bins.Remove(bin);
 	public int Count => _bins.Count;
 	
 	public bool IsReadOnly => false;
 	
 	private static bool BinsCollide(HistogramBin<T> bin, HistogramBin<T> newBin) 
-		=> newBin.Ceiling >= bin.Floor && newBin.Ceiling < bin.Ceiling || newBin.Floor >= bin.Floor && newBin.Floor < bin.Ceiling;
+		=> (newBin.Ceiling >= bin.Floor && newBin.Ceiling < bin.Ceiling) || (newBin.Floor >= bin.Floor && newBin.Floor < bin.Ceiling);
 }
