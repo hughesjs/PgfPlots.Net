@@ -9,6 +9,11 @@ internal class RawDataCollectionNode: SyntaxNode
     {
         Children.AddRange(data.Select(d => new RawDataNode(d)));
     }
+    
+    public RawDataCollectionNode(PlotData data) // For instances where you've built a collection container already
+    {
+        Children.Add(new RawDataNode(data));
+    }
 
     protected override string BeforeChildren => "plot coordinates {";
     protected override string BetweenChildren => " ";
