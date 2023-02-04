@@ -14,4 +14,10 @@ public class PlotDefinition
         PlotOptions = plotOptions;
         PlotData = data.ToList();
     }
+    
+    public PlotDefinition(PlotOptions plotOptions, PlotData data)
+    {
+        PlotOptions = plotOptions;
+        PlotData = new() { data };
+    }
 }

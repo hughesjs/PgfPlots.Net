@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Numerics;
-using System.Text;
+﻿using System.Numerics;
 using PgfPlotsSdk.Internal.Exceptions;
 
 namespace PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
