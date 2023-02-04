@@ -20,9 +20,9 @@ public class HistogramBinCollectionTests
 		HistogramBin<int> binOne = new(0, 10);
 		HistogramBin<int> binTwo = new(10, 15);
 
-		Should.NotThrow(() => _bins.Add(binZero));
-		Should.NotThrow(() => _bins.Add(binOne));
-		Should.NotThrow(() => _bins.Add(binTwo));
+		Should.NotThrow(() => _bins.AddBin(binZero));
+		Should.NotThrow(() => _bins.AddBin(binOne));
+		Should.NotThrow(() => _bins.AddBin(binTwo));
 		
 		_bins.Count.ShouldBe(3);
 	}
@@ -36,8 +36,8 @@ public class HistogramBinCollectionTests
 		HistogramBin<int> binOne = new(0, 10);
 		HistogramBin<int> binTwo = new(binTwoFloor, binTwoCeiling);
 
-		Should.NotThrow(() => _bins.Add(binOne));
-		Should.Throw<HistogramBinOverlapException<int>>(() => _bins.Add(binTwo));
+		Should.NotThrow(() => _bins.AddBin(binOne));
+		Should.Throw<HistogramBinOverlapException<int>>(() => _bins.AddBin(binTwo));
 		
 		_bins.Count.ShouldBe(1);
 	}
@@ -46,22 +46,21 @@ public class HistogramBinCollectionTests
 	public void GeneratesCorrectLatex()
 	{
 		HistogramBin<int> binZero = new(-2,-1);
-		binZero.TryAddToBin(-2);
-		
 		HistogramBin<int> binOne = new(0, 10);
-		binOne.TryAddToBin(1);
-		binOne.TryAddToBin(2);
-		binOne.TryAddToBin(3);
-		
 		HistogramBin<int> binTwo = new(10, 15);
-		binTwo.TryAddToBin(10);
-		binTwo.TryAddToBin(11);
-		binTwo.TryAddToBin(12);
-		binTwo.TryAddToBin(13);
+
+		_bins.AddBin(binZero);
+		_bins.AddBin(binOne);
+		_bins.AddBin(binTwo);
 		
-		_bins.Add(binZero);
-		_bins.Add(binOne);
-		_bins.Add(binTwo);
+		_bins.AddValueToBin(-2);
+		_bins.AddValueToBin(1);
+		_bins.AddValueToBin(2);
+		_bins.AddValueToBin(3);
+		_bins.AddValueToBin(10);
+		_bins.AddValueToBin(11);
+		_bins.AddValueToBin(12);
+		_bins.AddValueToBin(13);
 		
 		_bins.GetDataLatexString().ShouldBe("(-2,1) (0,3) (10,4) (15,0)");
 	}
