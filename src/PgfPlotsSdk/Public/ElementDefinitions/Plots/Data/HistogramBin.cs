@@ -27,6 +27,6 @@ public class HistogramBin<T> : PlotData where T: INumber<T>
 
 	public bool IsInBin(T num)  => Floor <= num && num < Ceiling;
 
-	public float Centre => ((float)(object)(Ceiling - Floor) / 2f) + (float)(object)Floor;
+	public float Centre => (Convert.ToSingle(Ceiling - Floor) / 2f) + Convert.ToSingle(Floor);
 	public override string GetDataLatexString() => $"({Centre},{Frequency})";
 }

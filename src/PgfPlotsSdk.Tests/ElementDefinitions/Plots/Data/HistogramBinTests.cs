@@ -47,6 +47,13 @@ public class HistogramBinTests
 	}
 
 	[Fact]
+	public void CanHaveIntegerHisto()
+	{
+		HistogramBin<int> intBin = new(0, 5);
+		intBin.Centre.ShouldBe(2.5f);
+	}
+
+	[Fact]
 	public void FrequencyIsCounted()
 	{
 		for (int i = 0; i < 5; i++)
