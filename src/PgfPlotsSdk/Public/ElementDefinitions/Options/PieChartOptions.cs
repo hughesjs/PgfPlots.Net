@@ -6,6 +6,9 @@ namespace PgfPlotsSdk.Public.ElementDefinitions.Options;
 
 public record PieChartOptions: OptionsDefinition
 {
+	[PgfPlotsValueOnly]
+	public PieType? PieChartType { get; init; }
+	
 	[PgfPlotsKey("pos")]
 	public Cartesian2<float>? CentrePosition { get; init; }
 	

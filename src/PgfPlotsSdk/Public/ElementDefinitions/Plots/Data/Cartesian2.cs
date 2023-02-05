@@ -1,6 +1,8 @@
+using PgfPlotsSdk.Public.Interfaces.Data;
+
 namespace PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 
-public class Cartesian2<T>: PlotData
+public class Cartesian2<T>: ILatexData
 {
     public Cartesian2(T x, T y)
     {
@@ -11,5 +13,5 @@ public class Cartesian2<T>: PlotData
     public T X { get; }
     public T Y { get; }
 
-    public override string GetDataLatexString() => $"({X},{Y})";
+    public string GetDataLatexString() => $"({X},{Y})";
 }

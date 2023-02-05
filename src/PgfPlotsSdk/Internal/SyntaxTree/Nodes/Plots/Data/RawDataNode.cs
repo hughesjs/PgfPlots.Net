@@ -1,12 +1,13 @@
 using System.Text;
 using PgfPlotsSdk.Internal.Exceptions;
 using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
+using PgfPlotsSdk.Public.Interfaces.Data;
 
 namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes.Plots.Data;
 
-internal class RawDataNode: SyntaxNode<PlotData>
+internal class RawDataNode: SyntaxNode<ILatexData>
 {
-    public RawDataNode(PlotData data) : base(data) { }
+    public RawDataNode(ILatexData data) : base(data) { }
 
     protected override string BeforeChildren => string.Empty;
     protected override string BetweenChildren => string.Empty;
