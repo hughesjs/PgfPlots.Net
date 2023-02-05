@@ -2,6 +2,8 @@ using PgfPlotsSdk.Internal.SyntaxTree;
 using PgfPlotsSdk.Public.ElementDefinitions;
 using PgfPlotsSdk.Public.ElementDefinitions.Enums;
 using PgfPlotsSdk.Public.ElementDefinitions.Options;
+using PgfPlotsSdk.Public.ElementDefinitions.Pies;
+using PgfPlotsSdk.Public.ElementDefinitions.Pies.Data;
 using PgfPlotsSdk.Public.ElementDefinitions.Plots;
 using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 using PgfPlotsSdk.Public.ElementDefinitions.Wrappers;
@@ -42,7 +44,7 @@ public class PgfPlotsSyntaxTreeTests
     [Fact]
     public void CanGeneratePgfPlotAxisWithNoData()
     {
-        PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard);
+        PgfPlotWithAxesDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard);
         PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
         string expected = $$"""
@@ -71,7 +73,7 @@ public class PgfPlotsSyntaxTreeTests
             OnlyMarks = false
         };
         PlotDefinition plotDefinition = new(plotOptions, Data1);
-        PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, new(){plotDefinition});
+        PgfPlotWithAxesDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, new(){plotDefinition});
         PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
         string expected = $$"""
@@ -113,7 +115,7 @@ public class PgfPlotsSyntaxTreeTests
         PlotDefinition plotDefinition1 = new(plotOptions1, Data1);
         PlotDefinition plotDefinition2 = new(plotOptions2, Data2);
         
-        PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, new(){plotDefinition1, plotDefinition2});
+        PgfPlotWithAxesDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, new(){plotDefinition1, plotDefinition2});
         PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
         string expected = $$"""
@@ -131,6 +133,26 @@ public class PgfPlotsSyntaxTreeTests
 
         res.ShouldBe(expected);
     }
-    
-    //Multiple plots
+
+    [Fact]
+    public void CanGeneratePgfPlotWithSinglePieChart()
+    {
+        PieChartOptions options = new()
+        {
+            CentrePosition = new(1, 1),
+            ReferenceSum = 30,
+            AfterNumberText = @"\%",
+            Radius = 2.3f,
+            PieChartType = PieType.Polar,
+            ScaleFont = true,
+            SliceColours = new() { LatexColour.Red, LatexColour.Green, LatexColour.Blue}
+        };
+        
+        PieChartSliceData<int> chartSliceOne = new(5);
+        PieChartSliceData<int> chartSliceTwo = new(10);
+        PieChartSliceData<int> chartSliceThree = new(15);
+        PieChartDefinition<int> pieChartDefinition = new(options, chartSliceOne, chartSliceTwo, chartSliceThree);
+        
+        
+    }
 }

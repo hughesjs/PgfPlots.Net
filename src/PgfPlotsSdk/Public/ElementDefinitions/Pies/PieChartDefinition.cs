@@ -14,4 +14,10 @@ public class PieChartDefinition<T> where T: INumber<T>
 		PieChartOptions = pieChartOptions;
 		PieSliceData = pieSliceData;
 	}
+
+	public PieChartDefinition(PieChartOptions pieChartOptions, params PieChartSliceData<T>[] pieSliceData)
+	{
+		PieChartOptions = pieChartOptions;
+		PieSliceData = pieSliceData.ToList();
+	}
 }

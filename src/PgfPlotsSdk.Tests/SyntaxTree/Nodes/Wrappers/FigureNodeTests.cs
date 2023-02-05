@@ -89,7 +89,7 @@ public class FigureNodeTests
 							""";
 		
 		PlotDefinition plotDefinition = new(PlotOptions, Data);
-        PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, new(){plotDefinition});
+		PgfPlotWithAxesDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, new(){plotDefinition});
         FigureDefinition figureDefinition = new()
         {
 	        Caption = Caption,
@@ -128,7 +128,7 @@ public class FigureNodeTests
 							""";
 		
 		PlotDefinition plotDefinition = new(PlotOptions, Data);
-		PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, new(){plotDefinition});
+		PgfPlotWithAxesDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, new(){plotDefinition});
 		FigureDefinition figureDefinition = new()
 		{
 			Caption = Caption,

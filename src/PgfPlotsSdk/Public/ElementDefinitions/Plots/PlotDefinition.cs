@@ -5,17 +5,17 @@ namespace PgfPlotsSdk.Public.ElementDefinitions.Plots;
 
 public class PlotDefinition
 {
-    public PlotOptions PlotOptions { get; }
+    public OptionsDefinition PlotOptions { get; }
     
     public List<ILatexData> PlotData { get; }
 
-    public PlotDefinition(PlotOptions plotOptions, IEnumerable<ILatexData> data)
+    public PlotDefinition(OptionsDefinition plotOptions, IEnumerable<ILatexData> data)
     {
         PlotOptions = plotOptions;
         PlotData = data.ToList();
     }
     
-    public PlotDefinition(PlotOptions plotOptions, ILatexData data)
+    public PlotDefinition(OptionsDefinition plotOptions, ILatexData data)
     {
         PlotOptions = plotOptions;
         PlotData = new() { data };
