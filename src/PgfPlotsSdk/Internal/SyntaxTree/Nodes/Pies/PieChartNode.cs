@@ -1,6 +1,6 @@
 ﻿namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes.Pies;
 
-public class PieNode: SyntaxNode
+internal class PieChartNode: SyntaxNode
 {
 	protected override string BeforeChildren => """
 												\pie

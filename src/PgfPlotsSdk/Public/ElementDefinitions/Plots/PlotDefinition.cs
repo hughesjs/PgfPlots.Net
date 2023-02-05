@@ -1,5 +1,4 @@
 using PgfPlotsSdk.Public.ElementDefinitions.Options;
-using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 using PgfPlotsSdk.Public.Interfaces.Data;
 
 namespace PgfPlotsSdk.Public.ElementDefinitions.Plots;

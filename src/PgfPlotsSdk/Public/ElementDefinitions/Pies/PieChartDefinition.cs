@@ -7,9 +7,9 @@ namespace PgfPlotsSdk.Public.ElementDefinitions.Pies;
 public class PieChartDefinition<T> where T: INumber<T>
 {
 	public PieChartOptions PieChartOptions { get; }
-	public List<PieSliceData<T>> PieSliceData { get; }
+	public List<PieChartSliceData<T>> PieSliceData { get; }
 	
-	public PieChartDefinition(PieChartOptions pieChartOptions, List<PieSliceData<T>> pieSliceData)
+	public PieChartDefinition(PieChartOptions pieChartOptions, List<PieChartSliceData<T>> pieSliceData)
 	{
 		PieChartOptions = pieChartOptions;
 		PieSliceData = pieSliceData;

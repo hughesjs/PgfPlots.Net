@@ -1,6 +1,6 @@
 ﻿using PgfPlotsSdk.Internal.Attributes;
 using PgfPlotsSdk.Public.ElementDefinitions.Enums;
-using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
+using PgfPlotsSdk.Public.ElementDefinitions.Misc;
 
 namespace PgfPlotsSdk.Public.ElementDefinitions.Options;
 
@@ -10,7 +10,7 @@ public record PieChartOptions: OptionsDefinition
 	public PieType? PieChartType { get; init; }
 	
 	[PgfPlotsKey("pos")]
-	public Cartesian2<float>? CentrePosition { get; init; }
+	public LatexPosition? CentrePosition { get; init; }
 	
 	[PgfPlotsKey("rotate")]
 	public float? Rotation { get; init; }

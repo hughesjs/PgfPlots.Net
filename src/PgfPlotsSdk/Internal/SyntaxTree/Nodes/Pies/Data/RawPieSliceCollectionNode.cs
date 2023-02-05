@@ -5,12 +5,12 @@ namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes.Pies.Data;
 
 internal class RawPieSliceCollectionNode<T>: SyntaxNode where T : INumber<T>
 {
-	public RawPieSliceCollectionNode(IEnumerable<PieSliceData<T>> data)
+	public RawPieSliceCollectionNode(IEnumerable<PieChartSliceData<T>> data)
 	{
 		Children.AddRange(data.Select(d => new RawSliceNode<T>(d)));
 	}
     
-	public RawPieSliceCollectionNode(PieSliceData<T> data) // For instances where you've built a collection container already
+	public RawPieSliceCollectionNode(PieChartSliceData<T> data) // For instances where you've built a collection container already
 	{
 		Children.Add(new RawSliceNode<T>(data));
 	}

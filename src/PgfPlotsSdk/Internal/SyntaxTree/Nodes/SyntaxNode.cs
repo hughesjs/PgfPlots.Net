@@ -3,7 +3,7 @@ using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Options;
 
 namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes;
 
-public abstract class SyntaxNode
+internal abstract class SyntaxNode
 {
     public SyntaxNode? Parent { get; private set; }
     public List<SyntaxNode> Children { get; }
@@ -62,7 +62,7 @@ public abstract class SyntaxNode
     }
 }
 
-public abstract class SyntaxNode<T>: SyntaxNode
+internal abstract class SyntaxNode<T>: SyntaxNode
 {
     protected T Data { get; }
     

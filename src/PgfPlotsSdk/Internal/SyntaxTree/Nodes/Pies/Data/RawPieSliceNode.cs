@@ -5,9 +5,9 @@ using PgfPlotsSdk.Public.ElementDefinitions.Pies.Data;
 
 namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes.Pies.Data;
 
-public class RawSliceNode<T>: SyntaxNode<PieSliceData<T>> where T: INumber<T>
+internal class RawSliceNode<T>: SyntaxNode<PieChartSliceData<T>> where T: INumber<T>
 {
-	public RawSliceNode(PieSliceData<T> data) : base(data) { }
+	public RawSliceNode(PieChartSliceData<T> data) : base(data) { }
 	protected override string BeforeChildren => string.Empty;
 	protected override string BetweenChildren => string.Empty;
 	protected override string AfterChildren => string.Empty;
