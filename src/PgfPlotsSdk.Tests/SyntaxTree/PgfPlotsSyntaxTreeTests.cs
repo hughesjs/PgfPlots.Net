@@ -1,10 +1,10 @@
 using PgfPlotsSdk.Internal.SyntaxTree;
-using PgfPlotsSdk.Public.ElementDefinitions;
 using PgfPlotsSdk.Public.ElementDefinitions.Enums;
 using PgfPlotsSdk.Public.ElementDefinitions.Options;
 using PgfPlotsSdk.Public.ElementDefinitions.Plots;
 using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 using PgfPlotsSdk.Public.ElementDefinitions.Wrappers;
+using PgfPlotsSdk.Public.Interfaces.Data;
 using Shouldly;
 
 namespace PgfPlotsSdk.Tests.SyntaxTree;
@@ -25,24 +25,22 @@ public class PgfPlotsSyntaxTreeTests
         YLabel = "I Am The Y Label"
     };
 
-    private static readonly List<Cartesian2<int>> Data1 = new()
-    {
-        new(0,1),
-        new(2,3),
-        new(4,5)
+    private static readonly ILatexData[] Data1 = {
+        new Cartesian2<int>(0,1),
+        new Cartesian2<int>(2,3),
+        new Cartesian2<int>(4,5)
     };
     
-    private static readonly List<Cartesian2<int>> Data2 = new()
-    {
-        new(5,6),
-        new(7,8),
-        new(8,2)
+    private static readonly ILatexData[] Data2 = {
+        new Cartesian2<int>(5,6),
+        new Cartesian2<int>(7,8),
+        new Cartesian2<int>(8,2)
     };
     
     [Fact]
     public void CanGeneratePgfPlotAxisWithNoData()
     {
-        PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard);
+        PgfPlotWithAxesDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard);
         PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
         string expected = $$"""
@@ -71,7 +69,7 @@ public class PgfPlotsSyntaxTreeTests
             OnlyMarks = false
         };
         PlotDefinition plotDefinition = new(plotOptions, Data1);
-        PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, new(){plotDefinition});
+        PgfPlotWithAxesDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, plotDefinition);
         PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
         string expected = $$"""
@@ -113,7 +111,7 @@ public class PgfPlotsSyntaxTreeTests
         PlotDefinition plotDefinition1 = new(plotOptions1, Data1);
         PlotDefinition plotDefinition2 = new(plotOptions2, Data2);
         
-        PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, new(){plotDefinition1, plotDefinition2});
+        PgfPlotWithAxesDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, plotDefinition1, plotDefinition2);
         PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
         string expected = $$"""
@@ -131,6 +129,39 @@ public class PgfPlotsSyntaxTreeTests
 
         res.ShouldBe(expected);
     }
-    
-    //Multiple plots
+
+    [Fact]
+    public void CanGeneratePgfPlotWithSinglePieChart()
+    {
+        PieChartOptions options = new()
+        {
+            CentrePosition = new(1, 1),
+            ReferenceSum = 30,
+            AfterNumberText = @"\%",
+            Radius = 2.3f,
+            PieChartType = PieType.Polar,
+            ScaleFont = true,
+            SliceColours = new() { LatexColour.Red, LatexColour.Green, LatexColour.Blue}
+        };
+        
+        PieChartSliceData<int> chartSliceOne = new(5);
+        PieChartSliceData<int> chartSliceTwo = new(10);
+        PieChartSliceData<int> chartSliceThree = new(15);
+        PlotDefinition<PieChartOptions> pieChartDefinition = new(options, chartSliceOne, chartSliceTwo, chartSliceThree);
+
+        PgfPlotDefinition plotDefinition = new(pieChartDefinition);
+        PgfPlotSyntaxTree tree = new(plotDefinition);
+        
+        const string expected = """
+                                \begin{tikzpicture}
+                                \pie [polar, pos={1,1}, radius=2.3, color={red,green,blue}, sum=30, scale font, after number=\%]
+                                {5, 10, 15};
+
+                                \end{tikzpicture}
+                                """;
+        
+        string res  = tree.GenerateSource();
+
+        res.ShouldBe(expected);
+    }
 }

@@ -1,8 +1,9 @@
 ﻿using System.Numerics;
+using PgfPlotsSdk.Public.Interfaces.Data;
 
 namespace PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 
-public class HistogramBin<T> : PlotData where T: INumber<T>
+public class HistogramBin<T> : ILatexData where T: INumber<T>
 {
 	public HistogramBin(T floor, T ceiling)
 	{
@@ -27,5 +28,5 @@ public class HistogramBin<T> : PlotData where T: INumber<T>
 
 	public bool IsInBin(T num)  => Floor <= num && num < Ceiling;
 	
-	public override string GetDataLatexString() => $"({Floor},{Frequency})";
+	public string GetDataLatexString() => $"({Floor},{Frequency})";
 }

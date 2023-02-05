@@ -1,0 +1,16 @@
+﻿using System.Numerics;
+using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
+
+namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes.Pies.Data;
+
+internal class RawPieSliceCollectionNode<T>: SyntaxNode where T : INumber<T>
+{
+	public RawPieSliceCollectionNode(params PieChartSliceData<T>[] data) // For instances where you've built a collection container already
+	{
+		Children.AddRange(data.Select(d => new RawSliceNode<T>(d)));
+	}
+
+	protected override string BeforeChildren => "{";
+	protected override string BetweenChildren => ", ";
+	protected override string AfterChildren => "}";
+}

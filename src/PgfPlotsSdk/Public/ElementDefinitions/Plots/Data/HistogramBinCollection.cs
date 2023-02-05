@@ -1,9 +1,10 @@
 ﻿using System.Numerics;
 using PgfPlotsSdk.Internal.Exceptions;
+using PgfPlotsSdk.Public.Interfaces.Data;
 
 namespace PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 
-public class HistogramBinCollection<T>: PlotData where T : INumber<T>
+public class HistogramBinCollection<T>: ILatexData where T : INumber<T>
 {
 	private readonly List<HistogramBin<T>> _bins;
 	
@@ -12,7 +13,7 @@ public class HistogramBinCollection<T>: PlotData where T : INumber<T>
 		_bins = new();
 	}
 	
-	public override string GetDataLatexString()
+	public string GetDataLatexString()
 	{
 		string baseIntervals = string.Join(" ", _bins.Select(b => b.GetDataLatexString()));
 		return $"{baseIntervals} ({_bins.Max(b => b.Ceiling)},0)";

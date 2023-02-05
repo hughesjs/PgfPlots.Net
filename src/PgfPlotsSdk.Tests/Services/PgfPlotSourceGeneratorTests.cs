@@ -15,7 +15,7 @@ public class PgfPlotSourceGeneratorTests
 	[Fact]
 	public void GeneratesSourceWithValidPgfPlotDefinition()
 	{
-		PgfPlotDefinition definition = new(new(), new());
+		PgfPlotWithAxesDefinition definition = new(new(), new());
 		string res = _sourceGenerator.GenerateSourceCode(definition);
 		res.ShouldNotBeNullOrEmpty();
 	}
@@ -37,7 +37,7 @@ public class PgfPlotSourceGeneratorTests
 	[Fact]
 	public void ThrowsPgfPlotGenerationExceptionWithInvalidDefinition()
 	{
-		PgfPlotDefinition definition = new(null!, new());
+		PgfPlotWithAxesDefinition definition = new(null!, new());
 		PgfPlotsGeneratorException ex = Should.Throw<PgfPlotsGeneratorException>(() => _sourceGenerator.GenerateSourceCode(definition));
 		ex.InnerException.ShouldNotBeNull();
 	}

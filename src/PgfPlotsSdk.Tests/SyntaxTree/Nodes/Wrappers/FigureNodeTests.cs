@@ -5,6 +5,7 @@ using PgfPlotsSdk.Public.ElementDefinitions.Options;
 using PgfPlotsSdk.Public.ElementDefinitions.Plots;
 using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 using PgfPlotsSdk.Public.ElementDefinitions.Wrappers;
+using PgfPlotsSdk.Public.Interfaces.Data;
 using Shouldly;
 
 namespace PgfPlotsSdk.Tests.SyntaxTree.Nodes.Wrappers;
@@ -36,11 +37,10 @@ public class FigureNodeTests
 		OnlyMarks = false
 	};
 
-	private static readonly List<Cartesian2<int>> Data = new()
-	{
-		new(0,1),
-		new(2,3),
-		new(4,5)
+	private static readonly ILatexData[] Data = {
+		new Cartesian2<int>(0,1),
+		new Cartesian2<int>(2,3),
+		new Cartesian2<int>(4,5)
 	};
 
 	private const string Label = "IAmTheLabel";
@@ -89,7 +89,7 @@ public class FigureNodeTests
 							""";
 		
 		PlotDefinition plotDefinition = new(PlotOptions, Data);
-        PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, new(){plotDefinition});
+		PgfPlotWithAxesDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, plotDefinition);
         FigureDefinition figureDefinition = new()
         {
 	        Caption = Caption,
@@ -128,7 +128,7 @@ public class FigureNodeTests
 							""";
 		
 		PlotDefinition plotDefinition = new(PlotOptions, Data);
-		PgfPlotDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, new(){plotDefinition});
+		PgfPlotWithAxesDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, plotDefinition);
 		FigureDefinition figureDefinition = new()
 		{
 			Caption = Caption,

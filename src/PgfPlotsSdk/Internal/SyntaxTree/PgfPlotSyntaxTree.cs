@@ -1,6 +1,8 @@
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Axes;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Options;
+using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Pies;
+using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Pies.Data;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Plots;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Plots.Data;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Wrappers;
@@ -39,17 +41,22 @@ internal class PgfPlotSyntaxTree
 
     private PgfPlotNode GenerateTree(PgfPlotDefinition definition)
     {
-        AxisNode axisNode = new(definition.AxisType);
-        
-        OptionsCollectionNode optionsCollectionNode = new(definition.AxisOptions.GetOptionsDictionary());
-        axisNode.AddChild(optionsCollectionNode);
-        
-        List<PlotNode> plotNodes = definition.PlotDefinitions.Select(GeneratePlotNode).ToList();
-        axisNode.AddChildren(plotNodes);
-        
         PgfPlotNode rootNode = new();
-        rootNode.AddChild(axisNode);
-
+        List<SyntaxNode> plotNodes = definition.PlotDefinitions.Select(GenerateContentNode).ToList();
+        
+        if (definition is PgfPlotWithAxesDefinition plotWithAxesDefinition)
+        {
+            AxisNode axisNode = new(plotWithAxesDefinition.AxisType);
+            OptionsCollectionNode optionsCollectionNode = new(plotWithAxesDefinition.AxisOptions.GetOptionsDictionary());
+            axisNode.AddChild(optionsCollectionNode);
+            axisNode.AddChildren(plotNodes);
+            rootNode.AddChild(axisNode);
+        }
+        else
+        {
+            rootNode.AddChildren(plotNodes);
+        }
+        
         return rootNode;
     }
 
@@ -60,7 +67,33 @@ internal class PgfPlotSyntaxTree
         plotNode.AddChild(dataCollectionNode);
         return plotNode;
     }
-    
+
+    private SyntaxNode GenerateContentNode(PlotDefinition plotDefinition)
+    {
+        if (plotDefinition.PlotOptions is PieChartOptions)
+        {
+            return GeneratePieChartNode(plotDefinition);
+        }
+
+        if (plotDefinition.PlotOptions is PlotOptions)
+        {
+            return GeneratePlotNode(plotDefinition);
+        }
+
+        throw new($"This option type hasn't been implemented yet {plotDefinition.PlotOptions.GetType()}");
+    }
+
+    private SyntaxNode GeneratePieChartNode(PlotDefinition plotDefinition)
+    {
+        PieChartNode plotNode = GenerateNodeWithOptions<PieChartNode>(plotDefinition.PlotOptions);
+        // Replace this with something less gross...
+        Type unconstructedCollectionNodeType = typeof(RawPieSliceCollectionNode<>);
+        Type constructedCollectionNodeType = unconstructedCollectionNodeType.MakeGenericType(plotDefinition.PlotData.First().GetType().GetGenericArguments());
+        SyntaxNode dataCollectionNode = (SyntaxNode)Activator.CreateInstance(constructedCollectionNodeType, plotDefinition.PlotData);
+        plotNode.AddChild(dataCollectionNode!);
+        return plotNode;
+    }
+
     private TNode GenerateNodeWithOptions<TNode>(OptionsDefinition options) where TNode: SyntaxNode, new()
     {
         TNode node = new();
