@@ -37,4 +37,7 @@ public record PieChartOptions: OptionsDefinition
 	
 	[PgfPlotsKey("after number")]
 	public string? AfterNumberText { get; init; }
+	
+	[PgfPlotsKey("text")]
+	public PieTextOption? TextPosition { get; init; }
 }
