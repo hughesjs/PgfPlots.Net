@@ -1,18 +1,13 @@
 ﻿using System.Numerics;
-using PgfPlotsSdk.Public.ElementDefinitions.Pies.Data;
+using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 
 namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes.Pies.Data;
 
 internal class RawPieSliceCollectionNode<T>: SyntaxNode where T : INumber<T>
 {
-	public RawPieSliceCollectionNode(IEnumerable<PieChartSliceData<T>> data)
+	public RawPieSliceCollectionNode(params PieChartSliceData<T>[] data) // For instances where you've built a collection container already
 	{
 		Children.AddRange(data.Select(d => new RawSliceNode<T>(d)));
-	}
-    
-	public RawPieSliceCollectionNode(PieChartSliceData<T> data) // For instances where you've built a collection container already
-	{
-		Children.Add(new RawSliceNode<T>(data));
 	}
 
 	protected override string BeforeChildren => "{";

@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using PgfPlotsSdk.Public.Interfaces.Data;
 
-namespace PgfPlotsSdk.Public.ElementDefinitions.Pies.Data;
+namespace PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 
 public class PieChartSliceData<T>: ILatexData where T: INumber<T>
 {

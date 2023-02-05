@@ -6,13 +6,13 @@ namespace PgfPlotsSdk.Public.ElementDefinitions.Wrappers;
 
 public class PgfPlotWithAxesDefinition: PgfPlotDefinition
 {
-	public PgfPlotWithAxesDefinition(AxisOptions axisOptions, AxisType axisType): base(new())
+	public PgfPlotWithAxesDefinition(AxisOptions axisOptions, AxisType axisType)
 	{
 		AxisType = axisType;
 		AxisOptions = axisOptions;
 	}
 
-	public PgfPlotWithAxesDefinition(AxisOptions axisOptions, AxisType axisType, List<PlotDefinition> plotDefinitions): base(plotDefinitions)
+	public PgfPlotWithAxesDefinition(AxisOptions axisOptions, AxisType axisType, params PlotDefinition[] plotDefinitions): base(plotDefinitions)
 	{
 		AxisOptions = axisOptions;
 		AxisType = axisType;

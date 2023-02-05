@@ -3,7 +3,7 @@ using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Options;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Pies;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Pies.Data;
 using PgfPlotsSdk.Public.ElementDefinitions.Options;
-using PgfPlotsSdk.Public.ElementDefinitions.Pies.Data;
+using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 using Shouldly;
 
 namespace PgfPlotsSdk.Tests.SyntaxTree.Nodes.Pies;

@@ -48,6 +48,16 @@ public abstract record OptionsDefinition
 
             if (dataType.IsGenericType && dataType.GetGenericTypeDefinition() == typeof(List<>))
             {
+                Type innerType = dataType.GetGenericArguments().First();
+                if (innerType.IsEnum)
+                {
+                    string csv = string.Join(',', ((ICollection)value)
+                        .OfType<object>()
+                        .Select(v => PgfPlotsAttributeHelper.GetPgfPlotsKey(dataType.GetGenericArguments()[0], v.ToString()!)));
+
+                    propsDict.Add(optionName, $"{{{csv}}}");
+                    continue;
+                }
                 propsDict.Add(optionName, $"{{{string.Join(',', ((ICollection)value).OfType<object>())}}}");
                 continue;
             }

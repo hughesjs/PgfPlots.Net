@@ -1,14 +1,12 @@
-using PgfPlotsSdk.Public.ElementDefinitions.Enums;
-using PgfPlotsSdk.Public.ElementDefinitions.Options;
 using PgfPlotsSdk.Public.ElementDefinitions.Plots;
 
 namespace PgfPlotsSdk.Public.ElementDefinitions.Wrappers;
 
 public class PgfPlotDefinition
 {
-    public PgfPlotDefinition(List<PlotDefinition> plotDefinitions)
+    public PgfPlotDefinition(params PlotDefinition[] plotDefinitions)
     {
-        PlotDefinitions = plotDefinitions;
+        PlotDefinitions = plotDefinitions.ToList();
     }
 
     public List<PlotDefinition> PlotDefinitions { get; }
