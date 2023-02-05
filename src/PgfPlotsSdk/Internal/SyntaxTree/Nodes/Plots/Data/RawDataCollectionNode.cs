@@ -1,4 +1,3 @@
-using System.Collections;
 using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 
 namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes.Plots.Data;

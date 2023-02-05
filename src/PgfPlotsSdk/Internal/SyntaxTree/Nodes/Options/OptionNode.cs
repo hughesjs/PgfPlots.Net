@@ -14,7 +14,7 @@ internal class OptionNode: SyntaxNode<KeyValuePair<string, string?>>
         builder.Append(Data.Key);
         if (Data.Value is not null)
         {
-            builder.Append("=");
+            builder.Append('=');
             builder.Append(Data.Value);
         }
 
