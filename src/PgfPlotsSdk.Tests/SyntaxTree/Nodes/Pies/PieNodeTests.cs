@@ -25,11 +25,12 @@ public class PieNodeTests
 			ReferenceSum = 30,
 			Rotation = 90,
 			BeforeNumberText = "\\$",
-			TextPosition = PieTextOption.Pin
+			TextPosition = PieTextOption.Pin,
+			HideNumber = true
 		};
 
 		const string expected = """
-								\pie [pos={1,1}, rotate=90, sum=30, before number=\$, text=pin]
+								\pie [pos={1,1}, rotate=90, sum=30, hide number, before number=\$, text=pin]
 								{5, 10, 15};
 								
 								""";

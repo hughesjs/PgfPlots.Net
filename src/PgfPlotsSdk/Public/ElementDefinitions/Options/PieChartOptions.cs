@@ -31,6 +31,9 @@ public record PieChartOptions: OptionsDefinition
 	
 	[PgfPlotsKey("scale font")]
 	public bool? ScaleFont { get; init; }
+	
+	[PgfPlotsKey("hide number")]
+	public bool? HideNumber { get; init; }
 
 	[PgfPlotsKey("before number")]
 	public string? BeforeNumberText { get; init; }
@@ -40,4 +43,6 @@ public record PieChartOptions: OptionsDefinition
 	
 	[PgfPlotsKey("text")]
 	public PieTextOption? TextPosition { get; init; }
+
+	
 }
