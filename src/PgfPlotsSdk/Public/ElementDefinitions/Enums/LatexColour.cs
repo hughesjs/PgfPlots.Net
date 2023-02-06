@@ -4,27 +4,72 @@ namespace PgfPlotsSdk.Public.ElementDefinitions.Enums;
 
 public enum LatexColour
 {
-    [PgfPlotsKey("red")]
-    Red,
-    
-    [PgfPlotsKey("green")]
-    Green,
-    
-    [PgfPlotsKey("blue")]
-    Blue,
-    
-    [PgfPlotsKey("cyan")]
-    Cyan,
-    
-    [PgfPlotsKey("magenta")]
-    Magenta,
-    
-    [PgfPlotsKey("yellow")]
-    Yellow,
-    
-    [PgfPlotsKey("black")]
-    Black,
-    
-    [PgfPlotsKey("white")]
-    White
+	[PgfPlotsKey("red")] Red,
+	[PgfPlotsKey("green")] Green,
+	[PgfPlotsKey("blue")] Blue,
+	[PgfPlotsKey("cyan")] Cyan,
+	[PgfPlotsKey("magenta")] Magenta,
+	[PgfPlotsKey("yellow")] Yellow,
+	[PgfPlotsKey("black")] Black,
+	[PgfPlotsKey("white")] White,
+	[PgfPlotsKey(@"\color{Apricot}")] Apricot,
+	[PgfPlotsKey(@"\color{Aquamarine}")] Aquamarine,
+	[PgfPlotsKey(@"\color{Bittersweet}")] Bittersweet,
+	[PgfPlotsKey(@"\color{BlueGreen}")] BlueGreen,
+	[PgfPlotsKey(@"\color{BlueViolet}")] BlueViolet,
+	[PgfPlotsKey(@"\color{BrickRed}")] BrickRed,
+	[PgfPlotsKey(@"\color{Brown}")] Brown,
+	[PgfPlotsKey(@"\color{BurntOrange}")] BurntOrange,
+	[PgfPlotsKey(@"\color{CadetBlue}")] CadetBlue,
+	[PgfPlotsKey(@"\color{CarnationPink}")] CarnationPink,
+	[PgfPlotsKey(@"\color{Cerulean}")] Cerulean,
+	[PgfPlotsKey(@"\color{CornflowerBlue}")] CornflowerBlue,
+	[PgfPlotsKey(@"\color{Dandelion}")] Dandelion,
+	[PgfPlotsKey(@"\color{DarkOrchid}")] DarkOrchid,
+	[PgfPlotsKey(@"\color{Emerald}")] Emerald,
+	[PgfPlotsKey(@"\color{ForestGreen}")] ForestGreen,
+	[PgfPlotsKey(@"\color{Fuchsia}")] Fuchsia,
+	[PgfPlotsKey(@"\color{Goldenrod}")] Goldenrod,
+	[PgfPlotsKey(@"\color{Gray}")] Gray,
+	[PgfPlotsKey(@"\color{GreenYellow}")] GreenYellow,
+	[PgfPlotsKey(@"\color{JungleGreen}")] JungleGreen,
+	[PgfPlotsKey(@"\color{Lavender}")] Lavender,
+	[PgfPlotsKey(@"\color{LimeGreen}")] LimeGreen,
+	[PgfPlotsKey(@"\color{Mahogany}")] Mahogany,
+	[PgfPlotsKey(@"\color{Maroon}")] Maroon,
+	[PgfPlotsKey(@"\color{Melon}")] Melon,
+	[PgfPlotsKey(@"\color{MidnightBlue}")] MidnightBlue,
+	[PgfPlotsKey(@"\color{Mulberry}")] Mulberry,
+	[PgfPlotsKey(@"\color{NavyBlue}")] NavyBlue,
+	[PgfPlotsKey(@"\color{OliveGreen}")] OliveGreen,
+	[PgfPlotsKey(@"\color{Orange}")] Orange,
+	[PgfPlotsKey(@"\color{OrangeRed}")] OrangeRed,
+	[PgfPlotsKey(@"\color{Orchid}")] Orchid,
+	[PgfPlotsKey(@"\color{Peach}")] Peach,
+	[PgfPlotsKey(@"\color{Periwinkle}")] Periwinkle,
+	[PgfPlotsKey(@"\color{PineGreen}")] PineGreen,
+	[PgfPlotsKey(@"\color{Plum}")] Plum,
+	[PgfPlotsKey(@"\color{ProcessBlue}")] ProcessBlue,
+	[PgfPlotsKey(@"\color{Purple}")] Purple,
+	[PgfPlotsKey(@"\color{RawSienna}")] RawSienna,
+	[PgfPlotsKey(@"\color{RedOrange}")] RedOrange,
+	[PgfPlotsKey(@"\color{RedViolet}")] RedViolet,
+	[PgfPlotsKey(@"\color{Rhodamine}")] Rhodamine,
+	[PgfPlotsKey(@"\color{RoyalBlue}")] RoyalBlue,
+	[PgfPlotsKey(@"\color{RoyalPurple}")] RoyalPurple,
+	[PgfPlotsKey(@"\color{RubineRed}")] RubineRed,
+	[PgfPlotsKey(@"\color{Salmon}")] Salmon,
+	[PgfPlotsKey(@"\color{SeaGreen}")] SeaGreen,
+	[PgfPlotsKey(@"\color{Sepia}")] Sepia,
+	[PgfPlotsKey(@"\color{SkyBlue}")] SkyBlue,
+	[PgfPlotsKey(@"\color{SpringGreen}")] SpringGreen,
+	[PgfPlotsKey(@"\color{Tan}")] Tan,
+	[PgfPlotsKey(@"\color{TealBlue}")] TealBlue,
+	[PgfPlotsKey(@"\color{Thistle}")] Thistle,
+	[PgfPlotsKey(@"\color{Turquoise}")] Turquoise,
+	[PgfPlotsKey(@"\color{Violet}")] Violet,
+	[PgfPlotsKey(@"\color{VioletRed}")] VioletRed,
+	[PgfPlotsKey(@"\color{WildStrawberry}")] WildStrawberry,
+	[PgfPlotsKey(@"\color{YellowGreen}")] YellowGreen,
+	[PgfPlotsKey(@"\color{YellowOrange}")] YellowOrange
 }
