@@ -41,6 +41,7 @@ public class PgfPlotBuilder:
 		_axisOptions = options ?? new();
 		return this;
 	}
+	
 
 	public ICanAddPieContents<ICanAddPieContentsOrSetPieOptionsOrBuild> AddPgfPlot()
 	{

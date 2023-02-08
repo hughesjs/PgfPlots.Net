@@ -5,6 +5,6 @@ namespace PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Capabilities;
 
 public interface ICanAddWrapper<TAxisNextState, TPieNextState>
 {
-	public ICanAddAxisContents<TAxisNextState> AddPgfPlotWithAxes(AxisType axisType, AxisOptions? options = null);
-	public ICanAddPieContents<TPieNextState> AddPgfPlot();
+	public TAxisNextState AddPgfPlotWithAxes(AxisType axisType, AxisOptions? options = null);
+	public TPieNextState AddPgfPlot();
 }
