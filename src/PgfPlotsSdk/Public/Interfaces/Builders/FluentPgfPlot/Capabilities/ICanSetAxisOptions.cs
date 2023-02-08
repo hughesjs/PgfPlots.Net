@@ -12,9 +12,7 @@ public interface ICanSetAxisOptions<TNextState>
 	public TNextState SetYMax(float? yMax);
 	public TNextState SetMinorXTickNumber(int? tickNum);
 	public TNextState SetMinorYTickNumber(int? tickNum);
-	public TNextState SetMajorXTickNumber(int? tickNum);
-	public TNextState SetMajorYTickNumber(int? tickNum);
-	public TNextState SetXTicks(List<float>? ticks);
-	public TNextState SetYTicks(List<float>? ticks);
+	public TNextState SetXTicks(params float[] ticks);
+	public TNextState SetYTicks(params float[] ticks);
 	public TNextState SetGrid(GridSetting? grid);
 }

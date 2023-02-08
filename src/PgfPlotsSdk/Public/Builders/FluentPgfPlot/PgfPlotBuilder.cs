@@ -199,35 +199,21 @@ public class PgfPlotBuilder:
 	public ICanAddAxisPlotOrSetAxisOptions SetMinorYTickNumber(int? tickNum)
 	{
 		_axisOptions ??= new();
-		_axisOptions.MajorYTickNumber = tickNum;
+		_axisOptions.MinorXTickNumber = tickNum;
 		return this;
 	}
 
-	public ICanAddAxisPlotOrSetAxisOptions SetMajorXTickNumber(int? tickNum)
+	public ICanAddAxisPlotOrSetAxisOptions SetXTicks(params float[] ticks)
 	{
 		_axisOptions ??= new();
-		_axisOptions.MajorXTickNumber = tickNum;
+		_axisOptions.XTicks = ticks.ToList();
 		return this;
 	}
 
-	public ICanAddAxisPlotOrSetAxisOptions SetMajorYTickNumber(int? tickNum)
+	public ICanAddAxisPlotOrSetAxisOptions SetYTicks(params float[] ticks)
 	{
 		_axisOptions ??= new();
-		_axisOptions.MajorYTickNumber = tickNum;
-		return this;
-	}
-
-	public ICanAddAxisPlotOrSetAxisOptions SetXTicks(List<float>? ticks)
-	{
-		_axisOptions ??= new();
-		_axisOptions.XTicks = ticks;
-		return this;
-	}
-
-	public ICanAddAxisPlotOrSetAxisOptions SetYTicks(List<float>? ticks)
-	{
-		_axisOptions ??= new();
-		_axisOptions.YTicks = ticks;
+		_axisOptions.YTicks = ticks.ToList();
 		return this;
 	}
 

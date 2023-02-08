@@ -28,13 +28,7 @@ public record AxisOptions: OptionsDefinition
 	
 	[PgfPlotsKey("minor x tick num")]
 	public int? MinorXTickNumber { get; set; }
-	
-	[PgfPlotsKey("major y tick num")]
-	public int? MajorYTickNumber { get; set; }
-	
-	[PgfPlotsKey("major x tick num")]
-	public int? MajorXTickNumber { get; set; }
-	
+
 	[PgfPlotsKey("xtick")]
 	public List<float>? XTicks { get; set; }
 	

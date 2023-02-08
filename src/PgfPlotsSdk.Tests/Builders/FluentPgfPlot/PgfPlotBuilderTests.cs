@@ -56,6 +56,61 @@ public class PgfPlotBuilderTests
 
 		res.ShouldBe(expected);
 	}
+	
+	[Fact]
+	public void CanCreateBasicPlotWithAxesOptions()
+	{
+		const string expected = """
+								\begin{tikzpicture}
+								\begin{semilogxaxis}[minor x tick num=12, grid=both]
+								\addplot[]
+								plot coordinates {(0,1) (2,3) (4,5)};
+								\end{semilogxaxis}
+								\end{tikzpicture}
+								""";
+
+		string res = _root
+			.AddPgfPlotWithAxes(AxisType.SemiLogX, new AxisOptions
+			{
+				Grid = GridSetting.Both,
+				MinorXTickNumber = 12
+			})
+			.AddPlot(Data1)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
+	
+	[Fact]
+	public void CanCreateBasicPlotWithBuiltAxesOptions()
+	{
+		const string expected = """
+								\begin{tikzpicture}
+								\begin{semilogyaxis}[xlabel=XLabel, ylabel=YLabel, xmin=-1, ymin=-4, xmax=10, ymax=11, minor x tick num=4, xtick={2,3,4}, ytick={2,4,6}, grid=both]
+								\addplot[]
+								plot coordinates {(0,1) (2,3) (4,5)};
+								\end{semilogyaxis}
+								\end{tikzpicture}
+								""";
+
+		string res = _root
+			.AddPgfPlotWithAxes(AxisType.SemiLogY)
+			.SetXLabel("XLabel")
+			.SetYLabel("YLabel")
+			.SetGrid(GridSetting.Both)
+			.SetXMax(10)
+			.SetYMax(11)
+			.SetXMin(-1)
+			.SetYMin(-4)
+			.SetXTicks(2,3,4)
+			.SetYTicks(2,4,6)
+			.SetMinorXTickNumber(3)
+			.SetMinorYTickNumber(4)
+			.AddPlot(Data1)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
 
 	[Fact]
 	public void CanCreatePlotWithAxisOptions()
