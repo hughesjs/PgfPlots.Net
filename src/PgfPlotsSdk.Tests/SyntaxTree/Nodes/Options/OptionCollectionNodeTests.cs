@@ -18,22 +18,21 @@ public class OptionCollectionNodeTests
     }
 
     [Fact]
-    public void CanGenerateCorrectSourceWithNoChildOptions()
+    public void GeneratesNoSourceIfHasNoChildOptions()
     {
         OptionsCollectionNode node = new();
         PgfPlotSyntaxTree tree = new(node);
         
-        const string expected = "[]\n";
         string result = tree.GenerateSource();
 
-        result.ShouldBe(expected);
+        result.ShouldBe(string.Empty);
     }
 
     [Fact]
     public void CanGenerateCorrectSourceWithChildOptions()
     {
         Dictionary<string, string?> propsDict = _fixture.Create<Dictionary<string, string?>>();
-        string expected = $"[{string.Join(", ", propsDict.Select(kvp => $"{kvp.Key}={kvp.Value}"))}]\n";
+        string expected = $"[{string.Join(", ", propsDict.Select(kvp => $"{kvp.Key}={kvp.Value}"))}]";
         
         OptionsCollectionNode optionsCollectionNode = new(propsDict);
 

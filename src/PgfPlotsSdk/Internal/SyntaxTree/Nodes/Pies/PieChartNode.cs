@@ -3,9 +3,10 @@
 internal class PieChartNode: SyntaxNode
 {
 	protected override string BeforeChildren => """
+
 												\pie 
 												""";
 
 	protected override string BetweenChildren => string.Empty;
-	protected override string AfterChildren => ";\n";
+	protected override string AfterChildren => ";";
 }

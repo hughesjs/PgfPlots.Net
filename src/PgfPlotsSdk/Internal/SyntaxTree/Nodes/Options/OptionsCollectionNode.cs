@@ -1,3 +1,4 @@
+using System.Text;
 using PgfPlotsSdk.Internal.Exceptions;
 
 namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes.Options;
@@ -6,7 +7,7 @@ internal class OptionsCollectionNode: SyntaxNode
 {
     protected override string BeforeChildren => "[";
     protected override string BetweenChildren => ", ";
-    protected override string AfterChildren => "]\n";
+    protected override string AfterChildren => "]";
 
     public override void AddChild(SyntaxNode child)
     {
@@ -23,5 +24,10 @@ internal class OptionsCollectionNode: SyntaxNode
     {
         IEnumerable<OptionNode> optionNodes = optionsDict.Select(option => new OptionNode(option));
         base.AddChildren(optionNodes);
+    }
+
+    public override StringBuilder GenerateSource(StringBuilder builder)
+    {
+        return Children.Count == 0 ? builder : base.GenerateSource(builder);
     }
 }

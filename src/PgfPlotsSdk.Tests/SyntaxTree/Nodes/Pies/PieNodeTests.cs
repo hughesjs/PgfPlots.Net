@@ -30,9 +30,8 @@ public class PieNodeTests
 		};
 
 		const string expected = """
-								\pie [pos={1,1}, rotate=90, sum=30, hide number, before number=\$, text=pin]
-								{5, 10, 15};
-								
+
+								\pie [pos={1,1}, rotate=90, sum=30, hide number, before number=\$, text=pin]{5, 10, 15};
 								""";
 		
 		OptionsCollectionNode optionsCollectionNode = new(options.GetOptionsDictionary());
@@ -57,9 +56,8 @@ public class PieNodeTests
 		};
 		
 		const string expected = """
-								\pie [polar]
-								{5, 10, 15};
-								
+
+								\pie [polar]{5, 10, 15};
 								""";
 		
 		OptionsCollectionNode optionsCollectionNode = new(options.GetOptionsDictionary());
@@ -84,9 +82,8 @@ public class PieNodeTests
 		};
 		
 		const string expected = """
-								\pie [cloud]
-								{5, 10, 15};
-								
+
+								\pie [cloud]{5, 10, 15};
 								""";
 		
 		OptionsCollectionNode optionsCollectionNode = new(options.GetOptionsDictionary());
@@ -111,9 +108,8 @@ public class PieNodeTests
 		};
 		
 		const string expected = """
-								\pie [square]
-								{5, 10, 15};
-								
+
+								\pie [square]{5, 10, 15};
 								""";
 		
 		OptionsCollectionNode optionsCollectionNode = new(options.GetOptionsDictionary());
@@ -138,9 +134,8 @@ public class PieNodeTests
 		};
 		
 		const string expected = """
-								\pie [explode={0.1,0.2,0.3}]
-								{5, 10, 15};
-								
+
+								\pie [explode={0.1,0.2,0.3}]{5, 10, 15};
 								""";
 		
 		OptionsCollectionNode optionsCollectionNode = new(options.GetOptionsDictionary());
@@ -164,8 +159,8 @@ public class PieNodeTests
 		RawPieSliceCollectionNode<int> data = new(sliceOne, sliceTwo);
 		
 		const string expected = """
+
 								\pie {52/{People who believe anything they're told}, 48/{People who understand basic economics}};
-								
 								""";
 		
 		PieChartNode pieNode = new();
