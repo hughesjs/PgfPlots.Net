@@ -1,5 +1,4 @@
-using PgfPlotsSdk.Public.ElementDefinitions.Enums;
-using PgfPlotsSdk.Public.ElementDefinitions.Misc;
+using PgfPlotsSdk.Public.Models.Enums;
 
 namespace PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Capabilities;
 

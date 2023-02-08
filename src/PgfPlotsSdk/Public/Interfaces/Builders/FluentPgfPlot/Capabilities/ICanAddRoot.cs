@@ -1,4 +1,4 @@
-﻿using PgfPlotsSdk.Public.ElementDefinitions.Options;
+﻿using PgfPlotsSdk.Public.Models.Options;
 
 namespace PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Capabilities;
 

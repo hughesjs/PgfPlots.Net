@@ -1,9 +1,9 @@
-using PgfPlotsSdk.Public.Builders.FluentPgfPlot;
-using PgfPlotsSdk.Public.ElementDefinitions.Enums;
-using PgfPlotsSdk.Public.ElementDefinitions.Options;
-using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
+using PgfPlotsSdk.Public.Builders;
 using PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Composed;
 using PgfPlotsSdk.Public.Interfaces.Data;
+using PgfPlotsSdk.Public.Models.Enums;
+using PgfPlotsSdk.Public.Models.Options;
+using PgfPlotsSdk.Public.Models.Plots.Data;
 using Shouldly;
 
 namespace PgfPlotsSdk.Tests.Builders.FluentPgfPlot;

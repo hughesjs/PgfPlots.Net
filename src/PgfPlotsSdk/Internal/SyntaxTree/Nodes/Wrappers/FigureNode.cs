@@ -1,5 +1,5 @@
 using System.Text;
-using PgfPlotsSdk.Public.ElementDefinitions.Wrappers;
+using PgfPlotsSdk.Internal.ElementDefinitions;
 
 namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes.Wrappers;
 

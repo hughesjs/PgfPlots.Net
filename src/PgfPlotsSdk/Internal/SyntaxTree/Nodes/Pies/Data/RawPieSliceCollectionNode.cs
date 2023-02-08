@@ -1,5 +1,5 @@
 ﻿using System.Numerics;
-using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
+using PgfPlotsSdk.Public.Models.Plots.Data;
 
 namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes.Pies.Data;
 

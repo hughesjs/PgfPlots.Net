@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
-using PgfPlotsSdk.Public.ElementDefinitions.Options;
-using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
+using PgfPlotsSdk.Public.Models.Options;
+using PgfPlotsSdk.Public.Models.Plots.Data;
 
 namespace PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Capabilities;
 

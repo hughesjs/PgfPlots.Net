@@ -1,5 +1,4 @@
 using System.Reflection;
-using PgfPlotsSdk.Public.ElementDefinitions;
 using PgfPlotsSdk.Internal.Attributes;
 
 namespace PgfPlotsSdk.Internal.Reflection;

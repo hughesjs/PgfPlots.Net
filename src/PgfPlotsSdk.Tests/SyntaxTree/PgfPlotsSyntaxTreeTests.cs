@@ -1,10 +1,9 @@
+using PgfPlotsSdk.Internal.ElementDefinitions;
 using PgfPlotsSdk.Internal.SyntaxTree;
-using PgfPlotsSdk.Public.ElementDefinitions.Enums;
-using PgfPlotsSdk.Public.ElementDefinitions.Options;
-using PgfPlotsSdk.Public.ElementDefinitions.Plots;
-using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
-using PgfPlotsSdk.Public.ElementDefinitions.Wrappers;
 using PgfPlotsSdk.Public.Interfaces.Data;
+using PgfPlotsSdk.Public.Models.Enums;
+using PgfPlotsSdk.Public.Models.Options;
+using PgfPlotsSdk.Public.Models.Plots.Data;
 using Shouldly;
 
 namespace PgfPlotsSdk.Tests.SyntaxTree;

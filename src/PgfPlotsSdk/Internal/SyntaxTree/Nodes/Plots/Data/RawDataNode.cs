@@ -1,6 +1,5 @@
 using System.Text;
 using PgfPlotsSdk.Internal.Exceptions;
-using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 using PgfPlotsSdk.Public.Interfaces.Data;
 
 namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes.Plots.Data;

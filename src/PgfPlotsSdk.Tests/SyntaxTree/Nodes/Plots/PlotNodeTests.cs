@@ -2,9 +2,9 @@ using PgfPlotsSdk.Internal.SyntaxTree;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Options;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Plots;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Plots.Data;
-using PgfPlotsSdk.Public.ElementDefinitions.Enums;
-using PgfPlotsSdk.Public.ElementDefinitions.Options;
-using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
+using PgfPlotsSdk.Public.Models.Enums;
+using PgfPlotsSdk.Public.Models.Options;
+using PgfPlotsSdk.Public.Models.Plots.Data;
 using Shouldly;
 
 namespace PgfPlotsSdk.Tests.SyntaxTree.Nodes.Plots;

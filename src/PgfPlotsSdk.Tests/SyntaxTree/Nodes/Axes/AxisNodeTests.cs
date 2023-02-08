@@ -3,8 +3,8 @@ using PgfPlotsSdk.Internal.Reflection;
 using PgfPlotsSdk.Internal.SyntaxTree;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Axes;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Options;
-using PgfPlotsSdk.Public.ElementDefinitions.Enums;
-using PgfPlotsSdk.Public.ElementDefinitions.Options;
+using PgfPlotsSdk.Public.Models.Enums;
+using PgfPlotsSdk.Public.Models.Options;
 using Shouldly;
 
 namespace PgfPlotsSdk.Tests.SyntaxTree.Nodes.Axes;

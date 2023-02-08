@@ -1,8 +1,8 @@
 using PgfPlotsSdk.Internal.Reflection;
-using PgfPlotsSdk.Public.ElementDefinitions.Options;
+using PgfPlotsSdk.Public.Models.Options;
 using Shouldly;
 
-namespace PgfPlotsSdk.Tests;
+namespace PgfPlotsSdk.Tests.Reflection;
 
 public class PgfPlotsKeyHelperTests
 {

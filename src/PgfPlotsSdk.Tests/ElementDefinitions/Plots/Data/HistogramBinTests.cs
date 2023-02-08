@@ -1,4 +1,4 @@
-﻿using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
+﻿using PgfPlotsSdk.Public.Models.Plots.Data;
 using Shouldly;
 
 namespace PgfPlotsSdk.Tests.ElementDefinitions.Plots.Data;
