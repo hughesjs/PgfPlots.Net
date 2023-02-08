@@ -2,4 +2,6 @@ using PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Capabilities;
 
 namespace PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Composed;
 
-public interface ICanAddWrapperOrAddRoot: ICanAddWrapper, ICanAddRoot { }
+public interface ICanAddWrapperOrAddRoot: 
+	ICanAddWrapper<ICanAddPieContents<ICanAddPieContentsOrSetPieOptionsOrBuild>, ICanAddAxisContents<ICanAddAxisContentsOrSetAxisOptionsOrBuild>>,
+	ICanAddRoot<ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions> { }

@@ -1,21 +1,20 @@
 using PgfPlotsSdk.Public.ElementDefinitions.Enums;
-using PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Composed;
 
 namespace PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Capabilities;
 
-public interface ICanSetAxisOptions
+public interface ICanSetAxisOptions<TNextState>
 {
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetXLabel(string? label);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetYLabel(string? label);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetXMin(float? xMin);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetYMin(float? yMin);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetXMax(float? xMax);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetYMax(float? yMax);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetMinorXTickNumber(int? tickNum);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetMinorYTickNumber(int? tickNum);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetMajorXTickNumber(int? tickNum);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetMajorYTickNumber(int? tickNum);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetXTicks(List<float>? ticks);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetYTicks(List<float>? ticks);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetGrid(GridSetting? grid);
+	public TNextState SetXLabel(string? label);
+	public TNextState SetYLabel(string? label);
+	public TNextState SetXMin(float? xMin);
+	public TNextState SetYMin(float? yMin);
+	public TNextState SetXMax(float? xMax);
+	public TNextState SetYMax(float? yMax);
+	public TNextState SetMinorXTickNumber(int? tickNum);
+	public TNextState SetMinorYTickNumber(int? tickNum);
+	public TNextState SetMajorXTickNumber(int? tickNum);
+	public TNextState SetMajorYTickNumber(int? tickNum);
+	public TNextState SetXTicks(List<float>? ticks);
+	public TNextState SetYTicks(List<float>? ticks);
+	public TNextState SetGrid(GridSetting? grid);
 }

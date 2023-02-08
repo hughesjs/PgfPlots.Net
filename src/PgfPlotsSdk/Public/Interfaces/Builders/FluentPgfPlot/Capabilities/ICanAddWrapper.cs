@@ -3,8 +3,8 @@ using PgfPlotsSdk.Public.ElementDefinitions.Options;
 
 namespace PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Capabilities;
 
-public interface ICanAddWrapper
+public interface ICanAddWrapper<TAxisNextState, TPieNextState>
 {
-	public ICanAddAxisContents AddPgfPlotWithAxes(AxisType axisType, AxisOptions? options = null);
-	public ICanAddPieContents AddPgfPlot();
+	public ICanAddAxisContents<TAxisNextState> AddPgfPlotWithAxes(AxisType axisType, AxisOptions? options = null);
+	public ICanAddPieContents<TPieNextState> AddPgfPlot();
 }

@@ -1,19 +1,18 @@
 using PgfPlotsSdk.Public.ElementDefinitions.Enums;
-using PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Composed;
 
 namespace PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Capabilities;
 
-public interface ICanAddPlotOptions
+public interface ICanAddPlotOptions<TNextState>
 {
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetColour(LatexColour? colour);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetMark(PlotMark? mark);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetMarkSize(float? size);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetLineWidth(float? width);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetFillOpacity(float? opacity);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetLineStyle(LineStyle? style);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetBarType(BarType? type);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetBarWidth(float? width);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetFill(LatexColour? fillColour);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetSmooth(bool? smooth);
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetOnlyMarks(bool? onlyMarks);
+	public TNextState SetColour(LatexColour? colour);
+	public TNextState SetMark(PlotMark? mark);
+	public TNextState SetMarkSize(float? size);
+	public TNextState SetLineWidth(float? width);
+	public TNextState SetFillOpacity(float? opacity);
+	public TNextState SetLineStyle(LineStyle? style);
+	public TNextState SetBarType(BarType? type);
+	public TNextState SetBarWidth(float? width);
+	public TNextState SetFill(LatexColour? fillColour);
+	public TNextState SetSmooth(bool? smooth);
+	public TNextState SetOnlyMarks(bool? onlyMarks);
 }

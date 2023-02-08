@@ -2,4 +2,7 @@
 
 namespace PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Composed;
 
-public interface ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions: ICanAddWrapper, ICanAddFigureDecorations, ICanSetWrapperOptions { }
+public interface ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions :
+	ICanAddWrapper<ICanAddAxisContentsOrSetAxisOptionsOrBuild, ICanAddPieContentsOrSetPieOptionsOrBuild>,
+	ICanAddFigureDecorations<ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions>,
+	ICanSetWrapperOptions<ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions> { }
