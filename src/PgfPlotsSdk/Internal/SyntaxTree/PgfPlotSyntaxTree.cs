@@ -89,7 +89,7 @@ internal class PgfPlotSyntaxTree
         // Replace this with something less gross...
         Type unconstructedCollectionNodeType = typeof(RawPieSliceCollectionNode<>);
         Type constructedCollectionNodeType = unconstructedCollectionNodeType.MakeGenericType(plotDefinition.PlotData.First().GetType().GetGenericArguments());
-        SyntaxNode dataCollectionNode = (SyntaxNode)Activator.CreateInstance(constructedCollectionNodeType, plotDefinition.PlotData);
+        SyntaxNode dataCollectionNode = (SyntaxNode)Activator.CreateInstance(constructedCollectionNodeType, plotDefinition.PlotData.Cast<object>().ToArray())!;
         plotNode.AddChild(dataCollectionNode!);
         return plotNode;
     }

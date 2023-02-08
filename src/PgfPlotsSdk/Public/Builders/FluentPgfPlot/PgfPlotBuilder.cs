@@ -19,12 +19,16 @@ public class PgfPlotBuilder:
 	ICanAddWrapperOrAddRoot,
 	ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions
 {
-	private AxisOptions? _axisOptions;
 	private AxisType? _axisType;
+	private AxisOptions? _axisOptions;
 	private FigureOptions? _figureOptions;
+	private PieChartOptions? _pieChartOptions;
+	private PlotOptions? _plotOptions;
 	private string? _figureLabel;
 	private string? _figureCaption;
 	private bool _isPie;
+
+	private ILatexData[]? _currentData;
 
 	private readonly List<PlotDefinition> _plotDefinitions;
 	private PgfPlotBuilder()
@@ -58,6 +62,14 @@ public class PgfPlotBuilder:
 
 	public string Build()
 	{
+		if (_isPie)
+		{
+			SavePrevious(ref _pieChartOptions);
+		}
+		else
+		{
+			SavePrevious(ref _plotOptions);
+		}
 		Validate();
 		PlotDefinition[] plotDefinitions = _plotDefinitions.ToArray();
 		PgfPlotDefinition definition = _isPie ? new PgfPlotDefinition(plotDefinitions) : new PgfPlotWithAxesDefinition(_axisOptions!, _axisType!.Value, plotDefinitions);
@@ -98,17 +110,32 @@ public class PgfPlotBuilder:
 
 	public ICanAddPieContentsOrSetPieOptionsOrBuild AddPie<T>(IEnumerable<PieChartSliceData<T>> slices, PieChartOptions? options = null) where T : INumber<T>
 	{
+		SavePrevious(ref _plotOptions);
+		
 		_isPie = true;
-		PlotDefinition plotDefinition = new(options ?? new(), slices.Cast<ILatexData>().ToArray());
-		_plotDefinitions.Add(plotDefinition);
+		_currentData = slices.Cast<ILatexData>().ToArray();
+		_pieChartOptions = options ?? new();
+		
 		return this;
+	}
+
+	private void SavePrevious<TOptions>(ref TOptions? options) where TOptions: OptionsDefinition, new()
+	{
+		if (_currentData is null) return;
+		PlotDefinition plotDefinition = new(options ?? new(), _currentData);
+		_plotDefinitions.Add(plotDefinition);
+		_currentData = null;
+		options = null;
 	}
 
 	public ICanAddAxisContentsOrSetAxisOptionsOrBuild AddPlot(IEnumerable<ILatexData> data, PlotOptions? options = null)
 	{
+		SavePrevious(ref _plotOptions);
+		
 		_isPie = false;
-		PlotDefinition plotDefinition = new(options ?? new(), data.ToArray());
-		_plotDefinitions.Add(plotDefinition);
+		_currentData = data.ToArray();
+		_plotOptions = options ?? new();
+		
 		return this;
 	}
 
