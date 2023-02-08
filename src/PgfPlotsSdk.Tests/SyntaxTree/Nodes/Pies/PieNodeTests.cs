@@ -164,7 +164,7 @@ public class PieNodeTests
 		RawPieSliceCollectionNode<int> data = new(sliceOne, sliceTwo);
 		
 		const string expected = """
-								\pie {52/People who believe anything they're told, 48/People who understand basic economics};
+								\pie {52/{People who believe anything they're told}, 48/{People who understand basic economics}};
 								
 								""";
 		

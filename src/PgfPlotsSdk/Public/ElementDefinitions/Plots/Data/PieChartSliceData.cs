@@ -21,6 +21,6 @@ public class PieChartSliceData<T>: ILatexData where T: INumber<T>
 			return Value.ToString() ?? throw new("Stringified slice data cannot be null");
 		}
 
-		return $"{Value.ToString()}/{Label}";
+		return $"{Value.ToString()}/{{{Label}}}";
 	}
 }
