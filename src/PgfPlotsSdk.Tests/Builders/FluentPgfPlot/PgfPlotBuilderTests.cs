@@ -80,6 +80,28 @@ public class PgfPlotBuilderTests
 
 		res.ShouldBe(expected);
 	}
+	
+	[Fact]
+	public void CanCreatePlotWithBuiltAxisOptions()
+	{
+		const string expected = """
+								\begin{tikzpicture}
+								\begin{axis}[xlabel=XAxis, ylabel=YAxis]
+								\addplot[]
+								plot coordinates {(0,1) (2,3) (4,5)};
+								\end{axis}
+								\end{tikzpicture}
+								""";
+
+		string res = _root
+			.AddPgfPlotWithAxes(AxisType.Standard)
+			.SetXLabel("XAxis")
+			.SetYLabel("YAxis")
+			.AddPlot(Data1)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
 
 	[Fact]
 	public void CanCreateChartWithTwoPlots()

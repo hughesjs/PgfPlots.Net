@@ -2,7 +2,7 @@ using PgfPlotsSdk.Public.ElementDefinitions.Enums;
 
 namespace PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Capabilities;
 
-public interface ICanAddPlotOptions<TNextState>
+public interface ICanSetPlotOptions<TNextState>
 {
 	public TNextState SetColour(LatexColour? colour);
 	public TNextState SetMark(PlotMark? mark);
@@ -12,7 +12,7 @@ public interface ICanAddPlotOptions<TNextState>
 	public TNextState SetLineStyle(LineStyle? style);
 	public TNextState SetBarType(BarType? type);
 	public TNextState SetBarWidth(float? width);
-	public TNextState SetFill(LatexColour? fillColour);
+	public TNextState SetFillColour(LatexColour? fillColour);
 	public TNextState SetSmooth(bool? smooth);
 	public TNextState SetOnlyMarks(bool? onlyMarks);
 }

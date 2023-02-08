@@ -14,10 +14,11 @@ using PgfPlotsSdk.Public.Interfaces.Data;
 namespace PgfPlotsSdk.Public.Builders.FluentPgfPlot;
 
 public class PgfPlotBuilder: 
-	ICanAddAxisContentsOrSetAxisOptionsOrBuild,
+	ICanAddAxisPlotOrSetPlotOptionsOrBuild,
 	ICanAddPieContentsOrSetPieOptionsOrBuild,
 	ICanAddWrapperOrAddRoot,
-	ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions
+	ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions,
+	ICanAddAxisPlotOrSetAxisOptions
 {
 	private AxisType? _axisType;
 	private AxisOptions? _axisOptions;
@@ -39,7 +40,7 @@ public class PgfPlotBuilder:
 
 	public static ICanAddWrapperOrAddRoot CreateBuilder() => new PgfPlotBuilder();
 
-	public ICanAddAxisContents<ICanAddAxisContentsOrSetAxisOptionsOrBuild> AddPgfPlotWithAxes(AxisType axisType, AxisOptions? options = null)
+	public ICanAddAxisPlotOrSetAxisOptions AddPgfPlotWithAxes(AxisType axisType, AxisOptions? options = null)
 	{
 		_axisType = axisType;
 		_axisOptions = options ?? new();
@@ -128,7 +129,7 @@ public class PgfPlotBuilder:
 		options = null;
 	}
 
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild AddPlot(IEnumerable<ILatexData> data, PlotOptions? options = null)
+	public ICanAddAxisPlotOrSetPlotOptionsOrBuild AddPlot(IEnumerable<ILatexData> data, PlotOptions? options = null)
 	{
 		SavePrevious(ref _plotOptions);
 		
@@ -151,133 +152,262 @@ public class PgfPlotBuilder:
 		return this;
 	}
 
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetXLabel(string? label)
+	public ICanAddAxisPlotOrSetAxisOptions SetXLabel(string? label)
 	{
-		throw new NotImplementedException();
+		_axisOptions ??= new();
+		_axisOptions.XLabel = label;
+		return this;
 	}
 
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetYLabel(string? label)
+	public ICanAddAxisPlotOrSetAxisOptions SetYLabel(string? label)
 	{
-		throw new NotImplementedException();
+		_axisOptions ??= new();
+		_axisOptions.YLabel = label;
+		return this;
 	}
 
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetXMin(float? xMin)
+	public ICanAddAxisPlotOrSetAxisOptions SetXMin(float? xMin)
 	{
-		throw new NotImplementedException();
+		_axisOptions ??= new();
+		_axisOptions.XMin = xMin;
+		return this;
 	}
 
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetYMin(float? yMin)
+	public ICanAddAxisPlotOrSetAxisOptions SetYMin(float? yMin)
 	{
-		throw new NotImplementedException();
+		_axisOptions ??= new();
+		_axisOptions.YMin = yMin;
+		return this;
 	}
 
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetXMax(float? xMax)
+	public ICanAddAxisPlotOrSetAxisOptions SetXMax(float? xMax)
 	{
-		throw new NotImplementedException();
+		_axisOptions ??= new();
+		_axisOptions.XMax = xMax;
+		return this;
 	}
 
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetYMax(float? yMax)
+	public ICanAddAxisPlotOrSetAxisOptions SetYMax(float? yMax)
 	{
-		throw new NotImplementedException();
+		_axisOptions ??= new();
+		_axisOptions.YMax = yMax;
+		return this;
 	}
 
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetMinorXTickNumber(int? tickNum)
+	public ICanAddAxisPlotOrSetAxisOptions SetMinorXTickNumber(int? tickNum)
 	{
-		throw new NotImplementedException();
+		_axisOptions ??= new();
+		_axisOptions.MinorXTickNumber = tickNum;
+		return this;
 	}
 
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetMinorYTickNumber(int? tickNum)
+	public ICanAddAxisPlotOrSetAxisOptions SetMinorYTickNumber(int? tickNum)
 	{
-		throw new NotImplementedException();
+		_axisOptions ??= new();
+		_axisOptions.MajorYTickNumber = tickNum;
+		return this;
 	}
 
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetMajorXTickNumber(int? tickNum)
+	public ICanAddAxisPlotOrSetAxisOptions SetMajorXTickNumber(int? tickNum)
 	{
-		throw new NotImplementedException();
+		_axisOptions ??= new();
+		_axisOptions.MajorXTickNumber = tickNum;
+		return this;
 	}
 
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetMajorYTickNumber(int? tickNum)
+	public ICanAddAxisPlotOrSetAxisOptions SetMajorYTickNumber(int? tickNum)
 	{
-		throw new NotImplementedException();
+		_axisOptions ??= new();
+		_axisOptions.MajorYTickNumber = tickNum;
+		return this;
 	}
 
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetXTicks(List<float>? ticks)
+	public ICanAddAxisPlotOrSetAxisOptions SetXTicks(List<float>? ticks)
 	{
-		throw new NotImplementedException();
+		_axisOptions ??= new();
+		_axisOptions.XTicks = ticks;
+		return this;
 	}
 
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetYTicks(List<float>? ticks)
+	public ICanAddAxisPlotOrSetAxisOptions SetYTicks(List<float>? ticks)
 	{
-		throw new NotImplementedException();
+		_axisOptions ??= new();
+		_axisOptions.YTicks = ticks;
+		return this;
 	}
 
-	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetGrid(GridSetting? grid)
+	public ICanAddAxisPlotOrSetAxisOptions SetGrid(GridSetting? grid)
 	{
-		throw new NotImplementedException();
+		_axisOptions ??= new();
+		_axisOptions.Grid = grid;
+		return this;
 	}
 
 	public ICanAddPieContentsOrSetPieOptionsOrBuild SetPieChartType(PieType? type)
 	{
-		throw new NotImplementedException();
+		_pieChartOptions ??= new();
+		_pieChartOptions.PieChartType = type;
+		return this;
 	}
 
 	public ICanAddPieContentsOrSetPieOptionsOrBuild SetCentrePosition(LatexPosition? position)
 	{
-		throw new NotImplementedException();
+		_pieChartOptions ??= new();
+		_pieChartOptions.CentrePosition = position;
+		return this;
 	}
 
 	public ICanAddPieContentsOrSetPieOptionsOrBuild SetRotation(float? rotation)
 	{
-		throw new NotImplementedException();
+		_pieChartOptions ??= new();
+		_pieChartOptions.Rotation = rotation;
+		return this;
 	}
 
 	public ICanAddPieContentsOrSetPieOptionsOrBuild SetRadius(float? radius)
 	{
-		throw new NotImplementedException();
+		_pieChartOptions ??= new();
+		_pieChartOptions.Radius = radius;
+		return this;
 	}
 
 	public ICanAddPieContentsOrSetPieOptionsOrBuild SetSliceColours(List<LatexColour>? sliceColours)
 	{
-		throw new NotImplementedException();
+		_pieChartOptions ??= new();
+		_pieChartOptions.SliceColours = sliceColours;
+		return this;
 	}
 
 	public ICanAddPieContentsOrSetPieOptionsOrBuild SetSliceExplosionFactors(List<float>? explosionFactors)
 	{
-		throw new NotImplementedException();
+		_pieChartOptions ??= new();
+		_pieChartOptions.SliceExplosionFactors = explosionFactors;
+		return this;
 	}
 
 	public ICanAddPieContentsOrSetPieOptionsOrBuild SetReferenceSum(float? sum)
 	{
-		throw new NotImplementedException();
+		_pieChartOptions ??= new();
+		_pieChartOptions.ReferenceSum = sum;
+		return this;
 	}
 
 	public ICanAddPieContentsOrSetPieOptionsOrBuild SetScaleFont(bool? enabled)
 	{
-		throw new NotImplementedException();
+		_pieChartOptions ??= new();
+		_pieChartOptions.ScaleFont = enabled;
+		return this;
 	}
 
 	public ICanAddPieContentsOrSetPieOptionsOrBuild SetHideNumber(bool? enabled)
 	{
-		throw new NotImplementedException();
+		_pieChartOptions ??= new();
+		_pieChartOptions.HideNumber = enabled;
+		return this;
 	}
 
 	public ICanAddPieContentsOrSetPieOptionsOrBuild SetBeforeNumberText(string beforeText)
 	{
-		throw new NotImplementedException();
+		_pieChartOptions ??= new();
+		_pieChartOptions.BeforeNumberText = beforeText;
+		return this;
 	}
 
 	public ICanAddPieContentsOrSetPieOptionsOrBuild SetAfterNumberText(string? afterText)
 	{
-		throw new NotImplementedException();
+		_pieChartOptions ??= new();
+		_pieChartOptions.AfterNumberText = afterText;
+		return this;
 	}
 
 	public ICanAddPieContentsOrSetPieOptionsOrBuild SetTextPosition(PieTextOption? textPosition)
 	{
-		throw new NotImplementedException();
+		_pieChartOptions ??= new();
+		_pieChartOptions.TextPosition = textPosition;
+		return this;
 	}
 
 	public ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions SetPlacementFlag(PositionFlags flagsToSet)
 	{
-		throw new NotImplementedException();
+		_figureOptions ??= new();
+		_figureOptions.Position |= flagsToSet;
+		return this;
+	}
+
+	public ICanAddAxisPlotOrSetPlotOptionsOrBuild SetColour(LatexColour? colour)
+	{
+		_plotOptions ??= new();
+		_plotOptions.Colour = colour;
+		return this;
+	}
+
+	public ICanAddAxisPlotOrSetPlotOptionsOrBuild SetMark(PlotMark? mark)
+	{
+		_plotOptions ??= new();
+		_plotOptions.Mark = mark;
+		return this;
+	}
+
+	public ICanAddAxisPlotOrSetPlotOptionsOrBuild SetMarkSize(float? size)
+	{
+		_plotOptions ??= new();
+		_plotOptions.MarkSize = size;
+		return this;
+	}
+
+	public ICanAddAxisPlotOrSetPlotOptionsOrBuild SetLineWidth(float? width)
+	{
+		_plotOptions ??= new();
+		_plotOptions.LineWidth = width;
+		return this;
+	}
+
+	public ICanAddAxisPlotOrSetPlotOptionsOrBuild SetFillOpacity(float? opacity)
+	{
+		_plotOptions ??= new();
+		_plotOptions.FillOpacity = opacity;
+		return this;
+	}
+
+	public ICanAddAxisPlotOrSetPlotOptionsOrBuild SetLineStyle(LineStyle? style)
+	{
+		_plotOptions ??= new();
+		_plotOptions.LineStyle = style;
+		return this;
+	}
+
+	public ICanAddAxisPlotOrSetPlotOptionsOrBuild SetBarType(BarType? type)
+	{
+		_plotOptions ??= new();
+		_plotOptions.BarType = type;
+		return this;
+	}
+
+	public ICanAddAxisPlotOrSetPlotOptionsOrBuild SetBarWidth(float? width)
+	{
+		_plotOptions ??= new();
+		_plotOptions.BarWidth = width;
+		return this;
+	}
+
+	public ICanAddAxisPlotOrSetPlotOptionsOrBuild SetFillColour(LatexColour? fillColour)
+	{
+		_plotOptions ??= new();
+		_plotOptions.FillColour = fillColour;
+		return this;
+	}
+
+	public ICanAddAxisPlotOrSetPlotOptionsOrBuild SetSmooth(bool? smooth)
+	{
+		_plotOptions ??= new();
+		_plotOptions.Smooth = smooth;
+		return this;
+	}
+
+	public ICanAddAxisPlotOrSetPlotOptionsOrBuild SetOnlyMarks(bool? onlyMarks)
+	{
+		_plotOptions ??= new();
+		_plotOptions.OnlyMarks = onlyMarks;
+		return this;
 	}
 }
