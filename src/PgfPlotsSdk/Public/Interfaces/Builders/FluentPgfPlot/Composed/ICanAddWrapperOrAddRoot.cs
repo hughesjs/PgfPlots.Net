@@ -3,5 +3,5 @@ using PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Capabilities;
 namespace PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Composed;
 
 public interface ICanAddWrapperOrAddRoot: 
-	ICanAddWrapper<ICanAddPieContents<ICanAddPieContentsOrSetPieOptionsOrBuild>, ICanAddAxisContents<ICanAddAxisContentsOrSetAxisOptionsOrBuild>>,
+	ICanAddWrapper<ICanAddAxisContentsOrSetAxisOptionsOrBuild, ICanAddPieContentsOrSetPieOptionsOrBuild>,
 	ICanAddRoot<ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions> { }

@@ -4,4 +4,5 @@ namespace PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Composed;
 
 public interface ICanAddAxisContentsOrSetAxisOptionsOrBuild :
 	ICanAddAxisContents<ICanAddAxisContentsOrSetAxisOptionsOrBuild>,
-	ICanSetAxisOptions<ICanAddAxisContentsOrSetAxisOptionsOrBuild>, ICanBuild { }
+	ICanSetAxisOptions<ICanAddAxisContentsOrSetAxisOptionsOrBuild>,
+	ICanBuild { }

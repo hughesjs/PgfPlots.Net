@@ -2,16 +2,22 @@
 using PgfPlotsSdk.Internal.Exceptions;
 using PgfPlotsSdk.Internal.SyntaxTree;
 using PgfPlotsSdk.Public.ElementDefinitions.Enums;
+using PgfPlotsSdk.Public.ElementDefinitions.Misc;
 using PgfPlotsSdk.Public.ElementDefinitions.Options;
 using PgfPlotsSdk.Public.ElementDefinitions.Plots;
 using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
 using PgfPlotsSdk.Public.ElementDefinitions.Wrappers;
-using PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot;
+using PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Capabilities;
+using PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Composed;
 using PgfPlotsSdk.Public.Interfaces.Data;
 
 namespace PgfPlotsSdk.Public.Builders.FluentPgfPlot;
 
-public class PgfPlotBuilder: ICanCreateRoot, ICanAddAxisContents, ICanAddPieContents, ICanAddWrapperOrFigureDecorations
+public class PgfPlotBuilder: 
+	ICanAddAxisContentsOrSetAxisOptionsOrBuild,
+	ICanAddPieContentsOrSetPieOptionsOrBuild,
+	ICanAddWrapperOrAddRoot,
+	ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions
 {
 	private AxisOptions? _axisOptions;
 	private AxisType? _axisType;
@@ -24,24 +30,26 @@ public class PgfPlotBuilder: ICanCreateRoot, ICanAddAxisContents, ICanAddPieCont
 	private PgfPlotBuilder()
 	{
 		_plotDefinitions = new();
+
 	}
 
-	public static ICanCreateRoot CreateBuilder() => new PgfPlotBuilder();
+	public static ICanAddWrapperOrAddRoot CreateBuilder() => new PgfPlotBuilder();
 
-	public ICanAddAxisContents AddPgfPlotWithAxes(AxisType axisType, AxisOptions? options = null)
+	public ICanAddAxisContents<ICanAddAxisContentsOrSetAxisOptionsOrBuild> AddPgfPlotWithAxes(AxisType axisType, AxisOptions? options = null)
 	{
 		_axisType = axisType;
 		_axisOptions = options ?? new();
 		return this;
 	}
 
-	public ICanAddPieContents AddPgfPlot()
+	public ICanAddPieContents<ICanAddPieContentsOrSetPieOptionsOrBuild> AddPgfPlot()
 	{
-		// This is here because it may be expanded with tikz options later and it makes the API a bit more sane
+		// This may do something later. At the moment, it just makes the API a bit more sane.
 		return this;
 	}
 
-	public ICanAddWrapperOrFigureDecorations AddFigure(FigureOptions? figureOptions = null)
+
+	public ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions AddFigure(FigureOptions? figureOptions = null)
 	{
 		_figureOptions = figureOptions ?? new();
 		return this;
@@ -87,7 +95,7 @@ public class PgfPlotBuilder: ICanCreateRoot, ICanAddAxisContents, ICanAddPieCont
 
 
 
-	public ICanAddPieContents AddPie<T>(IEnumerable<PieChartSliceData<T>> slices, PieChartOptions? options = null) where T : INumber<T>
+	public ICanAddPieContentsOrSetPieOptionsOrBuild AddPie<T>(IEnumerable<PieChartSliceData<T>> slices, PieChartOptions? options = null) where T : INumber<T>
 	{
 		_isPie = true;
 		PlotDefinition plotDefinition = new(options ?? new(), slices.Cast<ILatexData>().ToArray());
@@ -95,7 +103,7 @@ public class PgfPlotBuilder: ICanCreateRoot, ICanAddAxisContents, ICanAddPieCont
 		return this;
 	}
 
-	public ICanAddAxisContents AddPlot(IEnumerable<ILatexData> data, PlotOptions? options = null)
+	public ICanAddAxisContentsOrSetAxisOptionsOrBuild AddPlot(IEnumerable<ILatexData> data, PlotOptions? options = null)
 	{
 		_isPie = false;
 		PlotDefinition plotDefinition = new(options ?? new(), data.ToArray());
@@ -103,15 +111,145 @@ public class PgfPlotBuilder: ICanCreateRoot, ICanAddAxisContents, ICanAddPieCont
 		return this;
 	}
 
-	public ICanAddWrapperOrFigureDecorations SetLabel(string? label)
+	public ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions SetLabel(string? label)
 	{
 		_figureLabel = label;
 		return this;
 	}
 
-	public ICanAddWrapperOrFigureDecorations SetCaption(string? caption)
+	public ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions SetCaption(string? caption)
 	{
 		_figureCaption = caption;
 		return this;
+	}
+
+	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetXLabel(string? label)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetYLabel(string? label)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetXMin(float? xMin)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetYMin(float? yMin)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetXMax(float? xMax)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetYMax(float? yMax)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetMinorXTickNumber(int? tickNum)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetMinorYTickNumber(int? tickNum)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetMajorXTickNumber(int? tickNum)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetMajorYTickNumber(int? tickNum)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetXTicks(List<float>? ticks)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetYTicks(List<float>? ticks)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddAxisContentsOrSetAxisOptionsOrBuild SetGrid(GridSetting? grid)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddPieContentsOrSetPieOptionsOrBuild SetPieChartType(PieType? type)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddPieContentsOrSetPieOptionsOrBuild SetCentrePosition(LatexPosition? position)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddPieContentsOrSetPieOptionsOrBuild SetRotation(float? rotation)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddPieContentsOrSetPieOptionsOrBuild SetRadius(float? radius)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddPieContentsOrSetPieOptionsOrBuild SetSliceColours(List<LatexColour>? sliceColours)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddPieContentsOrSetPieOptionsOrBuild SetSliceExplosionFactors(List<float>? explosionFactors)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddPieContentsOrSetPieOptionsOrBuild SetReferenceSum(float? sum)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddPieContentsOrSetPieOptionsOrBuild SetScaleFont(bool? enabled)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddPieContentsOrSetPieOptionsOrBuild SetHideNumber(bool? enabled)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddPieContentsOrSetPieOptionsOrBuild SetBeforeNumberText(string beforeText)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddPieContentsOrSetPieOptionsOrBuild SetAfterNumberText(string? afterText)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddPieContentsOrSetPieOptionsOrBuild SetTextPosition(PieTextOption? textPosition)
+	{
+		throw new NotImplementedException();
+	}
+
+	public ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions SetPlacementFlag(PositionFlags flagsToSet)
+	{
+		throw new NotImplementedException();
 	}
 }
