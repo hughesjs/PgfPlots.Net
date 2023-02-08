@@ -135,7 +135,7 @@ public class PgfPlotBuilderTests
 	{
 		const string expected = """
 								\begin{tikzpicture}
-								\begin{axis}[xlabel=XAxis, ylabel=YAxis]
+								\begin{axis}[]
 								\addplot[ybar, only marks]
 								plot coordinates {(0,1) (2,3) (4,5)};
 								\end{axis}
@@ -143,16 +143,34 @@ public class PgfPlotBuilderTests
 								""";
 
 		string res = _root
-			.AddPgfPlotWithAxes(AxisType.Standard, new AxisOptions
-			{
-				XLabel = "XAxis",
-				YLabel = "YAxis"
-			})
-			.AddPlot(Data1, new PlotOptions()
+			.AddPgfPlotWithAxes(AxisType.Standard)
+			.AddPlot(Data1, new PlotOptions
 			{
 				BarType = BarType.YBar,
 				OnlyMarks = true
 			})
+			.Build();
+
+		res.ShouldBe(expected);
+	}
+	
+	[Fact]
+	public void CanCreatePlotWithBuiltPlotOptions()
+	{
+		const string expected = """
+								\begin{tikzpicture}
+								\begin{axis}[]
+								\addplot[ybar, only marks]
+								plot coordinates {(0,1) (2,3) (4,5)};
+								\end{axis}
+								\end{tikzpicture}
+								""";
+
+		string res = _root
+			.AddPgfPlotWithAxes(AxisType.Standard)
+			.AddPlot(Data1)
+			.SetBarType(BarType.YBar)
+			.SetOnlyMarks(true)
 			.Build();
 
 		res.ShouldBe(expected);
@@ -163,6 +181,8 @@ public class PgfPlotBuilderTests
 	{
 		const string expected = """
 								\begin{figure}
+								[]
+
 								\begin{tikzpicture}
 								\begin{axis}[]
 								\addplot[]
@@ -178,12 +198,66 @@ public class PgfPlotBuilderTests
 
 		res.ShouldBe(expected);
 	}
+	
+	[Fact]
+	public void CanCreatePlotWrappedInFigureWithPosition()
+	{
+		const string expected = """
+								\begin{figure}
+								[htb]
+
+								\begin{tikzpicture}
+								\begin{axis}[]
+								\addplot[]
+								plot coordinates {(0,1) (2,3) (4,5)};
+								\end{axis}
+								\end{tikzpicture}
+								\end{figure}
+								""";
+		string res = _root.AddFigure(new FigureOptions
+			{
+				Position = PositionFlags.Here | PositionFlags.Top | PositionFlags.Bottom
+			})
+			.AddPgfPlotWithAxes(AxisType.Standard)
+			.AddPlot(Data1)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
+	
+	[Fact]
+	public void CanCreatePlotWrappedInFigureWithBuiltPosition()
+	{
+		const string expected = """
+								\begin{figure}
+								[htb]
+
+								\begin{tikzpicture}
+								\begin{axis}[]
+								\addplot[]
+								plot coordinates {(0,1) (2,3) (4,5)};
+								\end{axis}
+								\end{tikzpicture}
+								\end{figure}
+								""";
+		string res = _root.AddFigure()
+			.SetPlacementFlag(PositionFlags.Here)
+			.SetPlacementFlag(PositionFlags.Top)
+			.SetPlacementFlag(PositionFlags.Bottom)
+			.AddPgfPlotWithAxes(AxisType.Standard)
+			.AddPlot(Data1)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
 
 	[Fact]
 	public void CanAddCaptionAndLabelToFigure()
 	{
 		const string expected = """
 								\begin{figure}
+								[]
+
 								\begin{tikzpicture}
 								\begin{axis}[]
 								\addplot[]

@@ -84,12 +84,7 @@ public class PgfPlotBuilder:
 	{
 		if (_figureOptions is not null)
 		{
-			return new()
-			{
-				Caption = _figureCaption,
-				Label = _figureLabel,
-				Plots = definitions.ToList()
-			};
+			return new(_figureOptions, _figureLabel, _figureCaption, definitions);
 		}
 
 		return null;
@@ -330,6 +325,7 @@ public class PgfPlotBuilder:
 	public ICanAddWrapperOrAddWrapperDecorationsOrSetWrapperOptions SetPlacementFlag(PositionFlags flagsToSet)
 	{
 		_figureOptions ??= new();
+		_figureOptions.Position ??= 0;
 		_figureOptions.Position |= flagsToSet;
 		return this;
 	}

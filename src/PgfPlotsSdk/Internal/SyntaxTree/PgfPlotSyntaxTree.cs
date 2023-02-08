@@ -33,7 +33,10 @@ internal class PgfPlotSyntaxTree
     {
         PgfPlotNode[] pgfPlotNodes = definition.Plots?.Select(GenerateTree).ToArray() ?? Array.Empty<PgfPlotNode>();
 
-        FigureNode rootNode = new(definition);
+        FigureNode rootNode =  new(definition);
+        OptionsCollectionNode optionsCollectionNode = new(definition.Options.GetOptionsDictionary());
+        
+        rootNode.AddChild(optionsCollectionNode);
         rootNode.AddChildren(pgfPlotNodes);
 
         return rootNode;
