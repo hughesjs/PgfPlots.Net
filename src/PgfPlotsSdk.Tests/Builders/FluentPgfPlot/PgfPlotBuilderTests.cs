@@ -332,4 +332,34 @@ public class PgfPlotBuilderTests
 
 		res.ShouldBe(expected);
 	}
+	
+	[Fact]
+	public void CanCreatePieWithBuiltOptions()
+	{
+		const string expected = """
+                                \begin{tikzpicture}
+                                \pie [polar, pos={1,2}, radius=2.3, color={red,green,blue}, sum=30, scale font, after number=\%]
+                                {5, 10, 15};
+
+                                \end{tikzpicture}
+                                """;
+
+		PieChartSliceData<int> chartSliceOne = new(5);
+		PieChartSliceData<int> chartSliceTwo = new(10);
+		PieChartSliceData<int> chartSliceThree = new(15);
+		PieChartSliceData<int>[] slices = { chartSliceOne, chartSliceTwo, chartSliceThree };
+
+		string res = _root.AddPgfPlot()
+			.AddPie(slices)
+			.SetCentrePosition(1,2)
+			.SetReferenceSum(30)
+			.SetAfterNumberText(@"\%")
+			.SetRadius(2.3f)
+			.SetPieChartType(PieType.Polar)
+			.SetScaleFont(true)
+			.SetSliceColours(LatexColour.Red, LatexColour.Green, LatexColour.Blue)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
 }

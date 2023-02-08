@@ -6,10 +6,10 @@ namespace PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Capabilities;
 public interface ICanSetPieOptions<TNextState>
 {
 	public TNextState SetPieChartType(PieType? type);
-	public TNextState SetCentrePosition(LatexPosition? position);
+	public TNextState SetCentrePosition(float x, float y);
 	public TNextState SetRotation(float? rotation);
 	public TNextState SetRadius(float? radius);
-	public TNextState SetSliceColours(List<LatexColour>? sliceColours);
+	public TNextState SetSliceColours(params LatexColour[] sliceColours);
 	public TNextState SetSliceExplosionFactors(List<float>? explosionFactors);
 	public TNextState SetReferenceSum(float? sum);
 	public TNextState SetScaleFont(bool? enabled);

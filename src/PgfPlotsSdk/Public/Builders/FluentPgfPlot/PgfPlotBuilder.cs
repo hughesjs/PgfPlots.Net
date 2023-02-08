@@ -245,10 +245,10 @@ public class PgfPlotBuilder:
 		return this;
 	}
 
-	public ICanAddPieContentsOrSetPieOptionsOrBuild SetCentrePosition(LatexPosition? position)
+	public ICanAddPieContentsOrSetPieOptionsOrBuild SetCentrePosition(float x, float y)
 	{
 		_pieChartOptions ??= new();
-		_pieChartOptions.CentrePosition = position;
+		_pieChartOptions.CentrePosition = new(x, y);
 		return this;
 	}
 
@@ -266,10 +266,10 @@ public class PgfPlotBuilder:
 		return this;
 	}
 
-	public ICanAddPieContentsOrSetPieOptionsOrBuild SetSliceColours(List<LatexColour>? sliceColours)
+	public ICanAddPieContentsOrSetPieOptionsOrBuild SetSliceColours(params LatexColour[] sliceColours)
 	{
 		_pieChartOptions ??= new();
-		_pieChartOptions.SliceColours = sliceColours;
+		_pieChartOptions.SliceColours = sliceColours.ToList();
 		return this;
 	}
 
