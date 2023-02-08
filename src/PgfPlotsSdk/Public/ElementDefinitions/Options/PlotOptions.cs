@@ -30,7 +30,7 @@ public record PlotOptions: OptionsDefinition
     public float? BarWidth { get; init; }
     
     [PgfPlotsKey("fill")]
-    public LatexColour? Fill { get; init; }
+    public LatexColour? FillColour { get; init; }
     
     [PgfPlotsKey("smooth")]
     public bool? Smooth { get; init; }
