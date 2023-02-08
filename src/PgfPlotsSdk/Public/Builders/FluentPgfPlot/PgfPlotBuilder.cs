@@ -1,8 +1,11 @@
 ﻿using System.Numerics;
+using PgfPlotsSdk.Internal.Exceptions;
+using PgfPlotsSdk.Internal.SyntaxTree;
 using PgfPlotsSdk.Public.ElementDefinitions.Enums;
 using PgfPlotsSdk.Public.ElementDefinitions.Options;
 using PgfPlotsSdk.Public.ElementDefinitions.Plots;
 using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
+using PgfPlotsSdk.Public.ElementDefinitions.Wrappers;
 using PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot;
 using PgfPlotsSdk.Public.Interfaces.Data;
 
@@ -44,22 +47,50 @@ public class PgfPlotBuilder: ICanCreateRoot, ICanAddAxisContents, ICanAddPieCont
 		return this;
 	}
 
-	public string Build() => _isPie ? BuildPieChart() : BuildPlot();
-
-	private string BuildPlot()
+	public string Build()
 	{
-		throw new NotImplementedException();
+		Validate();
+		PlotDefinition[] plotDefinitions = _plotDefinitions.ToArray();
+		PgfPlotDefinition definition = _isPie ? new PgfPlotDefinition(plotDefinitions) : new PgfPlotWithAxesDefinition(_axisOptions!, _axisType!.Value, plotDefinitions);
+		FigureDefinition? figureDefinition = GenerateFigure(definition);
+
+		PgfPlotSyntaxTree tree = figureDefinition is null ? new(definition) : new(figureDefinition);
+		return tree.GenerateSource();
 	}
 
-	private string BuildPieChart()
+	private FigureDefinition? GenerateFigure(params PgfPlotDefinition[] definitions)
 	{
-		throw new NotImplementedException();
+		if (_figureOptions is not null)
+		{
+			return new()
+			{
+				Caption = _figureCaption,
+				Label = _figureLabel,
+				Plots = definitions.ToList()
+			};
+		}
+
+		return null;
 	}
+	
+
+	private void Validate()
+	{
+		if (!_isPie)
+		{
+			if (_axisOptions is null || _axisType is null)
+			{
+				throw new InvalidPgfPlotBuildStateException("A non-pie plot requires axes");
+			}
+		}
+	}
+
+
 
 	public ICanAddPieContents AddPie<T>(IEnumerable<PieChartSliceData<T>> slices, PieChartOptions? options = null) where T : INumber<T>
 	{
 		_isPie = true;
-		PlotDefinition plotDefinition = new(options, slices.Cast<ILatexData>().ToArray());
+		PlotDefinition plotDefinition = new(options ?? new(), slices.Cast<ILatexData>().ToArray());
 		_plotDefinitions.Add(plotDefinition);
 		return this;
 	}
@@ -67,7 +98,7 @@ public class PgfPlotBuilder: ICanCreateRoot, ICanAddAxisContents, ICanAddPieCont
 	public ICanAddAxisContents AddPlot(IEnumerable<ILatexData> data, PlotOptions? options = null)
 	{
 		_isPie = false;
-		PlotDefinition plotDefinition = new(options, data.ToArray());
+		PlotDefinition plotDefinition = new(options ?? new(), data.ToArray());
 		_plotDefinitions.Add(plotDefinition);
 		return this;
 	}
