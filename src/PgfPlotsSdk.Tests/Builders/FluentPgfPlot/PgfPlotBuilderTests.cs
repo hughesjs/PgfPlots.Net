@@ -175,6 +175,40 @@ public class PgfPlotBuilderTests
 
 		res.ShouldBe(expected);
 	}
+	
+	[Fact]
+	public void CanCreateDoublePlotWithBuiltPlotOptions()
+	{
+		const string expected = """
+								\begin{tikzpicture}
+								\begin{axis}[]
+								\addplot[color=Bittersweet, mark=o, ybar, smooth, only marks]
+								plot coordinates {(0,1) (2,3) (4,5)};
+								\addplot[mark size=12, line width=1, fill opacity=0.4, solid, bar width=1.2, fill=Cerulean]
+								plot coordinates {(4,5) (2,3) (0,1)};
+								\end{axis}
+								\end{tikzpicture}
+								""";
+
+		string res = _root
+			.AddPgfPlotWithAxes(AxisType.Standard)
+			.AddPlot(Data1)
+			.SetBarType(BarType.YBar)
+			.SetOnlyMarks(true)
+			.SetColour(LatexColour.Bittersweet)
+			.SetMark(PlotMark.Circle)
+			.SetSmooth(true)
+			.AddPlot(Data1.Reverse())
+			.SetBarWidth(1.2f)
+			.SetFillColour(LatexColour.Cerulean)
+			.SetFillOpacity(0.4f)
+			.SetLineStyle(LineStyle.Solid)
+			.SetLineWidth(1)
+			.SetMarkSize(12)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
 
 	[Fact]
 	public void CanCreatePlotWrappedInFigure()
@@ -358,6 +392,45 @@ public class PgfPlotBuilderTests
 			.SetPieChartType(PieType.Polar)
 			.SetScaleFont(true)
 			.SetSliceColours(LatexColour.Red, LatexColour.Green, LatexColour.Blue)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
+	
+	[Fact]
+	public void CanCreateDoublePieWithBuiltOptions()
+	{
+		const string expected = """
+								\begin{tikzpicture}
+								\pie [polar, pos={1,2}, radius=2.3, color={red,green,blue}, sum=30, scale font, after number=\%]
+								{5, 10, 15};
+								\pie [rotate=12, explode={1,2.4}, hide number, before number=A, text=inside]
+								{15, 10, 5};
+
+								\end{tikzpicture}
+								""";
+
+		PieChartSliceData<int> chartSliceOne = new(5);
+		PieChartSliceData<int> chartSliceTwo = new(10);
+		PieChartSliceData<int> chartSliceThree = new(15);
+		PieChartSliceData<int>[] slicesOne = { chartSliceOne, chartSliceTwo, chartSliceThree };
+		PieChartSliceData<int>[] slicesTwo = slicesOne.Reverse().ToArray();
+
+		string res = _root.AddPgfPlot()
+			.AddPie(slicesOne)
+			.SetCentrePosition(1,2)
+			.SetReferenceSum(30)
+			.SetAfterNumberText(@"\%")
+			.SetRadius(2.3f)
+			.SetPieChartType(PieType.Polar)
+			.SetScaleFont(true)
+			.SetSliceColours(LatexColour.Red, LatexColour.Green, LatexColour.Blue)
+			.AddPie(slicesTwo)
+			.SetHideNumber(true)
+			.SetTextPosition(PieTextOption.Inside)
+			.SetBeforeNumberText("A")
+			.SetRotation(12)
+			.SetSliceExplosionFactors(1,2.4f)
 			.Build();
 
 		res.ShouldBe(expected);

@@ -106,7 +106,7 @@ public class PgfPlotBuilder:
 
 	public ICanAddPieContentsOrSetPieOptionsOrBuild AddPie<T>(IEnumerable<PieChartSliceData<T>> slices, PieChartOptions? options = null) where T : INumber<T>
 	{
-		SavePrevious(ref _plotOptions);
+		SavePrevious(ref _pieChartOptions );
 		
 		_isPie = true;
 		_currentData = slices.Cast<ILatexData>().ToArray();
@@ -273,10 +273,10 @@ public class PgfPlotBuilder:
 		return this;
 	}
 
-	public ICanAddPieContentsOrSetPieOptionsOrBuild SetSliceExplosionFactors(List<float>? explosionFactors)
+	public ICanAddPieContentsOrSetPieOptionsOrBuild SetSliceExplosionFactors(params float[] explosionFactors)
 	{
 		_pieChartOptions ??= new();
-		_pieChartOptions.SliceExplosionFactors = explosionFactors;
+		_pieChartOptions.SliceExplosionFactors = explosionFactors.ToList();
 		return this;
 	}
 
