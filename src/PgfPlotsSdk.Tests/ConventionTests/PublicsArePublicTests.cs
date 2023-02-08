@@ -1,6 +1,6 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using PgfPlotsSdk.Public.ElementDefinitions.Options;
+using PgfPlotsSdk.Public.Models.Options;
 using Shouldly;
 
 namespace PgfPlotsSdk.Tests.ConventionTests;

@@ -1,3 +1,4 @@
+using PgfPlotsSdk.Internal.ElementDefinitions;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Axes;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Options;
@@ -6,9 +7,7 @@ using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Pies.Data;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Plots;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Plots.Data;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Wrappers;
-using PgfPlotsSdk.Public.ElementDefinitions.Options;
-using PgfPlotsSdk.Public.ElementDefinitions.Plots;
-using PgfPlotsSdk.Public.ElementDefinitions.Wrappers;
+using PgfPlotsSdk.Public.Models.Options;
 
 namespace PgfPlotsSdk.Internal.SyntaxTree;
 

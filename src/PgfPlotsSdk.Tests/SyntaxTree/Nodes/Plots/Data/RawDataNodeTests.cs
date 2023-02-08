@@ -2,7 +2,7 @@ using AutoFixture;
 using PgfPlotsSdk.Internal.Exceptions;
 using PgfPlotsSdk.Internal.SyntaxTree;
 using PgfPlotsSdk.Internal.SyntaxTree.Nodes.Plots.Data;
-using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
+using PgfPlotsSdk.Public.Models.Plots.Data;
 using Shouldly;
 
 namespace PgfPlotsSdk.Tests.SyntaxTree.Nodes.Plots.Data;

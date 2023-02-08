@@ -1,5 +1,5 @@
 using PgfPlotsSdk.Internal.Reflection;
-using PgfPlotsSdk.Public.ElementDefinitions.Enums;
+using PgfPlotsSdk.Public.Models.Enums;
 
 namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes.Axes;
 
