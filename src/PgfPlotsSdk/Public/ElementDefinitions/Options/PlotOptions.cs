@@ -6,37 +6,37 @@ namespace PgfPlotsSdk.Public.ElementDefinitions.Options;
 public record PlotOptions: OptionsDefinition
 {
     [PgfPlotsKey("color")]
-    public LatexColour? Colour { get; init; }
+    public LatexColour? Colour { get; set; }
 
     [PgfPlotsKey("mark")]
-    public PlotMark? Mark { get; init; }
+    public PlotMark? Mark { get; set; }
 
     [PgfPlotsKey("mark size")]
-    public float? MarkSize { get; init; }
+    public float? MarkSize { get; set; }
     
     [PgfPlotsKey("line width")]
-    public float? LineWidth { get; init; }
+    public float? LineWidth { get; set; }
 
     [PgfPlotsKey("fill opacity")] 
-    public float? FillOpacity { get; init; }
+    public float? FillOpacity { get; set; }
     
     [PgfPlotsValueOnly]
-    public LineStyle? LineStyle { get; init; }
+    public LineStyle? LineStyle { get; set; }
     
     [PgfPlotsValueOnly]
-    public BarType? BarType { get; init; }
+    public BarType? BarType { get; set; }
     
     [PgfPlotsKey("bar width")]
-    public float? BarWidth { get; init; }
+    public float? BarWidth { get; set; }
     
     [PgfPlotsKey("fill")]
-    public LatexColour? FillColour { get; init; }
+    public LatexColour? FillColour { get; set; }
     
     [PgfPlotsKey("smooth")]
-    public bool? Smooth { get; init; }
+    public bool? Smooth { get; set; }
     
     [PgfPlotsKey("only marks")]
-    public bool? OnlyMarks { get; init; }
+    public bool? OnlyMarks { get; set; }
 
     //TODO - Add custom keys dict
     

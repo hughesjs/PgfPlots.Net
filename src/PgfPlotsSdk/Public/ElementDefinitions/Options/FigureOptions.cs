@@ -4,5 +4,5 @@ namespace PgfPlotsSdk.Public.ElementDefinitions.Options;
 
 public record FigureOptions: OptionsDefinition
 {
-	public PositionFlags? Position { get; init; }
+	public PositionFlags? Position { get; set; }
 }
