@@ -12,8 +12,8 @@ public class PgfPlotsNodeTests
         PgfPlotNode node = new();
         PgfPlotSyntaxTree tree = new(node);
         const string expected = """
+
                                 \begin{tikzpicture}
-                                
                                 \end{tikzpicture}
                                 """;
 

@@ -41,10 +41,10 @@ public class PgfPlotBuilderTests
 	public void CanCreateBasicPlot()
 	{
 		const string expected = """
+
 								\begin{tikzpicture}
-								\begin{axis}[]
-								\addplot[]
-								plot coordinates {(0,1) (2,3) (4,5)};
+								\begin{axis}
+								\addplot plot coordinates {(0,1) (2,3) (4,5)};
 								\end{axis}
 								\end{tikzpicture}
 								""";
@@ -61,10 +61,10 @@ public class PgfPlotBuilderTests
 	public void CanCreateBasicPlotWithAxesOptions()
 	{
 		const string expected = """
+	
 								\begin{tikzpicture}
 								\begin{semilogxaxis}[minor x tick num=12, grid=both]
-								\addplot[]
-								plot coordinates {(0,1) (2,3) (4,5)};
+								\addplot plot coordinates {(0,1) (2,3) (4,5)};
 								\end{semilogxaxis}
 								\end{tikzpicture}
 								""";
@@ -85,10 +85,10 @@ public class PgfPlotBuilderTests
 	public void CanCreateBasicPlotWithBuiltAxesOptions()
 	{
 		const string expected = """
+
 								\begin{tikzpicture}
 								\begin{semilogyaxis}[xlabel=XLabel, ylabel=YLabel, xmin=-1, ymin=-4, xmax=10, ymax=11, minor x tick num=4, xtick={2,3,4}, ytick={2,4,6}, grid=both]
-								\addplot[]
-								plot coordinates {(0,1) (2,3) (4,5)};
+								\addplot plot coordinates {(0,1) (2,3) (4,5)};
 								\end{semilogyaxis}
 								\end{tikzpicture}
 								""";
@@ -116,10 +116,10 @@ public class PgfPlotBuilderTests
 	public void CanCreatePlotWithAxisOptions()
 	{
 		const string expected = """
+
 								\begin{tikzpicture}
 								\begin{axis}[xlabel=XAxis, ylabel=YAxis]
-								\addplot[]
-								plot coordinates {(0,1) (2,3) (4,5)};
+								\addplot plot coordinates {(0,1) (2,3) (4,5)};
 								\end{axis}
 								\end{tikzpicture}
 								""";
@@ -140,10 +140,10 @@ public class PgfPlotBuilderTests
 	public void CanCreatePlotWithBuiltAxisOptions()
 	{
 		const string expected = """
+
 								\begin{tikzpicture}
 								\begin{axis}[xlabel=XAxis, ylabel=YAxis]
-								\addplot[]
-								plot coordinates {(0,1) (2,3) (4,5)};
+								\addplot plot coordinates {(0,1) (2,3) (4,5)};
 								\end{axis}
 								\end{tikzpicture}
 								""";
@@ -162,12 +162,11 @@ public class PgfPlotBuilderTests
 	public void CanCreateChartWithTwoPlots()
 	{
 		const string expected = """
+
 								\begin{tikzpicture}
 								\begin{axis}[xlabel=XAxis, ylabel=YAxis]
-								\addplot[]
-								plot coordinates {(0,1) (2,3) (4,5)};
-								\addplot[]
-								plot coordinates {(5,6) (7,8) (8,2)};
+								\addplot plot coordinates {(0,1) (2,3) (4,5)};
+								\addplot plot coordinates {(5,6) (7,8) (8,2)};
 								\end{axis}
 								\end{tikzpicture}
 								""";
@@ -189,10 +188,10 @@ public class PgfPlotBuilderTests
 	public void CanCreatePlotWithPlotOptions()
 	{
 		const string expected = """
+
 								\begin{tikzpicture}
-								\begin{axis}[]
-								\addplot[ybar, only marks]
-								plot coordinates {(0,1) (2,3) (4,5)};
+								\begin{axis}
+								\addplot[ybar, only marks] plot coordinates {(0,1) (2,3) (4,5)};
 								\end{axis}
 								\end{tikzpicture}
 								""";
@@ -213,10 +212,10 @@ public class PgfPlotBuilderTests
 	public void CanCreatePlotWithBuiltPlotOptions()
 	{
 		const string expected = """
+
 								\begin{tikzpicture}
-								\begin{axis}[]
-								\addplot[ybar, only marks]
-								plot coordinates {(0,1) (2,3) (4,5)};
+								\begin{axis}
+								\addplot[ybar, only marks] plot coordinates {(0,1) (2,3) (4,5)};
 								\end{axis}
 								\end{tikzpicture}
 								""";
@@ -235,12 +234,11 @@ public class PgfPlotBuilderTests
 	public void CanCreateDoublePlotWithBuiltPlotOptions()
 	{
 		const string expected = """
+
 								\begin{tikzpicture}
-								\begin{axis}[]
-								\addplot[color=Bittersweet, mark=o, ybar, smooth, only marks]
-								plot coordinates {(0,1) (2,3) (4,5)};
-								\addplot[mark size=12, line width=1, fill opacity=0.4, solid, bar width=1.2, fill=Cerulean]
-								plot coordinates {(4,5) (2,3) (0,1)};
+								\begin{axis}
+								\addplot[color=Bittersweet, mark=o, ybar, smooth, only marks] plot coordinates {(0,1) (2,3) (4,5)};
+								\addplot[mark size=12, line width=1, fill opacity=0.4, solid, bar width=1.2, fill=Cerulean] plot coordinates {(4,5) (2,3) (0,1)};
 								\end{axis}
 								\end{tikzpicture}
 								""";
@@ -270,12 +268,9 @@ public class PgfPlotBuilderTests
 	{
 		const string expected = """
 								\begin{figure}
-								[]
-
 								\begin{tikzpicture}
-								\begin{axis}[]
-								\addplot[]
-								plot coordinates {(0,1) (2,3) (4,5)};
+								\begin{axis}
+								\addplot plot coordinates {(0,1) (2,3) (4,5)};
 								\end{axis}
 								\end{tikzpicture}
 								\end{figure}
@@ -292,13 +287,10 @@ public class PgfPlotBuilderTests
 	public void CanCreatePlotWrappedInFigureWithPosition()
 	{
 		const string expected = """
-								\begin{figure}
-								[htb]
-
+								\begin{figure}[htb]
 								\begin{tikzpicture}
-								\begin{axis}[]
-								\addplot[]
-								plot coordinates {(0,1) (2,3) (4,5)};
+								\begin{axis}
+								\addplot plot coordinates {(0,1) (2,3) (4,5)};
 								\end{axis}
 								\end{tikzpicture}
 								\end{figure}
@@ -318,13 +310,10 @@ public class PgfPlotBuilderTests
 	public void CanCreatePlotWrappedInFigureWithBuiltPosition()
 	{
 		const string expected = """
-								\begin{figure}
-								[htb]
-
+								\begin{figure}[htb]
 								\begin{tikzpicture}
-								\begin{axis}[]
-								\addplot[]
-								plot coordinates {(0,1) (2,3) (4,5)};
+								\begin{axis}
+								\addplot plot coordinates {(0,1) (2,3) (4,5)};
 								\end{axis}
 								\end{tikzpicture}
 								\end{figure}
@@ -345,12 +334,9 @@ public class PgfPlotBuilderTests
 	{
 		const string expected = """
 								\begin{figure}
-								[]
-
 								\begin{tikzpicture}
-								\begin{axis}[]
-								\addplot[]
-								plot coordinates {(0,1) (2,3) (4,5)};
+								\begin{axis}
+								\addplot plot coordinates {(0,1) (2,3) (4,5)};
 								\end{axis}
 								\end{tikzpicture}
 								\caption{This is my caption!}
@@ -371,10 +357,9 @@ public class PgfPlotBuilderTests
 	public void CanCreateSimplePie()
 	{
 		const string expected = """
-                                \begin{tikzpicture}
-                                \pie []
-                                {5, 10, 15};
 
+                                \begin{tikzpicture}
+                                \pie {5, 10, 15};
                                 \end{tikzpicture}
                                 """;
 
@@ -394,10 +379,9 @@ public class PgfPlotBuilderTests
 	public void CanCreatePieWithOptions()
 	{
 		const string expected = """
-                                \begin{tikzpicture}
-                                \pie [polar, pos={1,1}, radius=2.3, color={red,green,blue}, sum=30, scale font, after number=\%]
-                                {5, 10, 15};
 
+                                \begin{tikzpicture}
+                                \pie [polar, pos={1,1}, radius=2.3, color={red,green,blue}, sum=30, scale font, after number=\%]{5, 10, 15};
                                 \end{tikzpicture}
                                 """;
 
@@ -426,10 +410,9 @@ public class PgfPlotBuilderTests
 	public void CanCreatePieWithBuiltOptions()
 	{
 		const string expected = """
-                                \begin{tikzpicture}
-                                \pie [polar, pos={1,2}, radius=2.3, color={red,green,blue}, sum=30, scale font, after number=\%]
-                                {5, 10, 15};
 
+                                \begin{tikzpicture}
+                                \pie [polar, pos={1,2}, radius=2.3, color={red,green,blue}, sum=30, scale font, after number=\%]{5, 10, 15};
                                 \end{tikzpicture}
                                 """;
 
@@ -456,12 +439,10 @@ public class PgfPlotBuilderTests
 	public void CanCreateDoublePieWithBuiltOptions()
 	{
 		const string expected = """
-								\begin{tikzpicture}
-								\pie [polar, pos={1,2}, radius=2.3, color={red,green,blue}, sum=30, scale font, after number=\%]
-								{5, 10, 15};
-								\pie [rotate=12, explode={1,2.4}, hide number, before number=A, text=inside]
-								{15, 10, 5};
 
+								\begin{tikzpicture}
+								\pie [polar, pos={1,2}, radius=2.3, color={red,green,blue}, sum=30, scale font, after number=\%]{5, 10, 15};
+								\pie [rotate=12, explode={1,2.4}, hide number, before number=A, text=inside]{15, 10, 5};
 								\end{tikzpicture}
 								""";
 

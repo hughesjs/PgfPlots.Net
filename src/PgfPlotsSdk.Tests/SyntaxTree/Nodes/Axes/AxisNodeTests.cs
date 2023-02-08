@@ -26,7 +26,8 @@ public class AxisNodeTests
         axisNode.AddChild(optionsNode);
         PgfPlotSyntaxTree tree = new(axisNode);
         const string expected = """
-                              \begin{axis}[]
+
+                              \begin{axis}
                               \end{axis}
                               """;
 
@@ -43,7 +44,8 @@ public class AxisNodeTests
         axisNode.AddChild(optionsNode);
         PgfPlotSyntaxTree tree = new(axisNode);
         const string expected = """
-                              \begin{semilogxaxis}[]
+
+                              \begin{semilogxaxis}
                               \end{semilogxaxis}
                               """;
 
@@ -60,7 +62,8 @@ public class AxisNodeTests
         axisNode.AddChild(optionsNode);
         PgfPlotSyntaxTree tree = new(axisNode);
         const string expected = """
-                              \begin{semilogyaxis}[]
+
+                              \begin{semilogyaxis}
                               \end{semilogyaxis}
                               """;
 
@@ -77,7 +80,8 @@ public class AxisNodeTests
         axisNode.AddChild(optionsNode);
         PgfPlotSyntaxTree tree = new(axisNode);
         const string expected = """
-                              \begin{loglogaxis}[]
+
+                              \begin{loglogaxis}
                               \end{loglogaxis}
                               """;
 
@@ -103,6 +107,7 @@ public class AxisNodeTests
         PgfPlotSyntaxTree tree = new(axisNode);
         
         string expected = $$"""
+
                             \begin{axis}[xlabel={{axis.XLabel}}, ylabel={{axis.YLabel}}, xmin={{axis.XMin}}, ymin={{axis.YMin}}, xmax={{axis.XMax}}, ymax={{axis.YMax}}, minor y tick num={{axis.MinorYTickNumber}}, minor x tick num={{axis.MinorXTickNumber}}, xtick={{{string.Join(',', axis.XTicks!)}}}, ytick={{{string.Join(',', axis.YTicks!)}}}, grid={{PgfPlotsAttributeHelper.GetPgfPlotsKey<GridSetting>(axis.Grid.ToString()!)}}]
                             \end{axis}
                             """;

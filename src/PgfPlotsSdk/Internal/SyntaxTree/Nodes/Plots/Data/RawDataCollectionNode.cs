@@ -15,7 +15,7 @@ internal class RawDataCollectionNode: SyntaxNode
         Children.Add(new RawDataNode(data));
     }
 
-    protected override string BeforeChildren => "plot coordinates {";
+    protected override string BeforeChildren => " plot coordinates {";
     protected override string BetweenChildren => " ";
     protected override string AfterChildren => "}";
 

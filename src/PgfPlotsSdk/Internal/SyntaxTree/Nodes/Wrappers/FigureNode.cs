@@ -5,9 +5,9 @@ namespace PgfPlotsSdk.Internal.SyntaxTree.Nodes.Wrappers;
 
 internal class FigureNode: SyntaxNode<FigureDefinition>
 {
-	protected override string BeforeChildren => "\\begin{figure}\n";
-	protected override string BetweenChildren => "\n";
-	protected override string AfterChildren => "\\end{figure}";
+	protected override string BeforeChildren => "\\begin{figure}";
+	protected override string BetweenChildren => string.Empty;
+	protected override string AfterChildren => "\n\\end{figure}";
 
 	public FigureNode(FigureDefinition data) : base(data) { }
 
@@ -22,12 +22,12 @@ internal class FigureNode: SyntaxNode<FigureDefinition>
 
 		if (Data.Caption is not null)
 		{
-			builder.Append($"\\caption{{{Data.Caption}}}\n");
+			builder.Append($"\n\\caption{{{Data.Caption}}}");
 		}
 		
 		if (Data.Label is not null)
 		{
-			builder.Append($"\\label{{{Data.Label}}}\n");
+			builder.Append($"\n\\label{{{Data.Label}}}");
 		}
 		
 		return builder.Append(AfterChildren);

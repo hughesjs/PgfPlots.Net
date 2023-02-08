@@ -32,9 +32,8 @@ public class PlotNodeTests
 		};
 
 		const string expected = """
-						\addplot[color=cyan, mark=pentagon, mark size=0.5, line width=0.2, only marks]
-						plot coordinates {(0,1) (2,3) (4,5)};
 
+						\addplot[color=cyan, mark=pentagon, mark size=0.5, line width=0.2, only marks] plot coordinates {(0,1) (2,3) (4,5)};
 						""";
 		
 		OptionsCollectionNode optionsCollectionNode = new(options.GetOptionsDictionary());
@@ -61,9 +60,8 @@ public class PlotNodeTests
 		};
 
 		const string expected = """
-						\addplot[fill opacity=0.2, dashed, fill=magenta]
-						plot coordinates {(0,1) (2,3) (4,5)};
 
+						\addplot[fill opacity=0.2, dashed, fill=magenta] plot coordinates {(0,1) (2,3) (4,5)};
 						""";
 		
 		OptionsCollectionNode optionsCollectionNode = new(options.GetOptionsDictionary());
@@ -91,10 +89,9 @@ public class PlotNodeTests
 		};
 		
 		const string expected = """
-						\addplot[color=green, fill opacity=0.4, xbar, fill=red]
-						plot coordinates {(0,1) (2,3) (4,5)};
 
-						""";
+								\addplot[color=green, fill opacity=0.4, xbar, fill=red] plot coordinates {(0,1) (2,3) (4,5)};
+								""";
 		
 		OptionsCollectionNode optionsCollectionNode = new(options.GetOptionsDictionary());
 		RawDataCollectionNode rawDataCollectionNode = new(Data);
@@ -122,10 +119,9 @@ public class PlotNodeTests
 		};
 		
 		const string expected = """
-						\addplot[color=green, fill opacity=0.4, xbar interval, bar width=0.1, fill=red]
-						plot coordinates {(0,1) (2,3) (4,5)};
 
-						""";
+								\addplot[color=green, fill opacity=0.4, xbar interval, bar width=0.1, fill=red] plot coordinates {(0,1) (2,3) (4,5)};
+								""";
 		
 		OptionsCollectionNode optionsCollectionNode = new(options.GetOptionsDictionary());
 		RawDataCollectionNode rawDataCollectionNode = new(Data);
@@ -152,10 +148,9 @@ public class PlotNodeTests
 		};
 		
 		const string expected = """
-						\addplot[color=green, fill opacity=0.4, ybar, fill=red]
-						plot coordinates {(0,1) (2,3) (4,5)};
 
-						""";
+								\addplot[color=green, fill opacity=0.4, ybar, fill=red] plot coordinates {(0,1) (2,3) (4,5)};
+								""";
 		
 		OptionsCollectionNode optionsCollectionNode = new(options.GetOptionsDictionary());
 		RawDataCollectionNode rawDataCollectionNode = new(Data);
@@ -183,10 +178,9 @@ public class PlotNodeTests
 		};
 		
 		const string expected = """
-						\addplot[color=green, fill opacity=0.4, ybar interval, bar width=0.2, fill=red]
-						plot coordinates {(0,1) (2,3) (4,5)};
 
-						""";
+								\addplot[color=green, fill opacity=0.4, ybar interval, bar width=0.2, fill=red] plot coordinates {(0,1) (2,3) (4,5)};
+								""";
 		
 		OptionsCollectionNode optionsCollectionNode = new(options.GetOptionsDictionary());
 		RawDataCollectionNode rawDataCollectionNode = new(Data);
@@ -230,10 +224,9 @@ public class PlotNodeTests
 		data.AddBin(binTwo);
 
 		const string expected = """
-						\addplot[color=green, fill opacity=0.4, ybar interval, fill=red]
-						plot coordinates {(0,3) (1,5) (2,0)};
 
-						""";
+								\addplot[color=green, fill opacity=0.4, ybar interval, fill=red] plot coordinates {(0,3) (1,5) (2,0)};
+								""";
 		
 		OptionsCollectionNode optionsCollectionNode = new(options.GetOptionsDictionary());
 		RawDataCollectionNode rawDataCollectionNode = new(data);

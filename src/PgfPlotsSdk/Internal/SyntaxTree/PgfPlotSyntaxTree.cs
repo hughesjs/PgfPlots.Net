@@ -97,7 +97,7 @@ internal class PgfPlotSyntaxTree
         return plotNode;
     }
 
-    private TNode GenerateNodeWithOptions<TNode>(OptionsDefinition options) where TNode: SyntaxNode, new()
+    private TNode? GenerateNodeWithOptions<TNode>(OptionsDefinition options) where TNode: SyntaxNode, new()
     {
         TNode node = new();
         OptionsCollectionNode optionsCollectionNode = new(options.GetOptionsDictionary());

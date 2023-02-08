@@ -44,6 +44,7 @@ public class PgfPlotsSyntaxTreeTests
         PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
         string expected = $$"""
+
                             \begin{tikzpicture}
                             \begin{axis}[xlabel={{AxisOptions.XLabel}}, ylabel={{AxisOptions.YLabel}}, xmin={{AxisOptions.XMin}}, ymin={{AxisOptions.YMin}}, xmax={{AxisOptions.XMax}}, ymax={{AxisOptions.YMax}}, minor y tick num={{AxisOptions.MinorYTickNumber}}, minor x tick num={{AxisOptions.MinorXTickNumber}}, xtick={{{string.Join(',',AxisOptions.XTicks!)}}}, ytick={{{string.Join(',',AxisOptions.YTicks!)}}}]
                             \end{axis}
@@ -73,10 +74,10 @@ public class PgfPlotsSyntaxTreeTests
         PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
         string expected = $$"""
+
                             \begin{tikzpicture}
                             \begin{axis}[xlabel={{AxisOptions.XLabel}}, ylabel={{AxisOptions.YLabel}}, xmin={{AxisOptions.XMin}}, ymin={{AxisOptions.YMin}}, xmax={{AxisOptions.XMax}}, ymax={{AxisOptions.YMax}}, minor y tick num={{AxisOptions.MinorYTickNumber}}, minor x tick num={{AxisOptions.MinorXTickNumber}}, xtick={{{string.Join(',',AxisOptions.XTicks!)}}}, ytick={{{string.Join(',',AxisOptions.YTicks!)}}}]
-                            \addplot[color=black, mark=diamond, mark size=5, line width=2, dashed, smooth]
-                            plot coordinates {(0,1) (2,3) (4,5)};
+                            \addplot[color=black, mark=diamond, mark size=5, line width=2, dashed, smooth] plot coordinates {(0,1) (2,3) (4,5)};
                             \end{axis}
                             \end{tikzpicture}
                             """;
@@ -115,12 +116,11 @@ public class PgfPlotsSyntaxTreeTests
         PgfPlotSyntaxTree tree = new(pgfPlotDefinition);
 
         string expected = $$"""
+
                             \begin{tikzpicture}
                             \begin{axis}[xlabel={{AxisOptions.XLabel}}, ylabel={{AxisOptions.YLabel}}, xmin={{AxisOptions.XMin}}, ymin={{AxisOptions.YMin}}, xmax={{AxisOptions.XMax}}, ymax={{AxisOptions.YMax}}, minor y tick num={{AxisOptions.MinorYTickNumber}}, minor x tick num={{AxisOptions.MinorXTickNumber}}, xtick={{{string.Join(',',AxisOptions.XTicks!)}}}, ytick={{{string.Join(',',AxisOptions.YTicks!)}}}]
-                            \addplot[color=black, mark=diamond, mark size=5, line width=2, dashed, smooth]
-                            plot coordinates {(0,1) (2,3) (4,5)};
-                            \addplot[color=blue, mark=triangle, mark size=1, line width=1, solid]
-                            plot coordinates {(5,6) (7,8) (8,2)};
+                            \addplot[color=black, mark=diamond, mark size=5, line width=2, dashed, smooth] plot coordinates {(0,1) (2,3) (4,5)};
+                            \addplot[color=blue, mark=triangle, mark size=1, line width=1, solid] plot coordinates {(5,6) (7,8) (8,2)};
                             \end{axis}
                             \end{tikzpicture}
                             """;
@@ -153,10 +153,9 @@ public class PgfPlotsSyntaxTreeTests
         PgfPlotSyntaxTree tree = new(plotDefinition);
         
         const string expected = """
-                                \begin{tikzpicture}
-                                \pie [polar, pos={1,1}, radius=2.3, color={red,green,blue}, sum=30, scale font, after number=\%]
-                                {5, 10, 15};
 
+                                \begin{tikzpicture}
+                                \pie [polar, pos={1,1}, radius=2.3, color={red,green,blue}, sum=30, scale font, after number=\%]{5, 10, 15};
                                 \end{tikzpicture}
                                 """;
         

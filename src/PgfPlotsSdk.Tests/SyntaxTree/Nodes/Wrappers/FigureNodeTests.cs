@@ -71,12 +71,9 @@ public class FigureNodeTests
 	{
 		string expected = $$"""
 							\begin{figure}
-							[]
-							
 							\begin{tikzpicture}
 							\begin{axis}[xlabel={{AxisOptions.XLabel}}, ylabel={{AxisOptions.YLabel}}, xmin={{AxisOptions.XMin}}, ymin={{AxisOptions.YMin}}, xmax={{AxisOptions.XMax}}, ymax={{AxisOptions.YMax}}, minor y tick num={{AxisOptions.MinorYTickNumber}}, minor x tick num={{AxisOptions.MinorXTickNumber}}, xtick={{{string.Join(',',AxisOptions.XTicks!)}}}, ytick={{{string.Join(',',AxisOptions.YTicks!)}}}]
-							\addplot[color=black, mark=diamond, mark size=5, line width=2, dashed, smooth]
-							plot coordinates {(0,1) (2,3) (4,5)};
+							\addplot[color=black, mark=diamond, mark size=5, line width=2, dashed, smooth] plot coordinates {(0,1) (2,3) (4,5)};
 							\end{axis}
 							\end{tikzpicture}
 							\caption{{{Caption}}}
@@ -100,18 +97,14 @@ public class FigureNodeTests
 	{
 		string expected = $$"""
 							\begin{figure}
-							[]
-							
 							\begin{tikzpicture}
 							\begin{axis}[xlabel={{AxisOptions.XLabel}}, ylabel={{AxisOptions.YLabel}}, xmin={{AxisOptions.XMin}}, ymin={{AxisOptions.YMin}}, xmax={{AxisOptions.XMax}}, ymax={{AxisOptions.YMax}}, minor y tick num={{AxisOptions.MinorYTickNumber}}, minor x tick num={{AxisOptions.MinorXTickNumber}}, xtick={{{string.Join(',',AxisOptions.XTicks!)}}}, ytick={{{string.Join(',',AxisOptions.YTicks!)}}}]
-							\addplot[color=black, mark=diamond, mark size=5, line width=2, dashed, smooth]
-							plot coordinates {(0,1) (2,3) (4,5)};
+							\addplot[color=black, mark=diamond, mark size=5, line width=2, dashed, smooth] plot coordinates {(0,1) (2,3) (4,5)};
 							\end{axis}
 							\end{tikzpicture}
 							\begin{tikzpicture}
 							\begin{axis}[xlabel={{AxisOptions.XLabel}}, ylabel={{AxisOptions.YLabel}}, xmin={{AxisOptions.XMin}}, ymin={{AxisOptions.YMin}}, xmax={{AxisOptions.XMax}}, ymax={{AxisOptions.YMax}}, minor y tick num={{AxisOptions.MinorYTickNumber}}, minor x tick num={{AxisOptions.MinorXTickNumber}}, xtick={{{string.Join(',',AxisOptions.XTicks!)}}}, ytick={{{string.Join(',',AxisOptions.YTicks!)}}}]
-							\addplot[color=black, mark=diamond, mark size=5, line width=2, dashed, smooth]
-							plot coordinates {(0,1) (2,3) (4,5)};
+							\addplot[color=black, mark=diamond, mark size=5, line width=2, dashed, smooth] plot coordinates {(0,1) (2,3) (4,5)};
 							\end{axis}
 							\end{tikzpicture}
 							\caption{{{Caption}}}
