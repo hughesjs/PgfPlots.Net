@@ -23,12 +23,7 @@ public class PgfPlotSourceGeneratorTests
 	[Fact]
 	public void GeneratesSourceWithValidFigureDefinition()
 	{
-		FigureDefinition definition = new()
-		{
-			Caption = "Cap",
-			Label = "Lab",
-			Plots = new()
-		};
+		FigureDefinition definition = new(new(), "Lab", "Cap");
 		
 		string res = _sourceGenerator.GenerateSourceCode(definition);
 		res.ShouldNotBeNullOrEmpty();

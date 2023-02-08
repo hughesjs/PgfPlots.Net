@@ -56,7 +56,7 @@ public class PlotNodeTests
 		PlotOptions options = new()
 		{
 			LineStyle = LineStyle.Dashed,
-			Fill = LatexColour.Magenta,
+			FillColour = LatexColour.Magenta,
 			FillOpacity = 0.2f
 		};
 
@@ -85,7 +85,7 @@ public class PlotNodeTests
 		PlotOptions options = new()
 		{
 			Colour = LatexColour.Green,
-			Fill = LatexColour.Red,
+			FillColour = LatexColour.Red,
 			FillOpacity = 0.4f,
 			BarType = BarType.XBar,
 		};
@@ -115,7 +115,7 @@ public class PlotNodeTests
 		PlotOptions options = new()
 		{
 			Colour = LatexColour.Green,
-			Fill = LatexColour.Red,
+			FillColour = LatexColour.Red,
 			FillOpacity = 0.4f,
 			BarType = BarType.XBarInterval,
 			BarWidth = 0.1f
@@ -146,7 +146,7 @@ public class PlotNodeTests
 		PlotOptions options = new()
 		{
 			Colour = LatexColour.Green,
-			Fill = LatexColour.Red,
+			FillColour = LatexColour.Red,
 			FillOpacity = 0.4f,
 			BarType = BarType.YBar
 		};
@@ -176,7 +176,7 @@ public class PlotNodeTests
 		PlotOptions options = new()
 		{
 			Colour = LatexColour.Green,
-			Fill = LatexColour.Red,
+			FillColour = LatexColour.Red,
 			FillOpacity = 0.4f,
 			BarType = BarType.YBarInterval,
 			BarWidth = 0.2f
@@ -207,7 +207,7 @@ public class PlotNodeTests
 		PlotOptions options = new()
 		{
 			Colour = LatexColour.Green,
-			Fill = LatexColour.Red,
+			FillColour = LatexColour.Red,
 			FillOpacity = 0.4f,
 			BarType = BarType.YBarInterval
 		};

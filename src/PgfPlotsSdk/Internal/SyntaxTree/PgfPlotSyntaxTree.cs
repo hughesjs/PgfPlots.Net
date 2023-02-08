@@ -33,7 +33,10 @@ internal class PgfPlotSyntaxTree
     {
         PgfPlotNode[] pgfPlotNodes = definition.Plots?.Select(GenerateTree).ToArray() ?? Array.Empty<PgfPlotNode>();
 
-        FigureNode rootNode = new(definition);
+        FigureNode rootNode =  new(definition);
+        OptionsCollectionNode optionsCollectionNode = new(definition.Options.GetOptionsDictionary());
+        
+        rootNode.AddChild(optionsCollectionNode);
         rootNode.AddChildren(pgfPlotNodes);
 
         return rootNode;
@@ -89,7 +92,7 @@ internal class PgfPlotSyntaxTree
         // Replace this with something less gross...
         Type unconstructedCollectionNodeType = typeof(RawPieSliceCollectionNode<>);
         Type constructedCollectionNodeType = unconstructedCollectionNodeType.MakeGenericType(plotDefinition.PlotData.First().GetType().GetGenericArguments());
-        SyntaxNode dataCollectionNode = (SyntaxNode)Activator.CreateInstance(constructedCollectionNodeType, plotDefinition.PlotData);
+        SyntaxNode dataCollectionNode = (SyntaxNode)Activator.CreateInstance(constructedCollectionNodeType, plotDefinition.PlotData.Cast<object>().ToArray())!;
         plotNode.AddChild(dataCollectionNode!);
         return plotNode;
     }

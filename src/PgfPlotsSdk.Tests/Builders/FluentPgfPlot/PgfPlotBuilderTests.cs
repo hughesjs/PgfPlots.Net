@@ -2,7 +2,7 @@ using PgfPlotsSdk.Public.Builders.FluentPgfPlot;
 using PgfPlotsSdk.Public.ElementDefinitions.Enums;
 using PgfPlotsSdk.Public.ElementDefinitions.Options;
 using PgfPlotsSdk.Public.ElementDefinitions.Plots.Data;
-using PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot;
+using PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Composed;
 using PgfPlotsSdk.Public.Interfaces.Data;
 using Shouldly;
 
@@ -10,7 +10,7 @@ namespace PgfPlotsSdk.Tests.Builders.FluentPgfPlot;
 
 public class PgfPlotBuilderTests
 {
-	private readonly ICanCreateRoot _root;
+	private readonly ICanAddWrapperOrAddRoot _root;
 
 	private static readonly ILatexData[] Data1 =
 	{
@@ -56,6 +56,61 @@ public class PgfPlotBuilderTests
 
 		res.ShouldBe(expected);
 	}
+	
+	[Fact]
+	public void CanCreateBasicPlotWithAxesOptions()
+	{
+		const string expected = """
+								\begin{tikzpicture}
+								\begin{semilogxaxis}[minor x tick num=12, grid=both]
+								\addplot[]
+								plot coordinates {(0,1) (2,3) (4,5)};
+								\end{semilogxaxis}
+								\end{tikzpicture}
+								""";
+
+		string res = _root
+			.AddPgfPlotWithAxes(AxisType.SemiLogX, new AxisOptions
+			{
+				Grid = GridSetting.Both,
+				MinorXTickNumber = 12
+			})
+			.AddPlot(Data1)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
+	
+	[Fact]
+	public void CanCreateBasicPlotWithBuiltAxesOptions()
+	{
+		const string expected = """
+								\begin{tikzpicture}
+								\begin{semilogyaxis}[xlabel=XLabel, ylabel=YLabel, xmin=-1, ymin=-4, xmax=10, ymax=11, minor x tick num=4, xtick={2,3,4}, ytick={2,4,6}, grid=both]
+								\addplot[]
+								plot coordinates {(0,1) (2,3) (4,5)};
+								\end{semilogyaxis}
+								\end{tikzpicture}
+								""";
+
+		string res = _root
+			.AddPgfPlotWithAxes(AxisType.SemiLogY)
+			.SetXLabel("XLabel")
+			.SetYLabel("YLabel")
+			.SetGrid(GridSetting.Both)
+			.SetXMax(10)
+			.SetYMax(11)
+			.SetXMin(-1)
+			.SetYMin(-4)
+			.SetXTicks(2,3,4)
+			.SetYTicks(2,4,6)
+			.SetMinorXTickNumber(3)
+			.SetMinorYTickNumber(4)
+			.AddPlot(Data1)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
 
 	[Fact]
 	public void CanCreatePlotWithAxisOptions()
@@ -75,6 +130,28 @@ public class PgfPlotBuilderTests
 				XLabel = "XAxis",
 				YLabel = "YAxis"
 			})
+			.AddPlot(Data1)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
+	
+	[Fact]
+	public void CanCreatePlotWithBuiltAxisOptions()
+	{
+		const string expected = """
+								\begin{tikzpicture}
+								\begin{axis}[xlabel=XAxis, ylabel=YAxis]
+								\addplot[]
+								plot coordinates {(0,1) (2,3) (4,5)};
+								\end{axis}
+								\end{tikzpicture}
+								""";
+
+		string res = _root
+			.AddPgfPlotWithAxes(AxisType.Standard)
+			.SetXLabel("XAxis")
+			.SetYLabel("YAxis")
 			.AddPlot(Data1)
 			.Build();
 
@@ -113,7 +190,7 @@ public class PgfPlotBuilderTests
 	{
 		const string expected = """
 								\begin{tikzpicture}
-								\begin{axis}[xlabel=XAxis, ylabel=YAxis]
+								\begin{axis}[]
 								\addplot[ybar, only marks]
 								plot coordinates {(0,1) (2,3) (4,5)};
 								\end{axis}
@@ -121,16 +198,68 @@ public class PgfPlotBuilderTests
 								""";
 
 		string res = _root
-			.AddPgfPlotWithAxes(AxisType.Standard, new AxisOptions
-			{
-				XLabel = "XAxis",
-				YLabel = "YAxis"
-			})
-			.AddPlot(Data1, new PlotOptions()
+			.AddPgfPlotWithAxes(AxisType.Standard)
+			.AddPlot(Data1, new PlotOptions
 			{
 				BarType = BarType.YBar,
 				OnlyMarks = true
 			})
+			.Build();
+
+		res.ShouldBe(expected);
+	}
+	
+	[Fact]
+	public void CanCreatePlotWithBuiltPlotOptions()
+	{
+		const string expected = """
+								\begin{tikzpicture}
+								\begin{axis}[]
+								\addplot[ybar, only marks]
+								plot coordinates {(0,1) (2,3) (4,5)};
+								\end{axis}
+								\end{tikzpicture}
+								""";
+
+		string res = _root
+			.AddPgfPlotWithAxes(AxisType.Standard)
+			.AddPlot(Data1)
+			.SetBarType(BarType.YBar)
+			.SetOnlyMarks(true)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
+	
+	[Fact]
+	public void CanCreateDoublePlotWithBuiltPlotOptions()
+	{
+		const string expected = """
+								\begin{tikzpicture}
+								\begin{axis}[]
+								\addplot[color=Bittersweet, mark=o, ybar, smooth, only marks]
+								plot coordinates {(0,1) (2,3) (4,5)};
+								\addplot[mark size=12, line width=1, fill opacity=0.4, solid, bar width=1.2, fill=Cerulean]
+								plot coordinates {(4,5) (2,3) (0,1)};
+								\end{axis}
+								\end{tikzpicture}
+								""";
+
+		string res = _root
+			.AddPgfPlotWithAxes(AxisType.Standard)
+			.AddPlot(Data1)
+			.SetBarType(BarType.YBar)
+			.SetOnlyMarks(true)
+			.SetColour(LatexColour.Bittersweet)
+			.SetMark(PlotMark.Circle)
+			.SetSmooth(true)
+			.AddPlot(Data1.Reverse())
+			.SetBarWidth(1.2f)
+			.SetFillColour(LatexColour.Cerulean)
+			.SetFillOpacity(0.4f)
+			.SetLineStyle(LineStyle.Solid)
+			.SetLineWidth(1)
+			.SetMarkSize(12)
 			.Build();
 
 		res.ShouldBe(expected);
@@ -141,6 +270,8 @@ public class PgfPlotBuilderTests
 	{
 		const string expected = """
 								\begin{figure}
+								[]
+
 								\begin{tikzpicture}
 								\begin{axis}[]
 								\addplot[]
@@ -156,12 +287,66 @@ public class PgfPlotBuilderTests
 
 		res.ShouldBe(expected);
 	}
+	
+	[Fact]
+	public void CanCreatePlotWrappedInFigureWithPosition()
+	{
+		const string expected = """
+								\begin{figure}
+								[htb]
+
+								\begin{tikzpicture}
+								\begin{axis}[]
+								\addplot[]
+								plot coordinates {(0,1) (2,3) (4,5)};
+								\end{axis}
+								\end{tikzpicture}
+								\end{figure}
+								""";
+		string res = _root.AddFigure(new FigureOptions
+			{
+				Position = PositionFlags.Here | PositionFlags.Top | PositionFlags.Bottom
+			})
+			.AddPgfPlotWithAxes(AxisType.Standard)
+			.AddPlot(Data1)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
+	
+	[Fact]
+	public void CanCreatePlotWrappedInFigureWithBuiltPosition()
+	{
+		const string expected = """
+								\begin{figure}
+								[htb]
+
+								\begin{tikzpicture}
+								\begin{axis}[]
+								\addplot[]
+								plot coordinates {(0,1) (2,3) (4,5)};
+								\end{axis}
+								\end{tikzpicture}
+								\end{figure}
+								""";
+		string res = _root.AddFigure()
+			.SetPlacementFlag(PositionFlags.Here)
+			.SetPlacementFlag(PositionFlags.Top)
+			.SetPlacementFlag(PositionFlags.Bottom)
+			.AddPgfPlotWithAxes(AxisType.Standard)
+			.AddPlot(Data1)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
 
 	[Fact]
 	public void CanAddCaptionAndLabelToFigure()
 	{
 		const string expected = """
 								\begin{figure}
+								[]
+
 								\begin{tikzpicture}
 								\begin{axis}[]
 								\addplot[]
@@ -232,6 +417,75 @@ public class PgfPlotBuilderTests
 				ScaleFont = true,
 				SliceColours = new() { LatexColour.Red, LatexColour.Green, LatexColour.Blue }
 			})
+			.Build();
+
+		res.ShouldBe(expected);
+	}
+	
+	[Fact]
+	public void CanCreatePieWithBuiltOptions()
+	{
+		const string expected = """
+                                \begin{tikzpicture}
+                                \pie [polar, pos={1,2}, radius=2.3, color={red,green,blue}, sum=30, scale font, after number=\%]
+                                {5, 10, 15};
+
+                                \end{tikzpicture}
+                                """;
+
+		PieChartSliceData<int> chartSliceOne = new(5);
+		PieChartSliceData<int> chartSliceTwo = new(10);
+		PieChartSliceData<int> chartSliceThree = new(15);
+		PieChartSliceData<int>[] slices = { chartSliceOne, chartSliceTwo, chartSliceThree };
+
+		string res = _root.AddPgfPlot()
+			.AddPie(slices)
+			.SetCentrePosition(1,2)
+			.SetReferenceSum(30)
+			.SetAfterNumberText(@"\%")
+			.SetRadius(2.3f)
+			.SetPieChartType(PieType.Polar)
+			.SetScaleFont(true)
+			.SetSliceColours(LatexColour.Red, LatexColour.Green, LatexColour.Blue)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
+	
+	[Fact]
+	public void CanCreateDoublePieWithBuiltOptions()
+	{
+		const string expected = """
+								\begin{tikzpicture}
+								\pie [polar, pos={1,2}, radius=2.3, color={red,green,blue}, sum=30, scale font, after number=\%]
+								{5, 10, 15};
+								\pie [rotate=12, explode={1,2.4}, hide number, before number=A, text=inside]
+								{15, 10, 5};
+
+								\end{tikzpicture}
+								""";
+
+		PieChartSliceData<int> chartSliceOne = new(5);
+		PieChartSliceData<int> chartSliceTwo = new(10);
+		PieChartSliceData<int> chartSliceThree = new(15);
+		PieChartSliceData<int>[] slicesOne = { chartSliceOne, chartSliceTwo, chartSliceThree };
+		PieChartSliceData<int>[] slicesTwo = slicesOne.Reverse().ToArray();
+
+		string res = _root.AddPgfPlot()
+			.AddPie(slicesOne)
+			.SetCentrePosition(1,2)
+			.SetReferenceSum(30)
+			.SetAfterNumberText(@"\%")
+			.SetRadius(2.3f)
+			.SetPieChartType(PieType.Polar)
+			.SetScaleFont(true)
+			.SetSliceColours(LatexColour.Red, LatexColour.Green, LatexColour.Blue)
+			.AddPie(slicesTwo)
+			.SetHideNumber(true)
+			.SetTextPosition(PieTextOption.Inside)
+			.SetBeforeNumberText("A")
+			.SetRotation(12)
+			.SetSliceExplosionFactors(1,2.4f)
 			.Build();
 
 		res.ShouldBe(expected);

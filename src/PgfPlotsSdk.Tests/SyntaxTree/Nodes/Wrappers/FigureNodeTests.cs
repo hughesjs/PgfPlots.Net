@@ -56,11 +56,7 @@ public class FigureNodeTests
 							\end{figure}
 							""";
 
-		FigureDefinition figureDefinition = new()
-		{
-			Caption = Caption,
-			Label = Label
-		};
+		FigureDefinition figureDefinition = new(new(), Label, Caption);
 
 		FigureNode node = new(figureDefinition);
 		PgfPlotSyntaxTree tree = new(node);
@@ -75,6 +71,8 @@ public class FigureNodeTests
 	{
 		string expected = $$"""
 							\begin{figure}
+							[]
+							
 							\begin{tikzpicture}
 							\begin{axis}[xlabel={{AxisOptions.XLabel}}, ylabel={{AxisOptions.YLabel}}, xmin={{AxisOptions.XMin}}, ymin={{AxisOptions.YMin}}, xmax={{AxisOptions.XMax}}, ymax={{AxisOptions.YMax}}, minor y tick num={{AxisOptions.MinorYTickNumber}}, minor x tick num={{AxisOptions.MinorXTickNumber}}, xtick={{{string.Join(',',AxisOptions.XTicks!)}}}, ytick={{{string.Join(',',AxisOptions.YTicks!)}}}]
 							\addplot[color=black, mark=diamond, mark size=5, line width=2, dashed, smooth]
@@ -88,12 +86,7 @@ public class FigureNodeTests
 		
 		PlotDefinition plotDefinition = new(PlotOptions, Data);
 		PgfPlotWithAxesDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, plotDefinition);
-        FigureDefinition figureDefinition = new()
-        {
-	        Caption = Caption,
-	        Label = Label,
-	        Plots = new(){pgfPlotDefinition}
-        };
+		FigureDefinition figureDefinition = new(new(), Label, Caption, pgfPlotDefinition);
         
 		PgfPlotSyntaxTree tree = new(figureDefinition);
 		
@@ -107,6 +100,8 @@ public class FigureNodeTests
 	{
 		string expected = $$"""
 							\begin{figure}
+							[]
+							
 							\begin{tikzpicture}
 							\begin{axis}[xlabel={{AxisOptions.XLabel}}, ylabel={{AxisOptions.YLabel}}, xmin={{AxisOptions.XMin}}, ymin={{AxisOptions.YMin}}, xmax={{AxisOptions.XMax}}, ymax={{AxisOptions.YMax}}, minor y tick num={{AxisOptions.MinorYTickNumber}}, minor x tick num={{AxisOptions.MinorXTickNumber}}, xtick={{{string.Join(',',AxisOptions.XTicks!)}}}, ytick={{{string.Join(',',AxisOptions.YTicks!)}}}]
 							\addplot[color=black, mark=diamond, mark size=5, line width=2, dashed, smooth]
@@ -126,12 +121,7 @@ public class FigureNodeTests
 		
 		PlotDefinition plotDefinition = new(PlotOptions, Data);
 		PgfPlotWithAxesDefinition pgfPlotDefinition = new(AxisOptions, AxisType.Standard, plotDefinition);
-		FigureDefinition figureDefinition = new()
-		{
-			Caption = Caption,
-			Label = Label,
-			Plots = new(){pgfPlotDefinition, pgfPlotDefinition}
-		};
+		FigureDefinition figureDefinition = new(new(), Label, Caption, pgfPlotDefinition, pgfPlotDefinition);
         
 		PgfPlotSyntaxTree tree = new(figureDefinition);
 		
