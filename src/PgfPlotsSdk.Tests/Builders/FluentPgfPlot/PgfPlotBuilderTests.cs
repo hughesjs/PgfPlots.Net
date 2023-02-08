@@ -352,6 +352,41 @@ public class PgfPlotBuilderTests
 
 		res.ShouldBe(expected);
 	}
+	
+	[Fact]
+	public void CanCreateMultiplotMultiOptionFigure()
+	{
+		const string expected = """
+								\begin{figure}[H]
+								\begin{tikzpicture}
+								\begin{axis}[xlabel=The Value of X, ylabel=The Value of Y, grid=both]
+								\addplot[color=Cerulean, mark=*] plot coordinates {(0,1) (2,3) (4,5)};
+								\addplot[color=Sepia, mark=o, dashed] plot coordinates {(5,6) (7,8) (8,2)};
+								\end{axis}
+								\end{tikzpicture}
+								\caption{This is my caption!}
+								\label{fig:myfig}
+								\end{figure}
+								""";
+		string res = _root.AddFigure()
+			.SetPlacementFlag(PositionFlags.ForceExactlyHere)
+			.SetCaption("This is my caption!")
+			.SetLabel("fig:myfig")
+			.AddPgfPlotWithAxes(AxisType.Standard)
+			.SetXLabel("The Value of X")
+			.SetYLabel("The Value of Y")
+			.SetGrid(GridSetting.Both)
+			.AddPlot(Data1)
+			.SetColour(LatexColour.Cerulean)
+			.SetMark(PlotMark.Star)
+			.AddPlot(Data2)
+			.SetColour(LatexColour.Sepia)
+			.SetLineStyle(LineStyle.Dashed)
+			.SetMark(PlotMark.Circle)
+			.Build();
+
+		res.ShouldBe(expected);
+	}
 
 	[Fact]
 	public void CanCreateSimplePie()
