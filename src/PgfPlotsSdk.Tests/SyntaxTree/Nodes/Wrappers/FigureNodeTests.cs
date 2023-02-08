@@ -54,7 +54,6 @@ public class FigureNodeTests
 							\caption{{{Caption}}}
 							\label{{{Label}}}
 							\end{figure}
-
 							""";
 
 		FigureDefinition figureDefinition = new()
@@ -85,7 +84,6 @@ public class FigureNodeTests
 							\caption{{{Caption}}}
 							\label{{{Label}}}
 							\end{figure}
-
 							""";
 		
 		PlotDefinition plotDefinition = new(PlotOptions, Data);
@@ -124,7 +122,6 @@ public class FigureNodeTests
 							\caption{{{Caption}}}
 							\label{{{Label}}}
 							\end{figure}
-
 							""";
 		
 		PlotDefinition plotDefinition = new(PlotOptions, Data);

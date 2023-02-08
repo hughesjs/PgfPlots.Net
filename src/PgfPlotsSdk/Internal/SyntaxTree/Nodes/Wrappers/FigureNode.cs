@@ -7,7 +7,7 @@ internal class FigureNode: SyntaxNode<FigureDefinition>
 {
 	protected override string BeforeChildren => "\\begin{figure}\n";
 	protected override string BetweenChildren => "\n";
-	protected override string AfterChildren => "\\end{figure}\n";
+	protected override string AfterChildren => "\\end{figure}";
 
 	public FigureNode(FigureDefinition data) : base(data) { }
 
