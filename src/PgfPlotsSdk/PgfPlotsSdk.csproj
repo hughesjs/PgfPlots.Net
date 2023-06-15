@@ -23,5 +23,13 @@
     <ItemGroup>
       <Folder Include="Public\Models" />
     </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="SuperFluid" Version="0.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="SuperFluidDefinitions\PgfPlotsBuilder.fluid.yml" />
+    </ItemGroup>
     
 </Project>
