@@ -25,11 +25,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="SuperFluid" Version="0.0.4" />
+      <AdditionalFiles Include="SuperFluidDefinitions\PgfPlotsBuilder.fluid.yml" />
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="SuperFluidDefinitions\PgfPlotsBuilder.fluid.yml" />
+      <PackageReference Include="SuperFluid" Version="0.0.5-debugstandard14" />
     </ItemGroup>
     
 </Project>
