@@ -100,6 +100,10 @@ Methods:
         Type: "IEnumerable<PgfPlotsSdk.Public.Models.Plots.Data.PieChartSliceData<T>>"
       - Name: "options"
         Type: "PgfPlotsSdk.Public.Models.Options.PieChartOptions?"
+    GenericArguments:
+      - Name: "T"
+        Constraints:
+          - "System.Numerics.INumber<T>"
     CanTransitionTo: &PieSettingsCircular
       - "AddPie"
       - "Build"
