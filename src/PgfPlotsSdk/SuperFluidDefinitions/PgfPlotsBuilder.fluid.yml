@@ -6,24 +6,23 @@ InitialState:
     - "AddPgfPlotWithAxes"
     - "AddPgfPlot"
     - "AddFigure"
-Methods: 
+Methods:
   - Name: "AddFigure"
-    ReturnType: "FigureBuilder"
     Arguments:
       - Name: "figureOptions"
-        Type: "FigureOptions?"
-    CanTransitionTo:
+        Type: "PgfPlotsSdk.Public.Models.Options.FigureOptions?"
+    CanTransitionTo: &FigureCircular
       - "AddPgfPlotWithAxes"
       - "AddPgfPlot"
       - "SetCaption"
       - "SetLabel"
-      - "SetPlacementFlag"    
+      - "SetPlacementFlag"
   - Name: "AddPgfPlotWithAxes"
     Arguments:
       - Name: "axisType"
-        Type: "AxisType"
+        Type: "PgfPlotsSdk.Public.Models.Enums.AxisType"
       - Name: "options"
-        Type: "AxisOptions?"
+        Type: "PgfPlotsSdk.Public.Models.Options.AxisOptions?"
     CanTransitionTo: &AxisSettingsCircular
       - "AddPlot"
       - "SetXLabel"
@@ -87,15 +86,20 @@ Methods:
       - Name: "ticks"
         Type: "params float[]"
     CanTransitionTo: *AxisSettingsCircular
+  - Name: "SetGrid"
+    Arguments:
+      - Name: "grid"
+        Type: "PgfPlotsSdk.Public.Models.Enums.GridSetting?"
+    CanTransitionTo: *AxisSettingsCircular
   - Name: "AddPgfPlot"
     CanTransitionTo:
       - "AddPie"
   - Name: "AddPie"
     Arguments:
       - Name: "slices"
-        Type: "IEnumerable<PieChartSliceData<T>>"
+        Type: "IEnumerable<PgfPlotsSdk.Public.Models.Plots.Data.PieChartSliceData<T>>"
       - Name: "options"
-        Type: "PieChartOptions?"
+        Type: "PgfPlotsSdk.Public.Models.Options.PieChartOptions?"
     CanTransitionTo: &PieSettingsCircular
       - "AddPie"
       - "Build"
@@ -133,24 +137,25 @@ Methods:
     CanTransitionTo: *PieSettingsCircular
   - Name: "SetCentrePosition"
     Arguments:
-          - Name: "x"
-            Type: "float"
-          - Name: "y"
-            Type: "float"
-    CanTransitionTo: *PieSettingsCircular        
+      - Name: "x"
+        Type: "float"
+      - Name: "y"
+        Type: "float"
+    CanTransitionTo: *PieSettingsCircular
   - Name: "SetScaleFont"
     Arguments:
       - Name: "enabled"
         Type: "bool?"
+    CanTransitionTo: *PieSettingsCircular
   - Name: "SetSliceColours"
     Arguments:
       - Name: "colours"
-        Type: "params LatexColour[]"
+        Type: "params PgfPlotsSdk.Public.Models.Enums.LatexColour[]"
     CanTransitionTo: *PieSettingsCircular
   - Name: "SetTextPosition"
     Arguments:
       - Name: "textPosition"
-        Type: "PieTextOption?"
+        Type: "PgfPlotsSdk.Public.Models.Enums.PieTextOption?"
     CanTransitionTo: *PieSettingsCircular
   - Name: "SetAfterNumberText"
     Arguments:
@@ -165,7 +170,7 @@ Methods:
   - Name: "SetPieChartType"
     Arguments:
       - Name: "type"
-        Type: "PieType?"
+        Type: "PgfPlotsSdk.Public.Models.Enums.PieType?"
     CanTransitionTo: *PieSettingsCircular
   - Name: "SetSliceExplosionFactors"
     Arguments:
@@ -175,9 +180,9 @@ Methods:
   - Name: "AddPlot"
     Arguments:
       - Name: "data"
-        Type: "IEnumerable<LatexData>"
+        Type: "IEnumerable<PgfPlotsSdk.Public.Interfaces.Data.ILatexData>"
       - Name: "options"
-        Type: "PlotOptions?"
+        Type: "PgfPlotsSdk.Public.Models.Options.PlotOptions?"
     CanTransitionTo: &PlotOptionsCircular
       - "AddPlot"
       - "Build"
@@ -195,17 +200,17 @@ Methods:
   - Name: "SetColour"
     Arguments:
       - Name: "colour"
-        Type: "LatexColour?"
+        Type: "PgfPlotsSdk.Public.Models.Enums.LatexColour?"
     CanTransitionTo: *PlotOptionsCircular
   - Name: "SetBarType"
     Arguments:
       - Name: "type"
-        Type: "BarType?"
+        Type: "PgfPlotsSdk.Public.Models.Enums.BarType?"
     CanTransitionTo: *PlotOptionsCircular
   - Name: "SetMark"
     Arguments:
       - Name: "mark"
-        Type: "PlotMark?"
+        Type: "PgfPlotsSdk.Public.Models.Enums.PlotMark?"
     CanTransitionTo: *PlotOptionsCircular
   - Name: "SetSmooth"
     Arguments:
@@ -220,7 +225,7 @@ Methods:
   - Name: "SetFillColour"
     Arguments:
       - Name: "colour"
-        Type: "LatexColour?"
+        Type: "PgfPlotsSdk.Public.Models.Enums.LatexColour?"
     CanTransitionTo: *PlotOptionsCircular
   - Name: "SetFillOpacity"
     Arguments:
@@ -230,7 +235,7 @@ Methods:
   - Name: "SetLineStyle"
     Arguments:
       - Name: "style"
-        Type: "LineStyle?"
+        Type: "PgfPlotsSdk.Public.Models.Enums.LineStyle?"
     CanTransitionTo: *PlotOptionsCircular
   - Name: "SetLineWidth"
     Arguments:
@@ -247,6 +252,21 @@ Methods:
       - Name: "enabled"
         Type: "bool?"
     CanTransitionTo: *PlotOptionsCircular
+  - Name: "SetCaption"
+    Arguments:
+      - Name: "caption"
+        Type: "string?"
+    CanTransitionTo: *FigureCircular
+  - Name: "SetLabel"
+    Arguments:
+      - Name: "label"
+        Type: "string?"
+    CanTransitionTo: *FigureCircular
+  - Name: "SetPlacementFlag"
+    Arguments:
+      - Name: "flagsToSet"
+        Type: "PgfPlotsSdk.Public.Models.Enums.PositionFlags"
+    CanTransitionTo: *FigureCircular
   - Name: "Build"
     Arguments: []
     CanTransitionTo: []
