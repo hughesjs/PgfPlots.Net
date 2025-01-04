@@ -1,5 +1,5 @@
 using PgfPlotsSdk.Public.Builders;
-using PgfPlotsSdk.Public.Interfaces.Builders.FluentPgfPlot.Composed;
+using PgfPlotsSdk.Public.Generated;
 using PgfPlotsSdk.Public.Interfaces.Data;
 using PgfPlotsSdk.Public.Models.Enums;
 using PgfPlotsSdk.Public.Models.Options;
@@ -10,7 +10,7 @@ namespace PgfPlotsSdk.Tests.Builders.FluentPgfPlot;
 
 public class PgfPlotBuilderTests
 {
-	private readonly ICanAddWrapperOrAddRoot _root;
+	private readonly ICanAddPgfPlotWithAxesOrAddPgfPlotOrAddFigure _root;
 
 	private static readonly ILatexData[] Data1 =
 	{
@@ -50,7 +50,7 @@ public class PgfPlotBuilderTests
 								""";
 
 		string res = _root
-			.AddPgfPlotWithAxes(AxisType.Standard)
+			.AddPgfPlotWithAxes(AxisType.Standard, null)
 			.AddPlot(Data1)
 			.Build();
 

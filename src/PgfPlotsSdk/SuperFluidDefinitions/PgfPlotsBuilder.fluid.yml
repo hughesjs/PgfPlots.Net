@@ -11,6 +11,7 @@ Methods:
     Arguments:
       - Name: "figureOptions"
         Type: "PgfPlotsSdk.Public.Models.Options.FigureOptions?"
+        DefaultValue: "null"
     CanTransitionTo: &FigureCircular
       - "AddPgfPlotWithAxes"
       - "AddPgfPlot"
@@ -23,6 +24,7 @@ Methods:
         Type: "PgfPlotsSdk.Public.Models.Enums.AxisType"
       - Name: "options"
         Type: "PgfPlotsSdk.Public.Models.Options.AxisOptions?"
+        DefaultValue: "null"
     CanTransitionTo: &AxisSettingsCircular
       - "AddPlot"
       - "SetXLabel"
@@ -100,6 +102,7 @@ Methods:
         Type: "IEnumerable<PgfPlotsSdk.Public.Models.Plots.Data.PieChartSliceData<T>>"
       - Name: "options"
         Type: "PgfPlotsSdk.Public.Models.Options.PieChartOptions?"
+        DefaultValue: "null"
     GenericArguments:
       - Name: "T"
         Constraints:
@@ -187,6 +190,7 @@ Methods:
         Type: "IEnumerable<PgfPlotsSdk.Public.Interfaces.Data.ILatexData>"
       - Name: "options"
         Type: "PgfPlotsSdk.Public.Models.Options.PlotOptions?"
+        DefaultValue: "null"
     CanTransitionTo: &PlotOptionsCircular
       - "AddPlot"
       - "Build"
